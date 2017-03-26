@@ -16,21 +16,16 @@ namespace Examples
       InitializeComponent();
       this.departmentsGridView.AutoGenerateColumns = false;
       this.employeesGridView.AutoGenerateColumns = false;
-    }
-
-    private void btnLoadData_Click(object sender, EventArgs e)
-    {
       this.Database.LoadFromDatabase();
+
+      // bottom buttons
+      this.btnLoadData.Image = Properties.Resources.database_refresh;
+      this.btnLoadData.Click += delegate { this.Database.LoadFromDatabase(); };
+      this.btnSaveData.Image = Properties.Resources.database_save;
+      this.btnSaveData.Click += delegate { this.Database.SaveToDatabase(); };
+      this.btnExit.Image = Properties.Resources.door;
+      this.btnExit.Click += delegate { this.Close(); };
     }
 
-    private void btnSaveData_Click(object sender, EventArgs e)
-    {
-      this.Database.SaveToDatabase();
-    }
-
-    private void btnExit_Click(object sender, EventArgs e)
-    {
-      this.Close();
-    }
   }
 }

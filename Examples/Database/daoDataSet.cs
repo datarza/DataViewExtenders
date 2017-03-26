@@ -10,7 +10,11 @@ namespace Examples.Database
     public void LoadFromDatabase()
     {
       if (!File.Exists(fileName)) daoDataSet.PrepareDatabase();
+      this.BeginInit();
+      if (this.Employees.Count > 0) this.Employees.Clear();
+      if (this.Departments.Count > 0) this.Departments.Clear();
       this.ReadXml(fileName);
+      this.EndInit();
     }
 
     public void SaveToDatabase()
