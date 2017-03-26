@@ -63,6 +63,16 @@ namespace Examples.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cell_clear {
+            get {
+                object obj = ResourceManager.GetObject("cell_clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap database_refresh {
             get {
                 object obj = ResourceManager.GetObject("database_refresh", resourceCulture);
@@ -86,6 +96,16 @@ namespace Examples.Properties {
         internal static System.Drawing.Bitmap door {
             get {
                 object obj = ResourceManager.GetObject("door", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap more_imports {
+            get {
+                object obj = ResourceManager.GetObject("more_imports", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

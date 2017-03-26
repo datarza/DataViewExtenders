@@ -14,8 +14,15 @@ namespace Examples
     public MainForm()
     {
       InitializeComponent();
-      this.departmentsGridView.AutoGenerateColumns = false;
-      this.employeesGridView.AutoGenerateColumns = false;
+
+      // Binding data
+      this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
+      this.employeesNavigator.BindingSource = this.employeesBindingSource;
+      //this.departmentsGridView.AutoGenerateColumns = false;
+      this.departmentsGridView.DataSource = this.departmentsBindingSource;
+      //this.employeesGridView.AutoGenerateColumns = false;
+      this.employeesGridView.DataSource = this.employeesBindingSource;
+
       this.Database.LoadFromDatabase();
 
       // bottom buttons
