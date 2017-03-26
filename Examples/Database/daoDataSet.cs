@@ -58,7 +58,7 @@ namespace Examples.Database
       row.EmployeeName = "Sima Ludlow";
       row.DepartmentsRow = ds.Departments[3];
       row.PhoneNumber = 12345678901;
-      row.DateBirth = new DateTime(1973, 13, 1);
+      row.DateBirth = new DateTime(1973, 12, 1);
       row.SalaryGroup = 2;
       ds.Employees.AddEmployeesRow(row);
       row = ds.Employees.NewEmployeesRow(); // Kaur Rajvinder
