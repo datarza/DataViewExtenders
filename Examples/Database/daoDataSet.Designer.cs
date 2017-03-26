@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Examples.DAO {
+namespace Examples.Database {
     
     
     /// <summary>
@@ -20,9 +20,9 @@ namespace Examples.DAO {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("daoDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSet : global::System.Data.DataSet {
+    internal partial class daoDataSet : global::System.Data.DataSet {
         
         private DepartmentsDataTable tableDepartments;
         
@@ -34,7 +34,7 @@ namespace Examples.DAO {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataSet() {
+        public daoDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +45,7 @@ namespace Examples.DAO {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected daoDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -144,7 +144,7 @@ namespace Examples.DAO {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSet cln = ((DataSet)(base.Clone()));
+            daoDataSet cln = ((daoDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -226,7 +226,7 @@ namespace Examples.DAO {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSet";
+            this.DataSetName = "daoDataSet";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/DataSet.xsd";
             this.EnforceConstraints = true;
@@ -264,7 +264,7 @@ namespace Examples.DAO {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSet ds = new DataSet();
+            daoDataSet ds = new daoDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -325,6 +325,12 @@ namespace Examples.DAO {
             
             private global::System.Data.DataColumn columnDepartmentName;
             
+            private global::System.Data.DataColumn columnIsClosed;
+            
+            private global::System.Data.DataColumn columnCompanyGroup;
+            
+            private global::System.Data.DataColumn columnRemarks;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DepartmentsDataTable() {
@@ -376,6 +382,30 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IsClosedColumn {
+                get {
+                    return this.columnIsClosed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CompanyGroupColumn {
+                get {
+                    return this.columnCompanyGroup;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RemarksColumn {
+                get {
+                    return this.columnRemarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -411,11 +441,14 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DepartmentsRow AddDepartmentsRow(System.Guid DepartmentID, string DepartmentName) {
+            public DepartmentsRow AddDepartmentsRow(System.Guid DepartmentID, string DepartmentName, bool IsClosed, string CompanyGroup, string Remarks) {
                 DepartmentsRow rowDepartmentsRow = ((DepartmentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DepartmentID,
-                        DepartmentName};
+                        DepartmentName,
+                        IsClosed,
+                        CompanyGroup,
+                        Remarks};
                 rowDepartmentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDepartmentsRow);
                 return rowDepartmentsRow;
@@ -447,6 +480,9 @@ namespace Examples.DAO {
             internal void InitVars() {
                 this.columnDepartmentID = base.Columns["DepartmentID"];
                 this.columnDepartmentName = base.Columns["DepartmentName"];
+                this.columnIsClosed = base.Columns["IsClosed"];
+                this.columnCompanyGroup = base.Columns["CompanyGroup"];
+                this.columnRemarks = base.Columns["Remarks"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -456,6 +492,12 @@ namespace Examples.DAO {
                 base.Columns.Add(this.columnDepartmentID);
                 this.columnDepartmentName = new global::System.Data.DataColumn("DepartmentName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartmentName);
+                this.columnIsClosed = new global::System.Data.DataColumn("IsClosed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsClosed);
+                this.columnCompanyGroup = new global::System.Data.DataColumn("CompanyGroup", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompanyGroup);
+                this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRemarks);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDepartmentID}, true));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -464,6 +506,11 @@ namespace Examples.DAO {
                 this.columnDepartmentID.Unique = true;
                 this.columnDepartmentName.AllowDBNull = false;
                 this.columnDepartmentName.Unique = true;
+                this.columnDepartmentName.MaxLength = 50;
+                this.columnIsClosed.AllowDBNull = false;
+                this.columnIsClosed.DefaultValue = ((bool)(false));
+                this.columnCompanyGroup.MaxLength = 5;
+                this.columnRemarks.MaxLength = 1000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -531,7 +578,7 @@ namespace Examples.DAO {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet ds = new DataSet();
+                daoDataSet ds = new daoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -599,11 +646,15 @@ namespace Examples.DAO {
             
             private global::System.Data.DataColumn columnEmployeeID;
             
-            private global::System.Data.DataColumn columnFirstName;
-            
-            private global::System.Data.DataColumn columnLastName;
+            private global::System.Data.DataColumn columnEmployeeName;
             
             private global::System.Data.DataColumn columnDepartmentID;
+            
+            private global::System.Data.DataColumn columnPhoneNumber;
+            
+            private global::System.Data.DataColumn columnDateBirth;
+            
+            private global::System.Data.DataColumn columnSalaryGroup;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -648,17 +699,9 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FirstNameColumn {
+            public global::System.Data.DataColumn EmployeeNameColumn {
                 get {
-                    return this.columnFirstName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LastNameColumn {
-                get {
-                    return this.columnLastName;
+                    return this.columnEmployeeName;
                 }
             }
             
@@ -667,6 +710,30 @@ namespace Examples.DAO {
             public global::System.Data.DataColumn DepartmentIDColumn {
                 get {
                     return this.columnDepartmentID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PhoneNumberColumn {
+                get {
+                    return this.columnPhoneNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DateBirthColumn {
+                get {
+                    return this.columnDateBirth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SalaryGroupColumn {
+                get {
+                    return this.columnSalaryGroup;
                 }
             }
             
@@ -707,15 +774,17 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EmployeesRow AddEmployeesRow(System.Guid EmployeeID, string FirstName, string LastName, DepartmentsRow parentDepartmentsRowByDepartments_Employees) {
+            public EmployeesRow AddEmployeesRow(System.Guid EmployeeID, string EmployeeName, DepartmentsRow parentDepartmentsRowByDepartments_Employees, decimal PhoneNumber, System.DateTime DateBirth, byte SalaryGroup) {
                 EmployeesRow rowEmployeesRow = ((EmployeesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EmployeeID,
-                        FirstName,
-                        LastName,
-                        null};
+                        EmployeeName,
+                        null,
+                        PhoneNumber,
+                        DateBirth,
+                        SalaryGroup};
                 if ((parentDepartmentsRowByDepartments_Employees != null)) {
-                    columnValuesArray[3] = parentDepartmentsRowByDepartments_Employees[0];
+                    columnValuesArray[2] = parentDepartmentsRowByDepartments_Employees[0];
                 }
                 rowEmployeesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEmployeesRow);
@@ -747,9 +816,11 @@ namespace Examples.DAO {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnEmployeeID = base.Columns["EmployeeID"];
-                this.columnFirstName = base.Columns["FirstName"];
-                this.columnLastName = base.Columns["LastName"];
+                this.columnEmployeeName = base.Columns["EmployeeName"];
                 this.columnDepartmentID = base.Columns["DepartmentID"];
+                this.columnPhoneNumber = base.Columns["PhoneNumber"];
+                this.columnDateBirth = base.Columns["DateBirth"];
+                this.columnSalaryGroup = base.Columns["SalaryGroup"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -757,18 +828,28 @@ namespace Examples.DAO {
             private void InitClass() {
                 this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeID);
-                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFirstName);
-                this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLastName);
+                this.columnEmployeeName = new global::System.Data.DataColumn("EmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployeeName);
                 this.columnDepartmentID = new global::System.Data.DataColumn("DepartmentID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartmentID);
+                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhoneNumber);
+                this.columnDateBirth = new global::System.Data.DataColumn("DateBirth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateBirth);
+                this.columnSalaryGroup = new global::System.Data.DataColumn("SalaryGroup", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalaryGroup);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnEmployeeID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnEmployeeName}, false));
                 this.columnEmployeeID.AllowDBNull = false;
                 this.columnEmployeeID.Unique = true;
-                this.columnFirstName.AllowDBNull = false;
+                this.columnEmployeeName.AllowDBNull = false;
+                this.columnEmployeeName.Unique = true;
+                this.columnEmployeeName.MaxLength = 100;
                 this.columnDepartmentID.AllowDBNull = false;
+                this.columnDateBirth.DateTimeMode = global::System.Data.DataSetDateTime.Unspecified;
+                this.columnSalaryGroup.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -836,7 +917,7 @@ namespace Examples.DAO {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet ds = new DataSet();
+                daoDataSet ds = new daoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -933,6 +1014,73 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsClosed {
+                get {
+                    return ((bool)(this[this.tableDepartments.IsClosedColumn]));
+                }
+                set {
+                    this[this.tableDepartments.IsClosedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CompanyGroup {
+                get {
+                    try {
+                        return ((string)(this[this.tableDepartments.CompanyGroupColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CompanyGroup\' in table \'Departments\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDepartments.CompanyGroupColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Remarks {
+                get {
+                    try {
+                        return ((string)(this[this.tableDepartments.RemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Remarks\' in table \'Departments\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDepartments.RemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCompanyGroupNull() {
+                return this.IsNull(this.tableDepartments.CompanyGroupColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCompanyGroupNull() {
+                this[this.tableDepartments.CompanyGroupColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRemarksNull() {
+                return this.IsNull(this.tableDepartments.RemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRemarksNull() {
+                this[this.tableDepartments.RemarksColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EmployeesRow[] GetEmployeesRows() {
                 if ((this.Table.ChildRelations["Departments_Employees"] == null)) {
                     return new EmployeesRow[0];
@@ -970,28 +1118,12 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FirstName {
+            public string EmployeeName {
                 get {
-                    return ((string)(this[this.tableEmployees.FirstNameColumn]));
+                    return ((string)(this[this.tableEmployees.EmployeeNameColumn]));
                 }
                 set {
-                    this[this.tableEmployees.FirstNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string LastName {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.LastNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LastName\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.LastNameColumn] = value;
+                    this[this.tableEmployees.EmployeeNameColumn] = value;
                 }
             }
             
@@ -1008,6 +1140,49 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal PhoneNumber {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableEmployees.PhoneNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PhoneNumber\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployees.PhoneNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DateBirth {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEmployees.DateBirthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateBirth\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployees.DateBirthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte SalaryGroup {
+                get {
+                    return ((byte)(this[this.tableEmployees.SalaryGroupColumn]));
+                }
+                set {
+                    this[this.tableEmployees.SalaryGroupColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DepartmentsRow DepartmentsRow {
                 get {
                     return ((DepartmentsRow)(this.GetParentRow(this.Table.ParentRelations["Departments_Employees"])));
@@ -1019,14 +1194,26 @@ namespace Examples.DAO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLastNameNull() {
-                return this.IsNull(this.tableEmployees.LastNameColumn);
+            public bool IsPhoneNumberNull() {
+                return this.IsNull(this.tableEmployees.PhoneNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLastNameNull() {
-                this[this.tableEmployees.LastNameColumn] = global::System.Convert.DBNull;
+            public void SetPhoneNumberNull() {
+                this[this.tableEmployees.PhoneNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDateBirthNull() {
+                return this.IsNull(this.tableEmployees.DateBirthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDateBirthNull() {
+                this[this.tableEmployees.DateBirthColumn] = global::System.Convert.DBNull;
             }
         }
         

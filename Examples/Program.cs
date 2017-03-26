@@ -15,6 +15,9 @@ namespace Examples
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
+#if DEBUG  
+      Examples.Database.daoDataSet.PrepareDatabase();
+#endif
       Application.Run(new MainForm());
     }
   }

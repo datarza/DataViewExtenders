@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="daoDataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="NotPublic" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="daoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="daoDataSet" msprop:Generator_UserDSName="daoDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Departments" msprop:Generator_TableClassName="DepartmentsDataTable" msprop:Generator_TableVarName="tableDepartments" msprop:Generator_RowChangedName="DepartmentsRowChanged" msprop:Generator_TablePropName="Departments" msprop:Generator_RowDeletingName="DepartmentsRowDeleting" msprop:Generator_RowChangingName="DepartmentsRowChanging" msprop:Generator_RowEvHandlerName="DepartmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentsRowDeleted" msprop:Generator_RowClassName="DepartmentsRow" msprop:Generator_UserTableName="Departments" msprop:Generator_RowEvArgName="DepartmentsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
+              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsClosed" msprop:Generator_ColumnVarNameInTable="columnIsClosed" msprop:Generator_ColumnPropNameInRow="IsClosed" msprop:Generator_ColumnPropNameInTable="IsClosedColumn" msprop:Generator_UserColumnName="IsClosed" type="xs:boolean" default="false" />
+              <xs:element name="CompanyGroup" msprop:Generator_ColumnVarNameInTable="columnCompanyGroup" msprop:Generator_ColumnPropNameInRow="CompanyGroup" msprop:Generator_ColumnPropNameInTable="CompanyGroupColumn" msprop:Generator_UserColumnName="CompanyGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Employees" msprop:Generator_TableClassName="EmployeesDataTable" msprop:Generator_TableVarName="tableEmployees" msprop:Generator_RowChangedName="EmployeesRowChanged" msprop:Generator_TablePropName="Employees" msprop:Generator_RowDeletingName="EmployeesRowDeleting" msprop:Generator_RowChangingName="EmployeesRowChanging" msprop:Generator_RowEvHandlerName="EmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeesRowDeleted" msprop:Generator_RowClassName="EmployeesRow" msprop:Generator_UserTableName="Employees" msprop:Generator_RowEvArgName="EmployeesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmployeeID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:string" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
+              <xs:element name="PhoneNumber" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DateBirth" msdata:DateTimeMode="Unspecified" msprop:Generator_ColumnVarNameInTable="columnDateBirth" msprop:Generator_ColumnPropNameInRow="DateBirth" msprop:Generator_ColumnPropNameInTable="DateBirthColumn" msprop:Generator_UserColumnName="DateBirth" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SalaryGroup" msprop:Generator_ColumnVarNameInTable="columnSalaryGroup" msprop:Generator_ColumnPropNameInRow="SalaryGroup" msprop:Generator_ColumnPropNameInTable="SalaryGroupColumn" msprop:Generator_UserColumnName="SalaryGroup" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Departments" />
+      <xs:field xpath="mstns:DepartmentID" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:Departments" />
+      <xs:field xpath="mstns:DepartmentName" />
+    </xs:unique>
+    <xs:unique name="Employees_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Employees" />
+      <xs:field xpath="mstns:EmployeeID" />
+    </xs:unique>
+    <xs:unique name="Employees_Constraint2" msdata:ConstraintName="Constraint2">
+      <xs:selector xpath=".//mstns:Employees" />
+      <xs:field xpath="mstns:EmployeeName" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Departments_Employees" msdata:parent="Departments" msdata:child="Employees" msdata:parentkey="DepartmentID" msdata:childkey="DepartmentID" msprop:Generator_UserChildTable="Employees" msprop:Generator_ChildPropName="GetEmployeesRows" msprop:Generator_UserRelationName="Departments_Employees" msprop:Generator_RelationVarName="relationDepartments_Employees" msprop:Generator_UserParentTable="Departments" msprop:Generator_ParentPropName="DepartmentsRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
