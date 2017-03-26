@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataViewExtenders", "Source\DataViewExtenders.csproj", "{FFE9BBB5-8B9B-40EA-9499-AA2DE0ECB1F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "DataViewExtendersTests\TestProject.csproj", "{323C1AFB-C410-459C-ADD3-D35BA4A82158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{323C1AFB-C410-459C-ADD3-D35BA4A82158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
