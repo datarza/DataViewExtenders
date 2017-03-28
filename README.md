@@ -11,7 +11,7 @@ Developing, please come back later...
 _DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
 - Tuple Class
 - Extension Methods (introduced in .NET Framework 3.5)
-- String.IsNullOrWhiteSpace
+- String.IsNullOrWhiteSpace method
 
 
 ## Credits
