@@ -6,6 +6,16 @@ Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNav
 
 Developing, please come back later...
 
+## Supported .NET Frameworks
+
+_DataViewExtenders_ uses special things that were introduced in .NET Framework 3.5: 
+- Extension Methods
+
+Also, _DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
+- Tuple Class
+- String.IsNullOrWhiteSpace
+
+
 ## Credits
 
 [Farm-Fresh Web Icons](http://www.fatcow.com/free-icons) have been used in Examples.
