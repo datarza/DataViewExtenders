@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CBComponents</RootNamespace>
     <AssemblyName>CBComponents.DataViewExtenders</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,9 +37,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDescriptors\United.cs" />
+    <Compile Include="DataDescriptors\ColumnDescriptor.cs" />
+    <Compile Include="DataDescriptors\FieldDescriptor.cs" />
+    <Compile Include="DataDescriptors\FieldGroupDescriptor.cs" />
     <Compile Include="DataGridViewExtenders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
