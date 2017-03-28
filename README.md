@@ -2,7 +2,7 @@
 
 Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNavigator and so on
 
-## Curent state
+## Current state
 
 Developing, please come back later...
 
