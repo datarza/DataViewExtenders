@@ -101,7 +101,7 @@
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      mainLayoutPanel.Size = new System.Drawing.Size(784, 562);
+      mainLayoutPanel.Size = new System.Drawing.Size(1008, 562);
       mainLayoutPanel.TabIndex = 0;
       // 
       // departmentsGridView
@@ -110,16 +110,16 @@
       this.departmentsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
       this.departmentsGridView.Location = new System.Drawing.Point(3, 28);
       this.departmentsGridView.Name = "departmentsGridView";
-      this.departmentsGridView.Size = new System.Drawing.Size(386, 242);
+      this.departmentsGridView.Size = new System.Drawing.Size(498, 242);
       this.departmentsGridView.TabIndex = 0;
       // 
       // employeesGridView
       // 
       this.employeesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.employeesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.employeesGridView.Location = new System.Drawing.Point(395, 28);
+      this.employeesGridView.Location = new System.Drawing.Point(507, 28);
       this.employeesGridView.Name = "employeesGridView";
-      this.employeesGridView.Size = new System.Drawing.Size(386, 242);
+      this.employeesGridView.Size = new System.Drawing.Size(498, 242);
       this.employeesGridView.TabIndex = 1;
       // 
       // departmentsPanel
@@ -129,7 +129,7 @@
       this.departmentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.departmentsPanel.Location = new System.Drawing.Point(3, 276);
       this.departmentsPanel.Name = "departmentsPanel";
-      this.departmentsPanel.Size = new System.Drawing.Size(386, 242);
+      this.departmentsPanel.Size = new System.Drawing.Size(498, 242);
       this.departmentsPanel.TabIndex = 2;
       // 
       // employeesPanel
@@ -137,9 +137,9 @@
       this.employeesPanel.AutoScroll = true;
       this.employeesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.employeesPanel.Location = new System.Drawing.Point(395, 276);
+      this.employeesPanel.Location = new System.Drawing.Point(507, 276);
       this.employeesPanel.Name = "employeesPanel";
-      this.employeesPanel.Size = new System.Drawing.Size(386, 242);
+      this.employeesPanel.Size = new System.Drawing.Size(498, 242);
       this.employeesPanel.TabIndex = 3;
       // 
       // departmentsNavigator
@@ -166,7 +166,7 @@
       this.departmentsNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
       this.departmentsNavigator.Name = "departmentsNavigator";
       this.departmentsNavigator.PositionItem = this.bindingNavigatorPositionItem;
-      this.departmentsNavigator.Size = new System.Drawing.Size(392, 25);
+      this.departmentsNavigator.Size = new System.Drawing.Size(504, 25);
       this.departmentsNavigator.TabIndex = 4;
       // 
       // bindingNavigatorAddNewItem
@@ -271,14 +271,14 @@
             this.bindingNavigatorSeparator5,
             this.bindingNavigatorAddNewItem1,
             this.bindingNavigatorDeleteItem1});
-      this.employeesNavigator.Location = new System.Drawing.Point(392, 0);
+      this.employeesNavigator.Location = new System.Drawing.Point(504, 0);
       this.employeesNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem1;
       this.employeesNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem1;
       this.employeesNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem1;
       this.employeesNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
       this.employeesNavigator.Name = "employeesNavigator";
       this.employeesNavigator.PositionItem = this.bindingNavigatorPositionItem1;
-      this.employeesNavigator.Size = new System.Drawing.Size(392, 25);
+      this.employeesNavigator.Size = new System.Drawing.Size(504, 25);
       this.employeesNavigator.TabIndex = 5;
       // 
       // bindingNavigatorAddNewItem1
@@ -375,7 +375,7 @@
       buttonsPanel.Controls.Add(this.btnLoadData);
       buttonsPanel.Controls.Add(this.btnSaveData);
       buttonsPanel.Controls.Add(this.btnExit);
-      buttonsPanel.Location = new System.Drawing.Point(538, 524);
+      buttonsPanel.Location = new System.Drawing.Point(762, 524);
       buttonsPanel.Name = "buttonsPanel";
       buttonsPanel.Size = new System.Drawing.Size(243, 35);
       buttonsPanel.TabIndex = 6;
@@ -442,7 +442,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(784, 562);
+      this.ClientSize = new System.Drawing.Size(1008, 562);
       this.Controls.Add(mainLayoutPanel);
       this.MinimumSize = new System.Drawing.Size(640, 480);
       this.Name = "MainForm";

@@ -24,6 +24,8 @@ namespace Examples.Database
 
     public static void PrepareDatabase()
     {
+      // TODO: this method should be corrected before release
+      return;
       daoDataSet ds = new daoDataSet();
       // Departments
       ds.Departments.AddDepartmentsRow(Guid.NewGuid(), "Services", false, "MM", null);
