@@ -7,7 +7,7 @@ namespace CBComponents
   /// <summary>
   /// 
   /// </summary>
-  public static class DataGridViewExtenders
+  public static partial class DataGridViewExtenders
   {
 
     public static void AddColumns(this DataGridView viewGrid, object DataSource)
@@ -17,3 +17,4 @@ namespace CBComponents
 
   }
 }
+
