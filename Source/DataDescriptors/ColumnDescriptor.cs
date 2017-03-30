@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Text;
 using System.Data;
 
 namespace CBComponents.DataDescriptors

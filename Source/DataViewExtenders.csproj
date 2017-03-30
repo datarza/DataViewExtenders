@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CBComponents.HeaderTableLayoutPanel, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CBComponents.HeaderTableLayoutPanel.1.1.0\lib\net20\CBComponents.HeaderTableLayoutPanel.dll</HintPath>
+    <Reference Include="CBComponents.HeaderTableLayoutPanel, Version=1.2.6297.41643, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CBComponents.HeaderTableLayoutPanel.1.2.6297.41643\lib\net20\CBComponents.HeaderTableLayoutPanel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

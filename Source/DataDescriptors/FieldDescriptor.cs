@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Text;
 using System.Data;
 
 namespace CBComponents.DataDescriptors
@@ -16,7 +14,7 @@ namespace CBComponents.DataDescriptors
     DateTimeTextBox,
     BitMask,
     CheckBox, ComboBox, ComboTextBox, ListBox,
-    StorageEditor
+    GuidEditor
   }
 
   /// <summary>
@@ -69,9 +67,9 @@ namespace CBComponents.DataDescriptors
       this.ColumnName = Column.ColumnName;
       this.Mode = Mode;
       this.Style = Style;
-      this.IsNull = Column.AllowDBNull || Mode == FieldEditorMode.StorageEditor;
+      this.IsNull = Column.AllowDBNull || Mode == FieldEditorMode.GuidEditor;
       this.NullValue = NullValue;
-      this.IsReadOnly = this.IsReadOnly || Column.ReadOnly || IsReadOnly || Mode == FieldEditorMode.StorageEditor;
+      this.IsReadOnly = this.IsReadOnly || Column.ReadOnly || IsReadOnly || Mode == FieldEditorMode.GuidEditor;
       if (this.IsReadOnly && this.Mode == FieldEditorMode.NumberTextBox) this.Mode = FieldEditorMode.TextBox;
       if (Column.MaxLength > 0) this.MaxLength = Column.MaxLength;
       if (Minimum.HasValue) this.Minimum = Minimum;

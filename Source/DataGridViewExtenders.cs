@@ -4,9 +4,6 @@ using System.Windows.Forms;
 
 namespace CBComponents
 {
-  /// <summary>
-  /// 
-  /// </summary>
   public static partial class DataGridViewExtenders
   {
 
