@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace Examples.Database
@@ -14,18 +14,23 @@ namespace Examples.Database
       if (this.Employees.Count > 0) this.Employees.Clear();
       if (this.Departments.Count > 0) this.Departments.Clear();
       this.ReadXml(fileName);
+      this.AcceptChanges();
       this.EndInit();
+      // Creation rows supporting
+      this.Departments.TableNewRow += delegate (object sender, System.Data.DataTableNewRowEventArgs e) { e.Row[e.Row.Table.PrimaryKey[0]] = Guid.NewGuid(); };
+      this.Employees.TableNewRow += delegate (object sender, System.Data.DataTableNewRowEventArgs e) { e.Row[e.Row.Table.PrimaryKey[0]] = Guid.NewGuid(); e.Row[e.Row.Table.ParentRelations[0].ChildColumns[0]] = e.Row.Table.ParentRelations[0].ParentTable.Rows[0][e.Row.Table.ParentRelations[0].ParentColumns[0]]; };
     }
 
     public void SaveToDatabase()
     {
       this.WriteXml(fileName);
+      this.AcceptChanges();
     }
 
     public static void PrepareDatabase()
     {
       // TODO: this method should be corrected before release
-      return;
+      //return;
       daoDataSet ds = new daoDataSet();
       // Departments
       ds.Departments.AddDepartmentsRow(Guid.NewGuid(), "Services", false, "MM", null);
