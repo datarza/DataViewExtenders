@@ -10,7 +10,7 @@ Developing, please come back later...
 
 #### DataGridView
 
-1. Colored Row Header
+1. DataRowState visualization in the RowHeaders for the changed and inserted rows
 
 ## Supported .NET Frameworks
 
