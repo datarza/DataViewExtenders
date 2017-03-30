@@ -66,6 +66,7 @@
       this.departmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.Database = new Examples.Database.daoDataSet();
       this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       buttonsPanel = new System.Windows.Forms.FlowLayoutPanel();
       mainLayoutPanel.SuspendLayout();
@@ -270,7 +271,8 @@
             this.bindingNavigatorMoveLastItem1,
             this.bindingNavigatorSeparator5,
             this.bindingNavigatorAddNewItem1,
-            this.bindingNavigatorDeleteItem1});
+            this.bindingNavigatorDeleteItem1,
+            this.toolStripButton1});
       this.employeesNavigator.Location = new System.Drawing.Point(504, 0);
       this.employeesNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem1;
       this.employeesNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem1;
@@ -438,6 +440,16 @@
       this.employeesBindingSource.DataMember = "Employees";
       this.employeesBindingSource.DataSource = this.Database;
       // 
+      // toolStripButton1
+      // 
+      this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+      this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton1.Name = "toolStripButton1";
+      this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+      this.toolStripButton1.Text = "toolStripButton1";
+      this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,6 +515,7 @@
     private System.Windows.Forms.Button btnLoadData;
     private System.Windows.Forms.Button btnSaveData;
     private System.Windows.Forms.Button btnExit;
+    private System.Windows.Forms.ToolStripButton toolStripButton1;
   }
 }
 

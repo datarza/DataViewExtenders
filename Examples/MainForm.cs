@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using CBComponents;
+
 namespace Examples
 {
   public partial class MainForm : Form
@@ -23,6 +25,9 @@ namespace Examples
       //this.employeesGridView.AutoGenerateColumns = false;
       this.employeesGridView.DataSource = this.employeesBindingSource;
 
+      this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
+      this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
+
       this.Database.LoadFromDatabase();
 
       // bottom buttons
@@ -32,6 +37,11 @@ namespace Examples
       this.btnSaveData.Click += delegate { this.Database.SaveToDatabase(); };
       this.btnExit.Image = Properties.Resources.door;
       this.btnExit.Click += delegate { this.Close(); };
+    }
+
+    private void toolStripButton1_Click(object sender, EventArgs e)
+    {
+      this.employeesGridView.RowHeadersVisible = !this.employeesGridView.RowHeadersVisible;
     }
 
   }
