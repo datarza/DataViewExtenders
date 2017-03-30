@@ -6,6 +6,12 @@ Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNav
 
 Developing, please come back later...
 
+## Features
+
+#### DataGridView
+
+1. Colored Row Header
+
 ## Supported .NET Frameworks
 
 _DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
