@@ -28,6 +28,199 @@ namespace CBComponents
     /// <param name="Columns">Column data descriptors</param>
     public static void AddColumns(this DataGridView viewGrid, object DataSource, params ColumnDataDescriptor[] Columns)
     {
+      viewGrid.AutoGenerateColumns = false;
+      viewGrid.Columns.Clear();
+      foreach (var column in Columns)
+      {
+        if (column.Mode == ColumnEditorMode.TextBox)
+        { 
+          var newColumn = new DataGridViewTextBoxColumn();
+          column.GeneratedDataGridViewColumn = newColumn;
+          newColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+          newColumn.HeaderText = column.HeaderText;
+          if (column.MaxLength.HasValue) newColumn.MaxInputLength = column.MaxLength.Value;
+          if (newColumn.MaxInputLength > 260) newColumn.DefaultCellStyle = new DataGridViewCellStyle() { WrapMode = DataGridViewTriState.True };
+          if (column.FillWeight.HasValue)
+          {
+            newColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            newColumn.FillWeight = column.FillWeight.Value;
+            newColumn.MinimumWidth = column.HeaderText.Length * 10;
+            if (newColumn.MinimumWidth < 50) newColumn.MinimumWidth = 50;
+          }
+          newColumn.ToolTipText = column.ColumnName;
+          newColumn.DataPropertyName = column.ColumnName;
+          if (column.NullValue != null) { if (newColumn.DefaultCellStyle != null) newColumn.DefaultCellStyle.NullValue = column.NullValue; else newColumn.DefaultCellStyle = new DataGridViewCellStyle() { NullValue = column.NullValue }; }
+          newColumn.ReadOnly = column.IsReadOnly;
+          if (column.Style.HasValue) DataGridViewExtenders.SetEditorDataStyle(newColumn, column.Style.Value);
+          viewGrid.Columns.Add(newColumn);
+          if (column.FormatValueMethod != null)
+          {
+            newColumn.Tag = column.FormatValueMethod;
+            viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+            {
+              var _data = newColumn.Tag as FormatValueDelegate;
+              if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
+              {
+                var _value = _data.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                if (_value != null)
+                {
+                  e.Value = _value;
+                  e.FormattingApplied = _value is string;
+                }
+              }
+            };
+          }
+        }
+        else if (column.Mode == ColumnEditorMode.CheckBox)
+        { 
+          var newColumn = new DataGridViewCheckBoxColumn();
+          column.GeneratedDataGridViewColumn = newColumn;
+          newColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+          newColumn.HeaderText = column.HeaderText;
+          if (column.FillWeight.HasValue)
+          {
+            newColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            newColumn.FillWeight = column.FillWeight.Value;
+            newColumn.MinimumWidth = column.HeaderText.Length * 10;
+            if (newColumn.MinimumWidth < 50) newColumn.MinimumWidth = 50;
+          }
+          newColumn.ToolTipText = column.ColumnName;
+          newColumn.ThreeState = column.IsNull;
+          newColumn.DataPropertyName = column.ColumnName;
+          newColumn.ReadOnly = column.IsReadOnly;
+          viewGrid.Columns.Add(newColumn);
+        }
+        else if (column.Mode == ColumnEditorMode.ListBox)
+        { 
+          DataGridViewColumn newColumn;
+          if (column.IsReadOnly)
+          {
+            var _newColumn = new DataGridViewTextBoxColumn();
+            newColumn = _newColumn;
+          }
+          else
+          {
+            var _newColumn = new DataGridViewLinkColumn();
+            _newColumn.TrackVisitedState = false;
+            _newColumn.LinkBehavior = LinkBehavior.HoverUnderline;
+            newColumn = _newColumn;
+          }
+          column.GeneratedDataGridViewColumn = newColumn;
+          newColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+          newColumn.HeaderText = column.HeaderText;
+          if (column.FillWeight.HasValue)
+          {
+            newColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            newColumn.FillWeight = column.FillWeight.Value;
+            newColumn.MinimumWidth = column.HeaderText.Length * 10;
+            if (newColumn.MinimumWidth < 50) newColumn.MinimumWidth = 50;
+          }
+          newColumn.ToolTipText = column.ColumnName;
+          newColumn.DataPropertyName = column.ColumnName;
+          newColumn.ReadOnly = true;
+          if (column.Style.HasValue) DataGridViewExtenders.SetEditorDataStyle(newColumn, column.Style.Value);
+          newColumn.Tag = Tuple.Create(column.DataSource, column.ValueMember, column.DisplayMember, column.GetListBoxItemsMethod, column.FormatValueMethod);
+          viewGrid.Columns.Add(newColumn);
+          viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+          {
+            var _data = newColumn.Tag as Tuple<object, string, string, GetListBoxItemsDelegate, FormatValueDelegate>;
+            if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
+            {
+              if (_data.Item5 != null)
+              {
+                var _value = _data.Item5.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                if (_value != null)
+                {
+                  e.Value = _value;
+                  e.FormattingApplied = _value is string;
+                }
+              }
+              else if (viewGrid.Rows[e.RowIndex].DataBoundItem is DataRowView && (_data.Item1 is DataView || _data.Item1 is DataTable))
+              {
+                var dataBoundItem = (DataRowView)viewGrid.Rows[e.RowIndex].DataBoundItem;
+                var _data1 = _data.Item1 is DataView ? ((DataView)_data.Item1).Table : (DataTable)_data.Item1;
+                var _row = _data1.Rows.Find(dataBoundItem[newColumn.DataPropertyName]);
+                e.Value = _row != null ? _row[_data.Item3].ToString() : string.Empty;
+                e.FormattingApplied = true;
+              }
+            }
+          };
+          if (!column.IsReadOnly)
+            viewGrid.CellClick += delegate (object sender, DataGridViewCellEventArgs e)
+            {
+              var _data = newColumn.Tag as Tuple<object, string, string, GetListBoxItemsDelegate, FormatValueDelegate>;
+              if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0 && viewGrid.Rows[e.RowIndex].DataBoundItem is DataRowView)
+              {
+                var dataBoundItem = (DataRowView)viewGrid.Rows[e.RowIndex].DataBoundItem;
+                object items = _data.Item1;
+                bool agc = false;
+                if (_data.Item4 != null)
+                {
+                  items = _data.Item4.Invoke();
+                  if (items == null)
+                  {
+                    //MessageBox.Show("No data exists");
+                    //return;
+                    throw new ArgumentNullException();
+                  }
+                  agc = true;
+                }
+                //var row = SelectItemForm.GetSelectedRow(items, _data.Item2, _data.Item3, dataBoundItem[newColumn.DataPropertyName], agc);
+                // TODO: selecting row from list should be realized
+                DataRow row = null;
+                if (row != null)
+                {
+                  dataBoundItem.BeginEdit();
+                  dataBoundItem[newColumn.DataPropertyName] = row[_data.Item2];
+                  dataBoundItem.EndEdit();
+                }
+              }
+            };
+        }
+        else if (column.Mode == ColumnEditorMode.ComboBox)
+        { 
+          var newColumn = new DataGridViewComboBoxColumn();
+          column.GeneratedDataGridViewColumn = newColumn;
+          newColumn.DisplayStyleForCurrentCellOnly = true;
+          newColumn.DisplayStyle = column.IsReadOnly ? DataGridViewComboBoxDisplayStyle.Nothing : DataGridViewComboBoxDisplayStyle.DropDownButton;
+          newColumn.AutoComplete = true;
+          if (column.IsNull) newColumn.DefaultCellStyle = new DataGridViewCellStyle() { DataSourceNullValue = DBNull.Value };
+          newColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+          newColumn.HeaderText = column.HeaderText;
+          if (column.FillWeight.HasValue)
+          {
+            newColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            newColumn.FillWeight = column.FillWeight.Value;
+            newColumn.MinimumWidth = column.HeaderText.Length * 10;
+            if (newColumn.MinimumWidth < 50) newColumn.MinimumWidth = 50;
+          }
+          newColumn.ToolTipText = column.ColumnName;
+          newColumn.DataPropertyName = column.ColumnName;
+          newColumn.DataSource = column.DataSource;
+          if (!string.IsNullOrWhiteSpace(column.ValueMember)) newColumn.ValueMember = column.ValueMember;
+          if (!string.IsNullOrWhiteSpace(column.DisplayMember)) newColumn.DisplayMember = column.DisplayMember;
+          newColumn.ReadOnly = column.IsReadOnly;
+          viewGrid.Columns.Add(newColumn);
+          if (column.FormatValueMethod != null)
+          {
+            newColumn.Tag = column.FormatValueMethod;
+            viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+            {
+              var _data = newColumn.Tag as FormatValueDelegate;
+              if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
+              {
+                var _value = _data.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                if (_value != null)
+                {
+                  e.Value = _value;
+                  e.FormattingApplied = _value is string;
+                }
+              }
+            };
+          }
+        }
+      }
+      viewGrid.DataSource = DataSource;
     }
     
     /// <summary>

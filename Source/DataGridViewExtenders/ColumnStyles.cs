@@ -28,7 +28,7 @@ namespace CBComponents
     /// <param name="Alignment"></param>
     /// <param name="Format"></param>
     /// <returns>DataGridViewColumn</returns>
-    private static DataGridViewColumn SetStyles(this DataGridViewColumn column, int Width, DataGridViewContentAlignment Alignment = DataGridViewContentAlignment.MiddleLeft, string Format = null)
+    public static DataGridViewColumn SetStyles(this DataGridViewColumn column, int Width, DataGridViewContentAlignment Alignment = DataGridViewContentAlignment.MiddleLeft, string Format = null)
     {
       column.Width = Width;
       column.DefaultCellStyle.Alignment = Alignment;

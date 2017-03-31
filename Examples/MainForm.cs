@@ -16,16 +16,7 @@ namespace Examples
     public MainForm()
     {
       InitializeComponent();
-
-      // Binding data
-      this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
-      this.employeesNavigator.BindingSource = this.employeesBindingSource;
-      //this.departmentsGridView.AutoGenerateColumns = false;
-      this.departmentsGridView.DataSource = this.departmentsBindingSource;
-      //this.employeesGridView.AutoGenerateColumns = false;
-      this.employeesGridView.DataSource = this.employeesBindingSource;
-
-      this.Database.LoadFromDatabase();
+      this.InitializeGrid();
 
       // bottom buttons
       this.btnLoadData.Image = Properties.Resources.database_refresh;
@@ -35,17 +26,41 @@ namespace Examples
       this.btnExit.Image = Properties.Resources.door;
       this.btnExit.Click += delegate { this.Close(); };
     }
-    
+
+    private void InitializeGrid()
+    {
+      this.Database.LoadFromDatabase();
+
+      this.departmentsGridView.AutoGenerateColumns = false;
+      this.departmentsGridView.Columns.Clear();
+      this.departmentsGridView.AddTextColumn("DepartmentID", "ID", "DepartmentID").Visible = false;
+      this.departmentsGridView.AddTextColumn("DepartmentName", "Department", "DepartmentName").SetAutoSizeAllCellsStyle();
+      this.departmentsGridView.AddCheckColumn("IsClosed", "Closed?", "IsClosed").SetAutoSizeAllCellsStyle();
+      this.departmentsGridView.AddTextColumn("CompanyGroup", "Group", "CompanyGroup").SetAutoSizeAllCellsStyle();
+      this.departmentsGridView.AddTextColumn("Remarks", "Remarks", "Remarks").SetAutoSizeFillStyle(50);
+      this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
+
+      this.employeesGridView.AutoGenerateColumns = false;
+      this.employeesGridView.Columns.Clear();
+      this.employeesGridView.AddTextColumn("EmployeeID", "ID", "EmployeeID").Visible = false;
+      this.employeesGridView.AddTextColumn("EmployeeName", "Employee", "EmployeeName").SetAutoSizeFillStyle(100);
+      this.employeesGridView.AddTextColumn("DepartmentID", "Department", "DepartmentID").SetAutoSizeAllCellsStyle();
+      this.employeesGridView.AddTextColumn("PhoneNumber", "Phone", "PhoneNumber").SetAutoSizeAllCellsStyle();
+      this.employeesGridView.AddTextColumn("DateBirth", "Date of birth", "DateBirth").SetAutoSizeAllCellsStyle();
+      this.employeesGridView.AddTextColumn("SalaryGroup", "Group of salary", "SalaryGroup").SetAutoSizeAllCellsStyle();
+      this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
+
+      // Binding data
+      this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
+      this.departmentsGridView.DataSource = this.departmentsBindingSource;
+      this.employeesNavigator.BindingSource = this.employeesBindingSource;
+      this.employeesGridView.DataSource = this.employeesBindingSource;
+
+    }
+
     private void MainForm_Load(object sender, EventArgs e)
     {
-      // 
-      this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
-      this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
-      //
-      this.departmentsGridView.Columns[1].SetAutoSizeAllCellsStyle();
-      //
-      this.employeesGridView.Columns[4].SetDateTimeWithSecondsStyle();
-      this.employeesGridView.Columns[5].SetWeightStyle();
+
     }
   }
 }
