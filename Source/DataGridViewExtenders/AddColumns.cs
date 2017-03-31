@@ -28,7 +28,46 @@ namespace CBComponents
     /// <param name="Columns">Column data descriptors</param>
     public static void AddColumns(this DataGridView viewGrid, object DataSource, params ColumnDataDescriptor[] Columns)
     {
-      
+    }
+    
+    /// <summary>
+    /// Creating new text column and adding it to the DataGridView
+    /// </summary>
+    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="DataPropertyName"></param>
+    /// <param name="HeaderText"></param>
+    /// <param name="ToolTipText"></param>
+    /// <returns>DataGridViewTextBoxColumn</returns>
+    public static DataGridViewTextBoxColumn AddTextColumn(this DataGridView viewGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
+    {
+      DataGridViewTextBoxColumn result = new DataGridViewTextBoxColumn();
+      result.DataPropertyName = DataPropertyName;
+      if (!string.IsNullOrEmpty(HeaderText)) result.HeaderText = HeaderText;
+      if (!string.IsNullOrWhiteSpace(ToolTipText)) result.ToolTipText = ToolTipText;
+      result.ReadOnly = true;
+      result.SortMode = DataGridViewColumnSortMode.Automatic;
+      viewGrid.Columns.Add(result);
+      return result;
+    }
+    
+    /// <summary>
+    /// Creating new check column and adding it to the DataGridView
+    /// </summary>
+    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="DataPropertyName"></param>
+    /// <param name="HeaderText"></param>
+    /// <param name="ToolTipText"></param>
+    /// <returns>DataGridViewCheckBoxColumn</returns>
+    public static DataGridViewCheckBoxColumn AddCheckColumn(this DataGridView viewGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
+    {
+      DataGridViewCheckBoxColumn result = new DataGridViewCheckBoxColumn();
+      result.DataPropertyName = DataPropertyName;
+      if (!string.IsNullOrEmpty(HeaderText)) result.HeaderText = HeaderText;
+      if (!string.IsNullOrWhiteSpace(ToolTipText)) result.ToolTipText = ToolTipText;
+      result.ReadOnly = true;
+      result.SortMode = DataGridViewColumnSortMode.Automatic;
+      viewGrid.Columns.Add(result);
+      return result;
     }
 
     /// <summary>
