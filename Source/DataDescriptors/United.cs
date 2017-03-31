@@ -4,7 +4,7 @@ using System.Data;
 namespace CBComponents.DataDescriptors
 {
   /// <summary>
-  /// Data style
+  /// Data visualization style
   /// </summary>
   public enum EditorDataStyle
   {

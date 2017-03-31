@@ -25,9 +25,6 @@ namespace Examples
       //this.employeesGridView.AutoGenerateColumns = false;
       this.employeesGridView.DataSource = this.employeesBindingSource;
 
-      this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
-      this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
-
       this.Database.LoadFromDatabase();
 
       // bottom buttons
@@ -38,11 +35,17 @@ namespace Examples
       this.btnExit.Image = Properties.Resources.door;
       this.btnExit.Click += delegate { this.Close(); };
     }
-
-    private void toolStripButton1_Click(object sender, EventArgs e)
+    
+    private void MainForm_Load(object sender, EventArgs e)
     {
-      this.employeesGridView.RowHeadersVisible = !this.employeesGridView.RowHeadersVisible;
+      // 
+      this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
+      this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
+      //
+      this.departmentsGridView.Columns[1].SetAutoSizeAllCellsStyle();
+      //
+      this.employeesGridView.Columns[4].SetDateTimeWithSecondsStyle();
+      this.employeesGridView.Columns[5].SetWeightStyle();
     }
-
   }
 }

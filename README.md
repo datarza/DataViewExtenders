@@ -10,7 +10,9 @@ Developing, please come back later...
 
 #### DataGridView
 
-1. DataRowState visualization in the RowHeaders for the changed and inserted rows
+1. DataRowState visualization in the RowHeaders for the changed and inserted rows (DataGridView.AddDataRowStateDrawingInRowHeaders)
+2. Set visualization styles for DataGridViewColumns in a number of different ways (DataGridViewColumn.Set[MethodName]Style)
+3.
 
 ## Supported .NET Frameworks
 
