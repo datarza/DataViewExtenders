@@ -15,10 +15,9 @@ namespace Examples
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-#if DEBUG  
-      Examples.Database.daoDataSet.PrepareDatabase();
-#endif
-      Application.Run(new MainForm());
+      var mForm = new MainForm();
+      CBComponents.Forms.FormServices.MainWindow = mForm;
+      Application.Run(mForm);
     }
   }
 }

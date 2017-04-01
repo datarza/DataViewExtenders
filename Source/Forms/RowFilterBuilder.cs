@@ -96,9 +96,9 @@ namespace CBComponents.Forms
 
     public static string BuildColumnFilter(string filterExpression, DataGridViewColumnCollection columns, DataTable relationTable, string masterDataPropertyName, string relationDataPropertyName)
     {
-      // фильтруем текстовые столбцы грида
+      // first, filtering text table columns 
       string result = BuildColumnFilter(filterExpression, columns);
-      // фильтруем связанную таблицу
+      // second, filtering related table columns
       try
       {
         var _values = relationTable.Select(BuildColumnFilter(filterExpression, relationTable)).Select(c => c[relationDataPropertyName].ToString()).Distinct();

@@ -13,7 +13,7 @@ namespace CBComponents.Forms
   /// <summary>
   /// This form is using for selecting row from Collections or DataTable
   /// </summary>
-  internal class SelectItemForm : Form
+  internal sealed class SelectItemForm : Form
   {
     public class ColumnDefinition
     {
@@ -67,7 +67,8 @@ namespace CBComponents.Forms
       {
         if (!string.IsNullOrWhiteSpace(Text)) form.Text = Text;
         if (!string.IsNullOrWhiteSpace(HeaderText)) form.SetHeaderText(HeaderText);
-        if (form.ShowDialog() == DialogResult.OK && form.bindingSource.Current is T)
+
+        if (FormServices.ShowFormDialog(form) == DialogResult.OK && form.bindingSource.Current is T)
           return (T)form.bindingSource.Current;
         else return default(T);
       }
@@ -83,7 +84,7 @@ namespace CBComponents.Forms
       if (DataSource == null || DataSource.Rows.Count == 0) return null;
       if (DataSource.Rows.Count == 1) return DataSource.Rows[0] as T;
       using (var form = new SelectItemForm(DataSource, SelectedRow ?? DataSource.Rows[0], Columns))
-        if (form.ShowDialog() == DialogResult.OK)
+        if (FormServices.ShowFormDialog(form) == DialogResult.OK)
         {
           var drv = form.bindingSource.Current as DataRowView;
           if (drv != null) return drv.Row as T;
@@ -110,7 +111,7 @@ namespace CBComponents.Forms
           if (pos >= 0) form.bindingSource.Position = pos;
         }
         catch { }
-        if (form.ShowDialog() == DialogResult.OK)
+        if (FormServices.ShowFormDialog(form) == DialogResult.OK)
         {
           var drv = form.bindingSource.Current as DataRowView;
           if (drv != null) return drv.Row;
@@ -146,7 +147,7 @@ namespace CBComponents.Forms
       {
         if (!string.IsNullOrWhiteSpace(Text)) form.Text = Text;
         if (!string.IsNullOrWhiteSpace(HeaderText)) form.SetHeaderText(HeaderText);
-        return form.ShowDialog();
+        return FormServices.ShowFormDialog(form);
       }
     }
 

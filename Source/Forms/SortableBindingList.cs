@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace CBComponents.Forms
 {
-  internal class PropertyComparer<T> : IComparer<T>
+  internal sealed class PropertyComparer<T> : IComparer<T>
   {
     private readonly IComparer comparer;
     private PropertyDescriptor propertyDescriptor;
@@ -42,7 +42,7 @@ namespace CBComponents.Forms
     }
   }
 
-  internal class SortableBindingList<T> : BindingList<T>
+  internal sealed class SortableBindingList<T> : BindingList<T>
   {
     private readonly Dictionary<Type, PropertyComparer<T>> comparers;
     private bool isSorted;

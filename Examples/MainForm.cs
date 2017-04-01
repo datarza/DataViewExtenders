@@ -33,6 +33,7 @@ namespace Examples
     {
       this.Database.LoadFromDatabase();
 
+      // praparing Grids
       var tbl1 = this.Database.Departments;
       this.departmentsGridView.AddColumns(this.departmentsBindingSource, 
         new ColumnDataDescriptor("Department", tbl1.DepartmentNameColumn),
@@ -53,7 +54,28 @@ namespace Examples
       this.employeesGridView.PrepareStyleForEditingData();
       this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
 
-      // Binding data
+      // preparing panels
+      this.departmentsEditorPanel.AddGroups(this.departmentsBindingSource,
+        new GroupDataDescriptor("Identifications",
+          new FieldDataDescriptor("ID", tbl1.DepartmentIDColumn, IsReadOnly: true),
+          new FieldDataDescriptor("Department", tbl1.DepartmentNameColumn)),
+        new GroupDataDescriptor("Overview", (int)DataDescriptorSizeWidth.Normal,
+          new FieldDataDescriptor("Is closed", tbl1.IsClosedColumn),
+          new FieldDataDescriptor("Group", tbl1.CompanyGroupColumn, DataSource: new string[] { "AM", "HR", "MM", "MN", "KT", "SM" })),
+        new GroupDataDescriptor("Additions",
+          new FieldDataDescriptor("Remarks", tbl1.RemarksColumn)));
+
+      this.employeesEditorPanel.AddGroups(this.employeesBindingSource,
+        new GroupDataDescriptor("Identifications",
+          new FieldDataDescriptor("ID", tbl2.EmployeeIDColumn, IsReadOnly: true),
+          new FieldDataDescriptor("Employee", tbl2.EmployeeNameColumn),
+          new FieldDataDescriptor("Department", tbl2.DepartmentIDColumn, DataSource: tbl1, ValueMember: tbl1.DepartmentIDColumn.ColumnName, DisplayMember: tbl1.DepartmentNameColumn.ColumnName)),
+        new GroupDataDescriptor("Overview", (int)DataDescriptorSizeWidth.Normal,
+          new FieldDataDescriptor("Phone", tbl2.PhoneNumberColumn),
+          new FieldDataDescriptor("Date of birth", tbl2.DateBirthColumn, Style: EditorDataStyle.Date),
+          new FieldDataDescriptor("Salary", tbl2.SalaryGroupColumn, DataSource: _salaryGroups, ValueMember: _salaryGroups.Columns[0].ColumnName, DisplayMember: _salaryGroups.Columns[1].ColumnName)));
+
+      // Binding data for navigators
       this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
       this.departmentsGridView.DataSource = this.departmentsBindingSource;
       this.employeesNavigator.BindingSource = this.employeesBindingSource;

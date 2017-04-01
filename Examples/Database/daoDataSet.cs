@@ -23,7 +23,11 @@ namespace Examples.Database
 
     public void LoadFromDatabase()
     {
+#if DEBUG  
+      daoDataSet.PrepareDatabase();
+#else
       if (!File.Exists(fileName)) daoDataSet.PrepareDatabase();
+#endif
       this.BeginInit();
       if (this.Employees.Count > 0) this.Employees.Clear();
       if (this.Departments.Count > 0) this.Departments.Clear();
@@ -43,8 +47,6 @@ namespace Examples.Database
 
     public static void PrepareDatabase()
     {
-      // TODO: this method should be corrected before release
-      //return;
       daoDataSet ds = new daoDataSet();
       // Departments
       ds.Departments.AddDepartmentsRow(Guid.NewGuid(), "Services", false, "MM", null);
@@ -97,5 +99,6 @@ namespace Examples.Database
       // Save created rows
       ds.SaveToDatabase();
     }
+
   }
 }
