@@ -27,6 +27,7 @@ namespace Examples
       this.btnSaveData.Click += delegate { this.Database.SaveToDatabase(); };
       this.btnExit.Image = Properties.Resources.door;
       this.btnExit.Click += delegate { this.Close(); };
+
     }
 
     private void InitializeGrid()
@@ -59,7 +60,7 @@ namespace Examples
         new GroupDataDescriptor("Identifications",
           new FieldDataDescriptor("ID", tbl1.DepartmentIDColumn, IsReadOnly: true),
           new FieldDataDescriptor("Department", tbl1.DepartmentNameColumn)),
-        new GroupDataDescriptor("Overview", (int)DataDescriptorSizeWidth.Normal,
+        new GroupDataDescriptor("Overview", (int)DataDescriptorSizeWidth.Smaller,
           new FieldDataDescriptor("Is closed", tbl1.IsClosedColumn),
           new FieldDataDescriptor("Group", tbl1.CompanyGroupColumn, DataSource: new string[] { "AM", "HR", "MM", "MN", "KT", "SM" })),
         new GroupDataDescriptor("Additions",

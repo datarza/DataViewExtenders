@@ -48,10 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CBComponents.HeaderTableLayoutPanel, Version=1.2.6297.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CBComponents.HeaderTableLayoutPanel.1.2.6297.41643\lib\net20\CBComponents.HeaderTableLayoutPanel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -104,7 +100,6 @@
     <None Include="Database\daoDataSet.xss">
       <DependentUpon>daoDataSet.xsd</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

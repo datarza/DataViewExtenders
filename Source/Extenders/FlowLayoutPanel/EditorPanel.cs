@@ -19,7 +19,8 @@ namespace CBComponents
   using CBComponents.DataDescriptors;
   using CBComponents.Forms;
 
-  public partial class EditorPanel : UserControl
+  [ToolboxBitmap(typeof(TableLayoutPanel))]
+  public partial class EditorPanel : System.Windows.Forms.UserControl
   {
     private FlowLayoutPanel _panel;
     private ToolTip _toolTip;
@@ -54,7 +55,7 @@ namespace CBComponents
       int tabIndex = 0;
       foreach (var group in Groups)
       {
-        var htlPanel = new HeaderTableLayoutPanel();
+        var htlPanel = new EditorTableLayoutPanel();
         group.GeneratedPanel = htlPanel;
         htlPanel.AutoSize = true;
         htlPanel.Margin = new Padding(3, 3, 12, 3);

@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CBComponents.HeaderTableLayoutPanel, Version=1.2.6297.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CBComponents.HeaderTableLayoutPanel.1.2.6297.41643\lib\net20\CBComponents.HeaderTableLayoutPanel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -46,17 +42,20 @@
     <Compile Include="DataDescriptors\ColumnDescriptor.cs" />
     <Compile Include="DataDescriptors\FieldDescriptor.cs" />
     <Compile Include="DataDescriptors\FieldGroupDescriptor.cs" />
-    <Compile Include="DataGridViewExtenders\Preparations.cs" />
-    <Compile Include="DataGridViewExtenders\ColumnStyles.cs" />
-    <Compile Include="DataGridViewExtenders\Drawing.cs" />
-    <Compile Include="DataGridViewExtenders\AddColumns.cs" />
-    <Compile Include="DataPanelViewExtenders\EditorPanel.cs">
+    <Compile Include="Extenders\DataGridView\Preparations.cs" />
+    <Compile Include="Extenders\DataGridView\ColumnStyles.cs" />
+    <Compile Include="Extenders\DataGridView\Drawing.cs" />
+    <Compile Include="Extenders\DataGridView\AddColumns.cs" />
+    <Compile Include="Extenders\FlowLayoutPanel\EditorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\BitMaskCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\FormServices.cs" />
+    <Compile Include="Extenders\TableLayoutPanel\EditorTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\PromptedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -71,9 +70,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
