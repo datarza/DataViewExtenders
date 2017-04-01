@@ -6,6 +6,10 @@ Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNav
 
 Developing, please come back later...
 
+### Early preview
+
+![alt tag](Media/img_03.png "")
+
 ## Features
 
 #### DataGridView
