@@ -8,7 +8,7 @@ Developing, please come back later...
 
 ### Early preview
 
-![alt tag](Media/img_03.png "")
+![alt tag](Media/img_01.png "")
 
 ## Features
 
