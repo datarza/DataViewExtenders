@@ -8,7 +8,7 @@ Developing, please come back later...
 
 ### Early preview
 
-![alt tag](Media/img_03.png "")
+![alt tag](Media/img_01.png "")
 
 ## Features
 
@@ -17,6 +17,13 @@ Developing, please come back later...
 1. DataRowState visualization in the RowHeaders for the changed and inserted rows (DataGridView.AddDataRowStateDrawingInRowHeaders)
 2. Set visualization styles for DataGridViewColumns in a number of different ways (DataGridViewColumn.Set[MethodName]Style)
 3. Preparation the DataGridView for showing data (PrepareStyleForShowingData), editing data (PrepareStyleForEditingData) and reports (PrepareStyleForShowingReportData).
+4. Tuned and auto generating columns by DataType and preferences
+
+#### EditorPanel
+
+1. Panel with the grouping function
+2. Tuned and auto generating fields by DataType and preferences
+3. Auto determination of types with nullable
 
 ## Supported .NET Frameworks
 
