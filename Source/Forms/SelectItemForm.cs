@@ -13,7 +13,7 @@ namespace CBComponents.Forms
   /// <summary>
   /// This form is using for selecting row from Collections or DataTable
   /// </summary>
-  public class SelectItemForm : Form
+  internal class SelectItemForm : Form
   {
     public class ColumnDefinition
     {

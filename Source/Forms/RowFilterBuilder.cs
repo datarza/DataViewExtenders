@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CBComponents.Forms
 {
-  public static class RowFilterBuilder
+  internal static class RowFilterBuilder
   {
     public static string BuildColumnFilter(string filterExpression, IList table)
     {
