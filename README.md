@@ -23,6 +23,7 @@ Developing, please come back later...
 
 1. Panel with the grouping function
 2. Tuned and auto generating fields by DataType and preferences
+3. Auto determination of types with nullable
 
 ## Supported .NET Frameworks
 
