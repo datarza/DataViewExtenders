@@ -61,13 +61,13 @@ namespace CBComponents.Forms
 
     public static string BuildColumnFilter(string filterExpression, DataGridViewColumnCollection columns)
     {
-      // фильтруем текстовые столбцы грида
+      // filtering TextBoxColumns
       StringCollection columnNames = new StringCollection();
       foreach (DataGridViewColumn column in columns)
         if (column is DataGridViewTextBoxColumn && column.Visible && !string.IsNullOrEmpty(column.DataPropertyName))
           columnNames.Add(column.DataPropertyName);
       string result = BuildColumnFilter(filterExpression, columnNames);
-      // фильтруем связанные (ComboBoxColumn) столбцы грида
+      // filtering ComboBoxColumns
       foreach (DataGridViewColumn column in columns)
       {
         var _column = column as DataGridViewComboBoxColumn;

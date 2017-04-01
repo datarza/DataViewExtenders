@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using CBComponents;
+using CBComponents.DataDescriptors;
+using Examples.Database;
 
 namespace Examples
 {
@@ -31,23 +33,24 @@ namespace Examples
     {
       this.Database.LoadFromDatabase();
 
-      this.departmentsGridView.AutoGenerateColumns = false;
-      this.departmentsGridView.Columns.Clear();
-      this.departmentsGridView.AddTextColumn("DepartmentID", "ID", "DepartmentID").Visible = false;
-      this.departmentsGridView.AddTextColumn("DepartmentName", "Department", "DepartmentName").SetAutoSizeAllCellsStyle();
-      this.departmentsGridView.AddCheckColumn("IsClosed", "Closed?", "IsClosed").SetAutoSizeAllCellsStyle();
-      this.departmentsGridView.AddTextColumn("CompanyGroup", "Group", "CompanyGroup").SetAutoSizeAllCellsStyle();
-      this.departmentsGridView.AddTextColumn("Remarks", "Remarks", "Remarks").SetAutoSizeFillStyle(50);
+      var tbl1 = this.Database.Departments;
+      this.departmentsGridView.AddColumns(this.departmentsBindingSource, 
+        new ColumnDataDescriptor("Department", tbl1.DepartmentNameColumn),
+        new ColumnDataDescriptor("Is closed?", tbl1.IsClosedColumn),
+        new ColumnDataDescriptor("Group", tbl1.CompanyGroupColumn),
+        new ColumnDataDescriptor("Remarks", tbl1.RemarksColumn, FillWeight: 100));
+      this.departmentsGridView.PrepareStyleForEditingData();
       this.departmentsGridView.AddDataRowStateDrawingInRowHeaders();
 
-      this.employeesGridView.AutoGenerateColumns = false;
-      this.employeesGridView.Columns.Clear();
-      this.employeesGridView.AddTextColumn("EmployeeID", "ID", "EmployeeID").Visible = false;
-      this.employeesGridView.AddTextColumn("EmployeeName", "Employee", "EmployeeName").SetAutoSizeFillStyle(100);
-      this.employeesGridView.AddTextColumn("DepartmentID", "Department", "DepartmentID").SetAutoSizeAllCellsStyle();
-      this.employeesGridView.AddTextColumn("PhoneNumber", "Phone", "PhoneNumber").SetAutoSizeAllCellsStyle();
-      this.employeesGridView.AddTextColumn("DateBirth", "Date of birth", "DateBirth").SetAutoSizeAllCellsStyle();
-      this.employeesGridView.AddTextColumn("SalaryGroup", "Group of salary", "SalaryGroup").SetAutoSizeAllCellsStyle();
+      var tbl2 = this.Database.Employees;
+      var _salaryGroups = daoDataSet.CreateSalaryGroupsLookupTable();
+      this.employeesGridView.AddColumns(this.employeesBindingSource,
+        new ColumnDataDescriptor("Employee", tbl2.EmployeeNameColumn, FillWeight: 100),
+        new ColumnDataDescriptor("Department", tbl2.DepartmentIDColumn, DataSource: tbl1, ValueMember: tbl1.DepartmentIDColumn.ColumnName, DisplayMember: tbl1.DepartmentNameColumn.ColumnName),
+        new ColumnDataDescriptor("Phone", tbl2.PhoneNumberColumn),
+        new ColumnDataDescriptor("Date of birth", tbl2.DateBirthColumn, Style: EditorDataStyle.Date),
+        new ColumnDataDescriptor("Salary", tbl2.SalaryGroupColumn, DataSource: _salaryGroups, ValueMember: _salaryGroups.Columns[0].ColumnName, DisplayMember: _salaryGroups.Columns[1].ColumnName));
+      this.employeesGridView.PrepareStyleForEditingData();
       this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
 
       // Binding data

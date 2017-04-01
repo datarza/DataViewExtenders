@@ -17,7 +17,8 @@ using System.Windows.Forms;
 namespace CBComponents
 {
   using CBComponents.DataDescriptors;
-  
+  using CBComponents.Forms;
+
   public static partial class DataGridViewExtenders
   {
     /// <summary>

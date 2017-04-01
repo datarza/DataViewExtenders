@@ -46,6 +46,7 @@
     <Compile Include="DataDescriptors\ColumnDescriptor.cs" />
     <Compile Include="DataDescriptors\FieldDescriptor.cs" />
     <Compile Include="DataDescriptors\FieldGroupDescriptor.cs" />
+    <Compile Include="DataGridViewExtenders\Preparations.cs" />
     <Compile Include="DataGridViewExtenders\ColumnStyles.cs" />
     <Compile Include="DataGridViewExtenders\Drawing.cs" />
     <Compile Include="DataGridViewExtenders\AddColumns.cs" />

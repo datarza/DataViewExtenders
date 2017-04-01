@@ -1,7 +1,6 @@
 using System;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 //
@@ -18,7 +17,8 @@ using System.Windows.Forms;
 namespace CBComponents
 {
   using CBComponents.DataDescriptors;
-  
+  using CBComponents.Forms;
+
   public static partial class DataGridViewExtenders
   {
     /// <summary>
@@ -70,7 +70,7 @@ namespace CBComponents
               {
                 Color _color = rowState == DataRowState.Modified ? chgColor : insColor;
                 Brush _brush;
-                if (IsGradient) _brush = new LinearGradientBrush(e.CellBounds, Color.Transparent, _color, LinearGradientMode.Horizontal);
+                if (IsGradient) _brush = new System.Drawing.Drawing2D.LinearGradientBrush(e.CellBounds, Color.Transparent, _color, System.Drawing.Drawing2D.LinearGradientMode.Horizontal);
                 else _brush = new SolidBrush(_color);
                 e.Paint(e.ClipBounds, DataGridViewPaintParts.Background);
                 e.Graphics.FillRectangle(_brush, e.CellBounds);

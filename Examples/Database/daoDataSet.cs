@@ -1,11 +1,25 @@
 using System;
 using System.IO;
+using System.Data;
 
 namespace Examples.Database
 {
   partial class daoDataSet
   {
     private const string fileName = "data.xml";
+
+    public static DataTable CreateSalaryGroupsLookupTable()
+    {
+      DataTable result = new DataTable();
+      result.Columns.AddRange(new DataColumn[] { new DataColumn("ID", typeof(byte)), new DataColumn("Group", typeof(string)) });
+      result.Columns[0].Unique = true;
+      result.Rows.Add(0, "Default");
+      result.Rows.Add(1, "Regular");
+      result.Rows.Add(2, "RG+Bonus");
+      result.Rows.Add(3, "RET");
+      result.Rows.Add(4, "BIN");
+      return result;
+    }
 
     public void LoadFromDatabase()
     {
