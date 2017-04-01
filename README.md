@@ -25,7 +25,7 @@ _DataViewExtenders_ uses special things that were introduced in .NET Framework 4
 
 - [Farm-Fresh Web Icons](http://www.fatcow.com/free-icons) have been used in examples.
 - [C# TextBox with Outlook 2007-style prompt](https://www.codeproject.com/Articles/15954/C-TextBox-with-Outlook-style-prompt) has been used in developing.
-- [Support filtering and searching on multiple columns with RowFilterBuilder](https://www.codeproject.com/Articles/14640/Support-filtering-and-searching-on-multiple-column) idea has been used in developing.
+- Idea from [Support filtering and searching on multiple columns with RowFilterBuilder](https://www.codeproject.com/Articles/14640/Support-filtering-and-searching-on-multiple-column) has been used in developing.
 
 ## Contacts
 

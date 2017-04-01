@@ -39,6 +39,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataDescriptors\United.cs" />
@@ -48,14 +49,20 @@
     <Compile Include="DataGridViewExtenders\ColumnStyles.cs" />
     <Compile Include="DataGridViewExtenders\Drawing.cs" />
     <Compile Include="DataGridViewExtenders\AddColumns.cs" />
+    <Compile Include="Forms\PromptedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\RowFilterBuilder.cs" />
+    <Compile Include="Forms\SelectItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SortableBindingList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
