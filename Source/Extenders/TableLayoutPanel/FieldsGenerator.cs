@@ -222,7 +222,9 @@ namespace CBComponents
             _pnl.Controls.Add(_comboBox, 0, 0);
             var _btnSelect = new Button();
             _btnSelect.Anchor = AnchorStyles.Left;
-            _btnSelect.MinimumSize = new Size(FormServices.Images.TableSelectImage.Width, FormServices.Images.TableSelectImage.Height);
+            _btnSelect.MaximumSize = new Size(128, 128);
+            _btnSelect.Margin = new Padding(1, 0, 1, 0);
+            _btnSelect.Padding = new Padding(0);
             _btnSelect.AutoSize = true;
             _btnSelect.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _btnSelect.FlatStyle = FlatStyle.Flat;
@@ -367,7 +369,9 @@ namespace CBComponents
           var _btnClear = new Button();
           _btnClear.Anchor = AnchorStyles.Left;
           if (field.Mode == FieldEditorMode.MultilineTextBox) _btnClear.Anchor |= AnchorStyles.Top;
-          _btnClear.MinimumSize = new Size(FormServices.Images.TableClearImage.Width, FormServices.Images.TableClearImage.Height);
+          _btnClear.MaximumSize = new Size(128, 128);
+          _btnClear.Margin = new Padding(1, 0, 1, 0);
+          _btnClear.Padding = new Padding(0);
           _btnClear.AutoSize = true;
           _btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
           _btnClear.FlatStyle = FlatStyle.Flat;
