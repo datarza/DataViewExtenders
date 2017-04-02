@@ -46,7 +46,8 @@
     <Compile Include="Extenders\DataGridView\ColumnStyles.cs" />
     <Compile Include="Extenders\DataGridView\Drawing.cs" />
     <Compile Include="Extenders\DataGridView\AddColumns.cs" />
-    <Compile Include="Extenders\FlowLayoutPanel\EditorPanel.cs">
+    <Compile Include="Extenders\FlowLayoutPanel\AddGroups.cs" />
+    <Compile Include="Extenders\UserControls\EditorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Extenders\TableLayoutPanel\AddFields.cs" />
