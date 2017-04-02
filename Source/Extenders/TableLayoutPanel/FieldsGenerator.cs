@@ -55,146 +55,158 @@ namespace CBComponents
       dataPanel.Margin = new Padding(3, 3, 9, 3);
 
       int tabIndex = 0;
-      foreach (var column in Fields)
+      foreach (var field in Fields)
       {
         dataPanel.RowCount += 1;
         dataPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        var _label = new Label(); // creating the label
-        _label.AutoSize = true;
-        _label.Margin = new Padding(12, column.Mode == FieldEditorMode.MultilineTextBox ? 3 : 0, 0, 0);
-        if (column.Mode == FieldEditorMode.MultilineTextBox || column.Mode == FieldEditorMode.BitMask)
+        #region creating the label
+
+        var leadLabel = new Label();
+        leadLabel.Text = field.CaptionText; // TODO: add option for generating label in format: column.CaptionText + ":"
+        leadLabel.TextAlign = ContentAlignment.MiddleRight;
+        leadLabel.Padding = new Padding(0, 0, 0, 0);
+        if (field.Mode == FieldEditorMode.MultilineTextBox || field.Mode == FieldEditorMode.BitMask)
         {
-          _label.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-          _label.TextAlign = ContentAlignment.BottomRight;
+          leadLabel.Anchor = AnchorStyles.Right | AnchorStyles.Top;
+          leadLabel.Margin = new Padding(12, 6, 0, 6);
         }
         else
         {
-          _label.Anchor = AnchorStyles.Right;
-          _label.TextAlign = ContentAlignment.MiddleRight;
+          leadLabel.Anchor = AnchorStyles.Right;
+          leadLabel.Margin = new Padding(12, 1, 0, 1);
         }
-        _label.TabIndex = tabIndex++;
-        _label.Text = column.CaptionText; // TODO: add option for generating label in format: column.CaptionText + ":"
-        dataPanel.Controls.Add(_label, 0, dataPanel.RowCount - 1);
+        leadLabel.TabIndex = tabIndex++;
+        leadLabel.AutoSize = true;
+        dataPanel.Controls.Add(leadLabel, 0, dataPanel.RowCount - 1);
+
+        #endregion
 
         Binding binding = null;
-        if (column.Mode == FieldEditorMode.TextBox || column.Mode == FieldEditorMode.MultilineTextBox || column.Mode == FieldEditorMode.DateTimeTextBox)
-        { // creating editor control for text
+        if (field.Mode == FieldEditorMode.TextBox || field.Mode == FieldEditorMode.MultilineTextBox || field.Mode == FieldEditorMode.DateTimeTextBox)
+        {
+          #region creating editor control for text
           var _textBox = new TextBox();
-          column.GeneratedControl = _textBox;
-          _textBox.Multiline = column.Mode == FieldEditorMode.MultilineTextBox;
-          _textBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, _textBox.Multiline ? 125 : 20);
+          field.GeneratedControl = _textBox;
+          _textBox.Multiline = field.Mode == FieldEditorMode.MultilineTextBox;
+          _textBox.Size = new Size(field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, _textBox.Multiline ? 125 : 20);
           _textBox.Anchor = AnchorStyles.Left;
-          if (column.MaxLength.HasValue) _textBox.MaxLength = column.MaxLength.Value;
+          if (field.MaxLength.HasValue) _textBox.MaxLength = field.MaxLength.Value;
           _textBox.TabIndex = tabIndex++;
-          if (toolTip != null) toolTip.SetToolTip(_textBox, column.ColumnName);
-          _label.Click += delegate { _textBox.Focus(); };
-          binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
-          if (column.FormatValueMethod != null)
+          if (toolTip != null) toolTip.SetToolTip(_textBox, field.ColumnName);
+          leadLabel.Click += delegate { _textBox.Focus(); };
+          binding = new Binding("Text", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          if (field.FormatValueMethod != null)
           {
-            _textBox.Tag = column.FormatValueMethod;
+            _textBox.Tag = field.FormatValueMethod;
             binding.FormattingEnabled = true;
             binding.Format += TableLayoutPanelExtenders.BindingFormat;
           }
-          if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
-          if (column.NullValue != null) binding.NullValue = column.NullValue;
-          if (column.Style.HasValue)
+          if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
+          if (field.NullValue != null) binding.NullValue = field.NullValue;
+          if (field.Style.HasValue)
           {
-            TableLayoutPanelExtenders.SetBindingStyle(binding, column.Style.Value);
-            _textBox.TextAlign = column.Style == EditorDataStyle.DateTime || column.Style == EditorDataStyle.Date ? HorizontalAlignment.Center : HorizontalAlignment.Right;
+            TableLayoutPanelExtenders.SetBindingStyle(binding, field.Style.Value);
+            _textBox.TextAlign = field.Style == EditorDataStyle.DateTime || field.Style == EditorDataStyle.Date ? HorizontalAlignment.Center : HorizontalAlignment.Right;
           }
           _textBox.DataBindings.Add(binding);
-          _textBox.ReadOnly = column.IsReadOnly;
-          if (column.DataSource != null && column.DataSource is string[])
+          _textBox.ReadOnly = field.IsReadOnly;
+          if (field.DataSource != null && field.DataSource is string[])
           {
             _textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             _textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             _textBox.AutoCompleteCustomSource = new AutoCompleteStringCollection();
-            _textBox.AutoCompleteCustomSource.AddRange((string[])column.DataSource);
+            _textBox.AutoCompleteCustomSource.AddRange((string[])field.DataSource);
           }
           dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.NumberTextBox)
-        { // creating editor control for numbers
+        else if (field.Mode == FieldEditorMode.NumberTextBox)
+        {
+          #region creating editor control for numbers
           var _textBox = new NumericUpDown();
-          column.GeneratedControl = _textBox;
-          _textBox.Minimum = column.Minimum.HasValue ? column.Minimum.Value : decimal.MinValue;
-          _textBox.Maximum = column.Maximum.HasValue ? column.Maximum.Value : decimal.MaxValue;
+          field.GeneratedControl = _textBox;
+          _textBox.Minimum = field.Minimum.HasValue ? field.Minimum.Value : decimal.MinValue;
+          _textBox.Maximum = field.Maximum.HasValue ? field.Maximum.Value : decimal.MaxValue;
           _textBox.DecimalPlaces = 0;
           _textBox.ThousandsSeparator = true;
-          _textBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 20);
+          _textBox.Size = new Size(field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 20);
           _textBox.Anchor = AnchorStyles.Left;
           _textBox.TabIndex = tabIndex++;
-          if (toolTip != null) toolTip.SetToolTip(_textBox, column.ColumnName);
-          _label.Click += delegate { _textBox.Focus(); };
-          binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
-          if (column.FormatValueMethod != null)
+          if (toolTip != null) toolTip.SetToolTip(_textBox, field.ColumnName);
+          leadLabel.Click += delegate { _textBox.Focus(); };
+          binding = new Binding("Text", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          if (field.FormatValueMethod != null)
           {
-            _textBox.Tag = column.FormatValueMethod;
+            _textBox.Tag = field.FormatValueMethod;
             binding.FormattingEnabled = true;
             binding.Format += TableLayoutPanelExtenders.BindingFormat;
           }
-          if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
-          if (column.NullValue != null) binding.NullValue = column.NullValue;
-          if (column.Style.HasValue)
+          if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
+          if (field.NullValue != null) binding.NullValue = field.NullValue;
+          if (field.Style.HasValue)
           {
-            TableLayoutPanelExtenders.SetBindingStyle(binding, column.Style.Value);
+            TableLayoutPanelExtenders.SetBindingStyle(binding, field.Style.Value);
             _textBox.TextAlign = HorizontalAlignment.Right;
           }
           _textBox.DataBindings.Add(binding);
-          _textBox.ReadOnly = column.IsReadOnly;
+          _textBox.ReadOnly = field.IsReadOnly;
           dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.CheckBox)
-        { // creating editor control for booleans
+        else if (field.Mode == FieldEditorMode.CheckBox)
+        {
+          #region creating editor control for booleans
           var _checkBox = new CheckBox();
-          column.GeneratedControl = _checkBox;
+          field.GeneratedControl = _checkBox;
           _checkBox.Anchor = AnchorStyles.Left;
           _checkBox.AutoSize = false;
           _checkBox.Size = new Size(20, 20);
           _checkBox.TabIndex = tabIndex++;
-          if (toolTip != null) toolTip.SetToolTip(_checkBox, column.ColumnName);
-          _label.Click += delegate { _checkBox.Checked = !_checkBox.Checked; };
-          if (column.IsNull)
+          if (toolTip != null) toolTip.SetToolTip(_checkBox, field.ColumnName);
+          leadLabel.Click += delegate { _checkBox.Checked = !_checkBox.Checked; };
+          if (field.IsNull)
           {
-            _checkBox.DataBindings.Add(new Binding("CheckState", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged, CheckState.Indeterminate));
+            _checkBox.DataBindings.Add(new Binding("CheckState", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged, CheckState.Indeterminate));
             _checkBox.ThreeState = true;
           }
-          else _checkBox.DataBindings.Add(new Binding("Checked", DataSource, column.ColumnName, false, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged, false));
-          _checkBox.Enabled = !column.IsReadOnly;
+          else _checkBox.DataBindings.Add(new Binding("Checked", DataSource, field.ColumnName, false, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged, false));
+          _checkBox.Enabled = !field.IsReadOnly;
           dataPanel.Controls.Add(_checkBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.ListBox)
-        { // creating editor control for lists with dialog
+        else if (field.Mode == FieldEditorMode.ListBox)
+        {
+          #region creating editor control for lists with dialog
           var _comboBox = new ComboBox();
-          column.GeneratedControl = _comboBox;
-          _comboBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 21);
+          field.GeneratedControl = _comboBox;
+          _comboBox.Size = new Size(field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 21);
           _comboBox.Anchor = AnchorStyles.Left;
-          if (column.MaxLength.HasValue) _comboBox.MaxLength = column.MaxLength.Value;
+          if (field.MaxLength.HasValue) _comboBox.MaxLength = field.MaxLength.Value;
           _comboBox.TabIndex = tabIndex++;
           _comboBox.DropDownStyle = ComboBoxStyle.Simple;
-          if (toolTip != null) toolTip.SetToolTip(_comboBox, column.ColumnName);
-          _label.Click += delegate { _comboBox.Focus(); };
-          if (column.FormatValueMethod != null)
+          if (toolTip != null) toolTip.SetToolTip(_comboBox, field.ColumnName);
+          leadLabel.Click += delegate { _comboBox.Focus(); };
+          if (field.FormatValueMethod != null)
           {
-            binding = new Binding("Text", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
-            _comboBox.Tag = column.FormatValueMethod;
+            binding = new Binding("Text", DataSource, field.ColumnName, true, DataSourceUpdateMode.Never);
+            _comboBox.Tag = field.FormatValueMethod;
             binding.FormattingEnabled = true;
             binding.Format += TableLayoutPanelExtenders.BindingFormat;
-            if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
+            if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
             _comboBox.DataBindings.Add(binding);
           }
           else
           {
-            binding = new Binding("SelectedValue", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
-            if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
+            binding = new Binding("SelectedValue", DataSource, field.ColumnName, true, DataSourceUpdateMode.Never);
+            if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
             _comboBox.DataBindings.Add(binding);
           }
-          _comboBox.DataSource = column.DataSource;
-          if (!string.IsNullOrWhiteSpace(column.ValueMember)) _comboBox.ValueMember = column.ValueMember;
-          if (!string.IsNullOrWhiteSpace(column.DisplayMember)) _comboBox.DisplayMember = column.DisplayMember;
+          _comboBox.DataSource = field.DataSource;
+          if (!string.IsNullOrWhiteSpace(field.ValueMember)) _comboBox.ValueMember = field.ValueMember;
+          if (!string.IsNullOrWhiteSpace(field.DisplayMember)) _comboBox.DisplayMember = field.DisplayMember;
           _comboBox.Enabled = false;
-          if (column.IsReadOnly) dataPanel.Controls.Add(_comboBox, 1, dataPanel.RowCount - 1);
+          if (field.IsReadOnly) dataPanel.Controls.Add(_comboBox, 1, dataPanel.RowCount - 1);
           else
           {
             var _pnl = new TableLayoutPanel();
@@ -221,72 +233,113 @@ namespace CBComponents
             _btnSelect.TextAlign = ContentAlignment.MiddleCenter;
             _btnSelect.TabIndex = tabIndex++;
             _btnSelect.TabStop = false;
-            _btnSelect.Tag = Tuple.Create(binding, column.DataSource, column.ValueMember, column.DisplayMember, column.ColumnName, column.GetListBoxItemsMethod);
-            _btnSelect.Click += TableLayoutPanelExtenders.SelectFieldClick;
-            if (toolTip != null) toolTip.SetToolTip(_btnSelect, string.Format("Select a value for {0}", column.ColumnName));
+            if (toolTip != null) toolTip.SetToolTip(_btnSelect, string.Format("Select a value for {0}", field.ColumnName));
             _pnl.Controls.Add(_btnSelect, 1, 0);
-            _comboBox.Size = new Size((column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal) - _btnSelect.Width - _btnSelect.Margin.Left - _btnSelect.Margin.Right - _comboBox.Margin.Right, _comboBox.Height);
+            _comboBox.Size = new Size((field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal) - _btnSelect.Width - _btnSelect.Margin.Left - _btnSelect.Margin.Right - _comboBox.Margin.Right, _comboBox.Height);
+            _btnSelect.Click += delegate (object sender, EventArgs e)
+            {
+              var cm = binding.BindingManagerBase;
+              if (cm != null)
+              {
+                try
+                {
+                  var col = cm.GetItemProperties().Find(field.ColumnName, false);
+                  if (col != null)
+                  {
+                    object items = field.DataSource;
+                    bool agc = false;
+                    if (field.GetListBoxItemsMethod != null)
+                    {
+                      items = field.GetListBoxItemsMethod.Invoke();
+                      if (items == null)
+                      {
+                        FormServices.ShowError("No data exists", true);
+                        return;
+                      }
+                      agc = true;
+                    }
+                    var row = SelectItemForm.GetSelectedRow(items, field.ValueMember, field.DisplayMember, col.GetValue(cm.Current), agc);
+                    if (row != null)
+                    {
+                      col.SetValue(cm.Current, row[field.ValueMember]);
+                      cm.EndCurrentEdit();
+                    }
+                  }
+                }
+                catch (Exception ex)
+                {
+                  FormServices.ShowError(ex);
+                  cm.CancelCurrentEdit();
+                }
+              }
+            };
             dataPanel.Controls.Add(_pnl, 1, dataPanel.RowCount - 1);
           }
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.ComboBox || column.Mode == FieldEditorMode.ComboTextBox)
-        { // creating editor control for drop down lists
+        else if (field.Mode == FieldEditorMode.ComboBox || field.Mode == FieldEditorMode.ComboTextBox)
+        {
+          #region creating editor control for drop down lists
           var _comboBox = new ComboBox();
-          column.GeneratedControl = _comboBox;
-          _comboBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 20);
+          field.GeneratedControl = _comboBox;
+          _comboBox.Size = new Size(field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 20);
           _comboBox.Anchor = AnchorStyles.Left;
-          if (column.MaxLength.HasValue) _comboBox.MaxLength = column.MaxLength.Value;
+          if (field.MaxLength.HasValue) _comboBox.MaxLength = field.MaxLength.Value;
           _comboBox.TabIndex = tabIndex++;
-          _comboBox.DropDownStyle = column.Mode == FieldEditorMode.ComboBox ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown;
-          if (toolTip != null) toolTip.SetToolTip(_comboBox, column.ColumnName);
-          _label.Click += delegate { _comboBox.Focus(); if (_comboBox.Enabled) _comboBox.DroppedDown = true; };
-          binding = new Binding(column.Mode == FieldEditorMode.ComboBox ? "SelectedValue" : "Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
-          if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
+          _comboBox.DropDownStyle = field.Mode == FieldEditorMode.ComboBox ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown;
+          if (toolTip != null) toolTip.SetToolTip(_comboBox, field.ColumnName);
+          leadLabel.Click += delegate { _comboBox.Focus(); if (_comboBox.Enabled) _comboBox.DroppedDown = true; };
+          binding = new Binding(field.Mode == FieldEditorMode.ComboBox ? "SelectedValue" : "Text", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
           _comboBox.DataBindings.Add(binding);
-          _comboBox.DataSource = column.DataSource;
-          if (!string.IsNullOrWhiteSpace(column.ValueMember)) _comboBox.ValueMember = column.ValueMember;
-          if (!string.IsNullOrWhiteSpace(column.DisplayMember)) _comboBox.DisplayMember = column.DisplayMember;
-          _comboBox.Enabled = !column.IsReadOnly;
-          if (column.Mode == FieldEditorMode.ComboTextBox)
+          _comboBox.DataSource = field.DataSource;
+          if (!string.IsNullOrWhiteSpace(field.ValueMember)) _comboBox.ValueMember = field.ValueMember;
+          if (!string.IsNullOrWhiteSpace(field.DisplayMember)) _comboBox.DisplayMember = field.DisplayMember;
+          _comboBox.Enabled = !field.IsReadOnly;
+          if (field.Mode == FieldEditorMode.ComboTextBox)
           {
             _comboBox.AutoCompleteMode = AutoCompleteMode.Append;
             _comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
           }
           dataPanel.Controls.Add(_comboBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.GuidEditor)
-        { // creating editor control for Guid
+        else if (field.Mode == FieldEditorMode.GuidEditor)
+        {
+          #region creating editor control for Guid
           var _textBox = new TextBox();
-          column.GeneratedControl = _textBox;
+          field.GeneratedControl = _textBox;
           _textBox.Size = new Size((int)DataDescriptorSizeWidth.Normal, 20);
           _textBox.Anchor = AnchorStyles.Left;
           _textBox.TabIndex = tabIndex++;
-          if (toolTip != null) toolTip.SetToolTip(_textBox, column.ColumnName);
-          _label.Click += delegate { _textBox.Focus(); };
-          if (DataSource != null) _textBox.DataBindings.Add(new Binding("Text", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never, "(null)"));
+          if (toolTip != null) toolTip.SetToolTip(_textBox, field.ColumnName);
+          leadLabel.Click += delegate { _textBox.Focus(); };
+          if (DataSource != null) _textBox.DataBindings.Add(new Binding("Text", DataSource, field.ColumnName, true, DataSourceUpdateMode.Never, "(null)"));
           _textBox.ReadOnly = true;
           dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        else if (column.Mode == FieldEditorMode.BitMask)
-        { // creating editor control for mask (bits)
+        else if (field.Mode == FieldEditorMode.BitMask)
+        {
+          #region creating editor control for mask (bits)
           var _listBox = new BitMaskCheckedListBox();
-          column.GeneratedControl = _listBox;
-          _listBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 150);
+          field.GeneratedControl = _listBox;
+          _listBox.Size = new Size(field.SizeWidth.HasValue ? field.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, 150);
           _listBox.Anchor = AnchorStyles.Left;
           _listBox.TabIndex = tabIndex++;
-          if (toolTip != null) toolTip.SetToolTip(_listBox, column.ColumnName);
-          _label.Click += delegate { _listBox.Focus(); };
-          binding = new Binding("Value", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
-          if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
-          if (column.NullValue != null) binding.NullValue = column.NullValue;
-          if (column.Style.HasValue) TableLayoutPanelExtenders.SetBindingStyle(binding, column.Style.Value);
+          if (toolTip != null) toolTip.SetToolTip(_listBox, field.ColumnName);
+          leadLabel.Click += delegate { _listBox.Focus(); };
+          binding = new Binding("Value", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
+          if (field.NullValue != null) binding.NullValue = field.NullValue;
+          if (field.Style.HasValue) TableLayoutPanelExtenders.SetBindingStyle(binding, field.Style.Value);
           _listBox.DataBindings.Add(binding);
-          _listBox.Enabled = !column.IsReadOnly;
-          if (column.DataSource != null)
+          _listBox.Enabled = !field.IsReadOnly;
+          if (field.DataSource != null)
           {
-            if (column.DataSource is string[])
+            if (field.DataSource is string[])
             {
-              _listBox.Items.AddRange((string[])column.DataSource);
+              _listBox.Items.AddRange((string[])field.DataSource);
               if (_listBox.Items.Count > 0)
               {
                 var _nHeight = _listBox.Items.Count * (_listBox.GetItemHeight(0) + 4) + 1;
@@ -295,14 +348,16 @@ namespace CBComponents
             }
             else
             {
-              _listBox.DataSource = column.DataSource;
-              _listBox.DisplayMember = column.DisplayMember;
+              _listBox.DataSource = field.DataSource;
+              _listBox.DisplayMember = field.DisplayMember;
             }
           }
           dataPanel.Controls.Add(_listBox, 1, dataPanel.RowCount - 1);
+          #endregion
         }
-        if (column.IsNull && !column.IsReadOnly && column.Mode != FieldEditorMode.CheckBox || column.Mode == FieldEditorMode.GuidEditor)
-        { // button for clear value
+        if (field.IsNull && !field.IsReadOnly && field.Mode != FieldEditorMode.CheckBox || field.Mode == FieldEditorMode.GuidEditor)
+        {
+          #region button for clear value
           if (dataPanel.ColumnCount == 2)
           {
             dataPanel.ColumnCount = 3;
@@ -310,7 +365,7 @@ namespace CBComponents
           }
           var _btnClear = new Button();
           _btnClear.Anchor = AnchorStyles.Left;
-          if (column.Mode == FieldEditorMode.MultilineTextBox) _btnClear.Anchor |= AnchorStyles.Top;
+          if (field.Mode == FieldEditorMode.MultilineTextBox) _btnClear.Anchor |= AnchorStyles.Top;
           _btnClear.MinimumSize = new Size(FormServices.Images.TableClearImage.Width, FormServices.Images.TableClearImage.Height);
           _btnClear.AutoSize = true;
           _btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -323,13 +378,56 @@ namespace CBComponents
           _btnClear.TextAlign = ContentAlignment.MiddleCenter;
           _btnClear.TabIndex = tabIndex++;
           _btnClear.TabStop = false;
-          _btnClear.Tag = binding;
-          _btnClear.Click += TableLayoutPanelExtenders.ClearFieldClick;
-          if (toolTip != null) toolTip.SetToolTip(_btnClear, string.Format("Clear value from {0}", column.ColumnName));
+          if (toolTip != null) toolTip.SetToolTip(_btnClear, string.Format("Clear value from {0}", field.ColumnName));
+          _btnClear.Click += delegate
+          {
+            var cm = binding.BindingManagerBase;
+            if (cm != null)
+              try
+              {
+                var col = cm.GetItemProperties().Find(binding.BindingMemberInfo.BindingMember, false);
+                if (col != null && cm.Count > 0) col.SetValue(cm.Current, DBNull.Value);
+                cm.EndCurrentEdit();
+                binding.Control.Focus();
+              }
+              catch (Exception ex)
+              {
+                FormServices.ShowError(ex);
+                cm.CancelCurrentEdit();
+              }
+          };
           dataPanel.Controls.Add(_btnClear, 2, dataPanel.RowCount - 1);
+          #endregion
         }
       }
       dataPanel.ResumeLayout(false);
+    }
+
+    // Called when formatting value is needed
+    private static void BindingFormat(object sender, ConvertEventArgs e)
+    {
+      var _sender = sender as Binding;
+      if (_sender != null && _sender.Control.Tag is FormatValueDelegate)
+      {
+        var _data = (FormatValueDelegate)_sender.Control.Tag;
+        var _value = _data.Invoke(_sender.BindingManagerBase.Current, _sender.BindingMemberInfo.BindingField);
+        if (_value != null) e.Value = _value.ToString();
+      }
+    }
+
+    // 
+    private static void SetBindingStyle(Binding binding, EditorDataStyle Style)
+    {
+      switch (Style)
+      { // TODO: should be configured according local culture (pondus, kg) (foot, m3)
+        case EditorDataStyle.Quantity: binding.FormatString = "D"; break;
+        case EditorDataStyle.Price: binding.FormatString = "#,0.##' CAD.'"; break;
+        case EditorDataStyle.Percent: binding.FormatString = "P"; break;
+        case EditorDataStyle.DateTime: binding.FormatString = "f"; break;
+        case EditorDataStyle.Date: binding.FormatString = "D"; break;
+        case EditorDataStyle.Weight: binding.FormatString = "#,0.##' kg'"; break;
+        case EditorDataStyle.Volume: binding.FormatString = "N3"; break;
+      }
     }
 
   }

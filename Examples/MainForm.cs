@@ -70,7 +70,7 @@ namespace Examples
         new GroupDataDescriptor("Identifications",
           new FieldDataDescriptor("ID", tbl2.EmployeeIDColumn, IsReadOnly: true),
           new FieldDataDescriptor("Employee", tbl2.EmployeeNameColumn),
-          new FieldDataDescriptor("Department", tbl2.DepartmentIDColumn, DataSource: tbl1, ValueMember: tbl1.DepartmentIDColumn.ColumnName, DisplayMember: tbl1.DepartmentNameColumn.ColumnName)),
+          new FieldDataDescriptor("Department", tbl2.DepartmentIDColumn, Mode: FieldEditorMode.ListBox, DataSource: tbl1, ValueMember: tbl1.DepartmentIDColumn.ColumnName, DisplayMember: tbl1.DepartmentNameColumn.ColumnName)),
         new GroupDataDescriptor("Overview", (int)DataDescriptorSizeWidth.Normal,
           new FieldDataDescriptor("Phone", tbl2.PhoneNumberColumn),
           new FieldDataDescriptor("Date of birth", tbl2.DateBirthColumn, Style: EditorDataStyle.Date),
