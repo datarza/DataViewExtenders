@@ -36,7 +36,7 @@ namespace Examples
 
       // praparing Grids
       var tbl1 = this.Database.Departments;
-      this.departmentsGridView.AddColumns(this.departmentsBindingSource, 
+      this.departmentsGridView.GenerateColumns(this.departmentsBindingSource, 
         new ColumnDataDescriptor("Department", tbl1.DepartmentNameColumn),
         new ColumnDataDescriptor("Is closed?", tbl1.IsClosedColumn),
         new ColumnDataDescriptor("Group", tbl1.CompanyGroupColumn),
@@ -46,7 +46,7 @@ namespace Examples
 
       var tbl2 = this.Database.Employees;
       var _salaryGroups = daoDataSet.CreateSalaryGroupsLookupTable();
-      this.employeesGridView.AddColumns(this.employeesBindingSource,
+      this.employeesGridView.GenerateColumns(this.employeesBindingSource,
         new ColumnDataDescriptor("Employee", tbl2.EmployeeNameColumn, FillWeight: 100),
         new ColumnDataDescriptor("Department", tbl2.DepartmentIDColumn, DataSource: tbl1, ValueMember: tbl1.DepartmentIDColumn.ColumnName, DisplayMember: tbl1.DepartmentNameColumn.ColumnName),
         new ColumnDataDescriptor("Phone", tbl2.PhoneNumberColumn),

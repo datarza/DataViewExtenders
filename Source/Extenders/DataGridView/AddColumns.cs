@@ -27,7 +27,7 @@ namespace CBComponents
     /// <param name="dataGrid">DataGridView</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Columns">Column data descriptors</param>
-    public static void AddColumns(this DataGridView dataGrid, object DataSource, params ColumnDataDescriptor[] Columns)
+    public static void GenerateColumns(this DataGridView dataGrid, object DataSource, params ColumnDataDescriptor[] Columns)
     {
       dataGrid.AutoGenerateColumns = false;
       dataGrid.Columns.Clear();

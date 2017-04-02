@@ -27,9 +27,9 @@ namespace CBComponents
     /// <param name="dataPanel">TableLayoutPanel</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Fields">Field data descriptors</param>
-    public static void AddFields(this TableLayoutPanel dataPanel, object DataSource, params FieldDataDescriptor[] Fields)
+    public static void GenerateFields(this TableLayoutPanel dataPanel, object DataSource, params FieldDataDescriptor[] Fields)
     {
-      TableLayoutPanelExtenders.AddFields(dataPanel, null, DataSource, Fields);
+      TableLayoutPanelExtenders.GenerateFields(dataPanel, null, DataSource, Fields);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace CBComponents
     /// <param name="toolTip">ToolTip</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Fields">Field data descriptors</param>
-    public static void AddFields(this TableLayoutPanel dataPanel, ToolTip toolTip, object DataSource, params FieldDataDescriptor[] Fields)
+    public static void GenerateFields(this TableLayoutPanel dataPanel, ToolTip toolTip, object DataSource, params FieldDataDescriptor[] Fields)
     {
       int tabIndex = 0;
       dataPanel.SuspendLayout();

@@ -27,9 +27,9 @@ namespace CBComponents
     /// <param name="dataPanel">FlowLayoutPanel</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Fields">Field data descriptors</param>
-    public static void AddFields(this FlowLayoutPanel dataPanel, object DataSource, params GroupDataDescriptor[] Groups)
+    public static void GenerateFields(this FlowLayoutPanel dataPanel, object DataSource, params GroupDataDescriptor[] Groups)
     {
-      FlowLayoutPanelExtenders.AddGroups(dataPanel, null, DataSource, Groups);
+      FlowLayoutPanelExtenders.GenerateGroups(dataPanel, null, DataSource, Groups);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace CBComponents
     /// <param name="toolTip">ToolTip</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Groups">Group data descriptors and Field data descriptors</param>
-    public static void AddGroups(this FlowLayoutPanel groupPanel, ToolTip toolTip, object DataSource, params GroupDataDescriptor[] Groups)
+    public static void GenerateGroups(this FlowLayoutPanel groupPanel, ToolTip toolTip, object DataSource, params GroupDataDescriptor[] Groups)
     {
       groupPanel.SuspendLayout();
       groupPanel.Controls.Clear();
@@ -58,7 +58,7 @@ namespace CBComponents
         dataPanel.ColumnCount = 2;
         dataPanel.ColumnStyles.Add(new ColumnStyle());
         dataPanel.ColumnStyles.Add(new ColumnStyle());
-        dataPanel.AddFields(toolTip, DataSource, group.Fields);
+        dataPanel.GenerateFields(toolTip, DataSource, group.Fields);
         groupPanel.Controls.Add(dataPanel);
         dataPanel.ResumeLayout();
       }
