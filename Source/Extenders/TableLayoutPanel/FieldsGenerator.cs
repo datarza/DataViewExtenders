@@ -94,7 +94,7 @@ namespace CBComponents
           {
             _textBox.Tag = column.FormatValueMethod;
             binding.FormattingEnabled = true;
-            binding.Format += new ConvertEventHandler(BindingFormat);
+            binding.Format += TableLayoutPanelExtenders.BindingFormat;
           }
           if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
           if (column.NullValue != null) binding.NullValue = column.NullValue;
@@ -132,7 +132,7 @@ namespace CBComponents
           {
             _textBox.Tag = column.FormatValueMethod;
             binding.FormattingEnabled = true;
-            binding.Format += new ConvertEventHandler(BindingFormat);
+            binding.Format += TableLayoutPanelExtenders.BindingFormat;
           }
           if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
           if (column.NullValue != null) binding.NullValue = column.NullValue;
@@ -180,7 +180,7 @@ namespace CBComponents
             binding = new Binding("Text", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
             _comboBox.Tag = column.FormatValueMethod;
             binding.FormattingEnabled = true;
-            binding.Format += new ConvertEventHandler(BindingFormat);
+            binding.Format += TableLayoutPanelExtenders.BindingFormat;
             if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
             _comboBox.DataBindings.Add(binding);
           }
@@ -222,7 +222,7 @@ namespace CBComponents
             _btnSelect.TabIndex = tabIndex++;
             _btnSelect.TabStop = false;
             _btnSelect.Tag = Tuple.Create(binding, column.DataSource, column.ValueMember, column.DisplayMember, column.ColumnName, column.GetListBoxItemsMethod);
-            _btnSelect.Click += new EventHandler(TableLayoutPanelExtenders.SelectFieldClick);
+            _btnSelect.Click += TableLayoutPanelExtenders.SelectFieldClick;
             if (toolTip != null) toolTip.SetToolTip(_btnSelect, string.Format("Select a value for {0}", column.ColumnName));
             _pnl.Controls.Add(_btnSelect, 1, 0);
             _comboBox.Size = new Size((column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal) - _btnSelect.Width - _btnSelect.Margin.Left - _btnSelect.Margin.Right - _comboBox.Margin.Right, _comboBox.Height);
@@ -324,7 +324,7 @@ namespace CBComponents
           _btnClear.TabIndex = tabIndex++;
           _btnClear.TabStop = false;
           _btnClear.Tag = binding;
-          _btnClear.Click += new EventHandler(TableLayoutPanelExtenders.ClearFieldClick);
+          _btnClear.Click += TableLayoutPanelExtenders.ClearFieldClick;
           if (toolTip != null) toolTip.SetToolTip(_btnClear, string.Format("Clear value from {0}", column.ColumnName));
           dataPanel.Controls.Add(_btnClear, 2, dataPanel.RowCount - 1);
         }
