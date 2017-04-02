@@ -35,30 +35,35 @@ namespace CBComponents
     /// <summary>
     /// Group generator that works on group and field data descriptions (GroupDataDescriptor & FieldDataDescriptor)
     /// </summary>
-    /// <param name="dataPanel">FlowLayoutPanel</param>
+    /// <param name="groupPanel">FlowLayoutPanel</param>
     /// <param name="toolTip">ToolTip</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Groups">Group data descriptors and Field data descriptors</param>
-    public static void AddGroups(this FlowLayoutPanel dataPanel, ToolTip toolTip, object DataSource, params GroupDataDescriptor[] Groups)
+    public static void AddGroups(this FlowLayoutPanel groupPanel, ToolTip toolTip, object DataSource, params GroupDataDescriptor[] Groups)
     {
-      dataPanel.SuspendLayout();
-      dataPanel.Controls.Clear();
+      groupPanel.SuspendLayout();
+      groupPanel.Controls.Clear();
       if (DataSource == null || Groups == null || Groups.Length == 0) return;
       foreach (var group in Groups)
       {
-        var htlPanel = new EditorTableLayoutPanel();
-        group.GeneratedPanel = htlPanel;
-        htlPanel.AutoSize = true;
-        htlPanel.Margin = new Padding(3, 3, 12, 3);
-        htlPanel.CaptionText = group.CaptionText;
-        htlPanel.ColumnCount = 2;
-        htlPanel.ColumnStyles.Add(new ColumnStyle());
-        htlPanel.ColumnStyles.Add(new ColumnStyle());
-        htlPanel.AddFields(toolTip, DataSource, group.Fields);
-        dataPanel.Controls.Add(htlPanel);
+        var dataPanel = new EditorTableLayoutPanel();
+        group.GeneratedPanel = dataPanel;
+        dataPanel.SuspendLayout();
+        dataPanel.AutoSize = true;
+        dataPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        dataPanel.Margin = new Padding(3, 3, 9, 3);
+        dataPanel.CaptionText = group.CaptionText;
+        dataPanel.CaptionLineWidth = 2;
+        dataPanel.CaptionStyle = EditorTableLayoutPanel.HighlightCaptionStyle.NavisionAxaptaStyle;
+        dataPanel.ColumnCount = 2;
+        dataPanel.ColumnStyles.Add(new ColumnStyle());
+        dataPanel.ColumnStyles.Add(new ColumnStyle());
+        dataPanel.AddFields(toolTip, DataSource, group.Fields);
+        groupPanel.Controls.Add(dataPanel);
+        dataPanel.ResumeLayout();
       }
-      dataPanel.ResumeLayout();
-      dataPanel.PerformLayout();
+      groupPanel.ResumeLayout();
+      groupPanel.PerformLayout();
     }
   }
 }

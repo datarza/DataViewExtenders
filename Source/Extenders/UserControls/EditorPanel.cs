@@ -55,21 +55,22 @@ namespace CBComponents
       int tabIndex = 0;
       foreach (var group in Groups)
       {
-        var htlPanel = new EditorTableLayoutPanel();
-        group.GeneratedPanel = htlPanel;
-        htlPanel.AutoSize = true;
-        htlPanel.Margin = new Padding(3, 3, 12, 3);
-        htlPanel.CaptionText = group.CaptionText;
-        htlPanel.ColumnCount = 2;
-        htlPanel.ColumnStyles.Add(new ColumnStyle());
-        htlPanel.ColumnStyles.Add(new ColumnStyle());
+        var dataPanel = new EditorTableLayoutPanel();
+        group.GeneratedPanel = dataPanel;
+        dataPanel.AutoSize = true;
+        dataPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        dataPanel.Margin = new Padding(3, 3, 12, 3);
+        dataPanel.CaptionText = group.CaptionText;
+        dataPanel.ColumnCount = 2;
+        dataPanel.ColumnStyles.Add(new ColumnStyle());
+        dataPanel.ColumnStyles.Add(new ColumnStyle());
         //htlPanel.AddFields(this._toolTip, DataSource, group.Fields);
         //this._panel.Controls.Add(htlPanel);
         //continue;
         foreach (var column in group.Fields)
         {
-          htlPanel.RowCount += 1;
-          htlPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+          dataPanel.RowCount += 1;
+          dataPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
           var _label = new Label(); // creating the label
           _label.AutoSize = true;
@@ -86,7 +87,7 @@ namespace CBComponents
           }
           _label.TabIndex = tabIndex++;
           _label.Text = column.HeaderText;
-          htlPanel.Controls.Add(_label, 0, htlPanel.RowCount - 1);
+          dataPanel.Controls.Add(_label, 0, dataPanel.RowCount - 1);
 
           if (column.Mode == FieldEditorMode.TextBox || column.Mode == FieldEditorMode.MultilineTextBox || column.Mode == FieldEditorMode.DateTimeTextBox)
           { // creating editor control for text
@@ -122,7 +123,7 @@ namespace CBComponents
               _textBox.AutoCompleteCustomSource = new AutoCompleteStringCollection();
               _textBox.AutoCompleteCustomSource.AddRange((string[])column.DataSource);
             }
-            htlPanel.Controls.Add(_textBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
           }
           else if (column.Mode == FieldEditorMode.NumberTextBox)
           { // creating editor control for numbers
@@ -153,7 +154,7 @@ namespace CBComponents
             }
             _textBox.DataBindings.Add(binding);
             _textBox.ReadOnly = column.IsReadOnly;
-            htlPanel.Controls.Add(_textBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
           }
           else if (column.Mode == FieldEditorMode.CheckBox)
           { // creating editor control for booleans
@@ -172,7 +173,7 @@ namespace CBComponents
             }
             else _checkBox.DataBindings.Add(new Binding("Checked", this.DataSource, column.ColumnName, false, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged, false));
             _checkBox.Enabled = !column.IsReadOnly;
-            htlPanel.Controls.Add(_checkBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_checkBox, 1, dataPanel.RowCount - 1);
           }
           else if (column.Mode == FieldEditorMode.ListBox)
           { // creating editor control for lists with dialog
@@ -204,7 +205,7 @@ namespace CBComponents
             if (!string.IsNullOrWhiteSpace(column.ValueMember)) _comboBox.ValueMember = column.ValueMember;
             if (!string.IsNullOrWhiteSpace(column.DisplayMember)) _comboBox.DisplayMember = column.DisplayMember;
             _comboBox.Enabled = false;
-            if (column.IsReadOnly) htlPanel.Controls.Add(_comboBox, 1, htlPanel.RowCount - 1);
+            if (column.IsReadOnly) dataPanel.Controls.Add(_comboBox, 1, dataPanel.RowCount - 1);
             else
             {
               var _pnl = new TableLayoutPanel();
@@ -231,7 +232,7 @@ namespace CBComponents
               _pnl.Controls.Add(_btnSelect, 1, 0);
               _pnl.Margin = new Padding(0, _pnl.Margin.Top, 0, _pnl.Margin.Bottom);
               _comboBox.Size = new Size((column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal) - _btnSelect.Width - _btnSelect.Margin.Left - _btnSelect.Margin.Right - _comboBox.Margin.Right, _comboBox.Height);
-              htlPanel.Controls.Add(_pnl, 1, htlPanel.RowCount - 1);
+              dataPanel.Controls.Add(_pnl, 1, dataPanel.RowCount - 1);
             }
           }
           else if (column.Mode == FieldEditorMode.ComboBox || column.Mode == FieldEditorMode.ComboTextBox)
@@ -257,7 +258,7 @@ namespace CBComponents
               _comboBox.AutoCompleteMode = AutoCompleteMode.Append;
               _comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
-            htlPanel.Controls.Add(_comboBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_comboBox, 1, dataPanel.RowCount - 1);
           }
           else if (column.Mode == FieldEditorMode.GuidEditor)
           { // creating editor control for Guid
@@ -270,7 +271,7 @@ namespace CBComponents
             _label.Click += delegate { _textBox.Focus(); };
             if (this.DataSource != null) _textBox.DataBindings.Add(new Binding("Text", this.DataSource, column.ColumnName, true, DataSourceUpdateMode.Never, "(null)"));
             _textBox.ReadOnly = true;
-            htlPanel.Controls.Add(_textBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
           }
           else if (column.Mode == FieldEditorMode.BitMask)
           { // creating editor control for mask (bits)
@@ -304,14 +305,14 @@ namespace CBComponents
                 _listBox.DisplayMember = column.DisplayMember;
               }
             }
-            htlPanel.Controls.Add(_listBox, 1, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_listBox, 1, dataPanel.RowCount - 1);
           }
           if (column.IsNull && !column.IsReadOnly && column.Mode != FieldEditorMode.CheckBox || column.Mode == FieldEditorMode.GuidEditor)
           { // button for clear value
-            if (htlPanel.ColumnCount == 2)
+            if (dataPanel.ColumnCount == 2)
             {
-              htlPanel.ColumnCount = 3;
-              htlPanel.ColumnStyles.Add(new ColumnStyle());
+              dataPanel.ColumnCount = 3;
+              dataPanel.ColumnStyles.Add(new ColumnStyle());
             }
             var _btnClear = new Button();
             _btnClear.Anchor = AnchorStyles.Left;
@@ -328,10 +329,10 @@ namespace CBComponents
             _btnClear.Click += new EventHandler(this.ClearFieldClick);
             _btnClear.Tag = column.ColumnName;
             this._toolTip.SetToolTip(_btnClear, string.Format("Clear value from {0}", column.ColumnName));
-            htlPanel.Controls.Add(_btnClear, 2, htlPanel.RowCount - 1);
+            dataPanel.Controls.Add(_btnClear, 2, dataPanel.RowCount - 1);
           }
         }
-        this._panel.Controls.Add(htlPanel);
+        this._panel.Controls.Add(dataPanel);
       }
 
       this.ResumeLayout();
