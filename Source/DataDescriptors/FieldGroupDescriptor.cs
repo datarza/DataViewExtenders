@@ -25,12 +25,12 @@ namespace CBComponents.DataDescriptors
 
     public FieldDataDescriptor[] Fields { get; set; }
 
-    public EditorTableLayoutPanel.HighlightCaptionStyle CaptionStyle { get; set; } = EditorTableLayoutPanel.HighlightCaptionStyle.HighlightColor;
+    public HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle { get; set; } = GroupDataDescriptor._defaultHighlightCaptionStyle;
 
-    private const EditorTableLayoutPanel.HighlightCaptionStyle _defaultHighlightCaptionStyle = EditorTableLayoutPanel.HighlightCaptionStyle.HighlightColor;
+    private const HeaderTableLayoutPanel.HighlightCaptionStyle _defaultHighlightCaptionStyle = HeaderTableLayoutPanel.HighlightCaptionStyle.NavisionAxaptaStyle;
     private const int _defaultSizeWidth = (int)DataDescriptorSizeWidth.Smaller / 2;
 
-    public GroupDataDescriptor(string CaptionText, EditorTableLayoutPanel.HighlightCaptionStyle CaptionStyle, int SizeWidth, params FieldDataDescriptor[] Fields)
+    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, int SizeWidth, params FieldDataDescriptor[] Fields)
     {
       this.CaptionText = CaptionText;
       this.CaptionStyle = CaptionStyle;
@@ -41,7 +41,7 @@ namespace CBComponents.DataDescriptors
       this.Fields = Fields;
     }
 
-    public GroupDataDescriptor(string CaptionText, EditorTableLayoutPanel.HighlightCaptionStyle CaptionStyle, DataDescriptorSizeWidth SizeWidth, params FieldDataDescriptor[] Fields)
+    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, DataDescriptorSizeWidth SizeWidth, params FieldDataDescriptor[] Fields)
       : this(CaptionText, CaptionStyle, (int)SizeWidth, Fields)
     {
     }
@@ -51,7 +51,7 @@ namespace CBComponents.DataDescriptors
     {
     }
 
-    public GroupDataDescriptor(string CaptionText, EditorTableLayoutPanel.HighlightCaptionStyle CaptionStyle, params FieldDataDescriptor[] Fields)
+    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, params FieldDataDescriptor[] Fields)
       : this(CaptionText, CaptionStyle, _defaultSizeWidth, Fields)
     {
     }

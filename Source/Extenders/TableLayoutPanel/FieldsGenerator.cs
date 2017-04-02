@@ -41,9 +41,20 @@ namespace CBComponents
     /// <param name="Fields">Field data descriptors</param>
     public static void GenerateFields(this TableLayoutPanel dataPanel, ToolTip toolTip, object DataSource, params FieldDataDescriptor[] Fields)
     {
-      int tabIndex = 0;
       dataPanel.SuspendLayout();
+      dataPanel.Controls.Clear();
+      if (DataSource == null || Fields == null || Fields.Length == 0) return;
+      dataPanel.ColumnStyles.Clear();
+      dataPanel.ColumnCount = 2;
+      dataPanel.ColumnStyles.Add(new ColumnStyle());
+      dataPanel.ColumnStyles.Add(new ColumnStyle());
+      dataPanel.RowStyles.Clear();
+      dataPanel.RowCount = 0;
+      dataPanel.AutoSize = true;
+      dataPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+      dataPanel.Margin = new Padding(3, 3, 9, 3);
 
+      int tabIndex = 0;
       foreach (var column in Fields)
       {
         dataPanel.RowCount += 1;
@@ -51,7 +62,7 @@ namespace CBComponents
 
         var _label = new Label(); // creating the label
         _label.AutoSize = true;
-        _label.Margin = new Padding(12, column.Mode == FieldEditorMode.MultilineTextBox ? 3 : 0, 3, 0);
+        _label.Margin = new Padding(12, column.Mode == FieldEditorMode.MultilineTextBox ? 3 : 0, 0, 0);
         if (column.Mode == FieldEditorMode.MultilineTextBox || column.Mode == FieldEditorMode.BitMask)
         {
           _label.Anchor = AnchorStyles.Right | AnchorStyles.Top;
@@ -63,21 +74,22 @@ namespace CBComponents
           _label.TextAlign = ContentAlignment.MiddleRight;
         }
         _label.TabIndex = tabIndex++;
-        _label.Text = column.HeaderText;
+        _label.Text = column.CaptionText; // TODO: add option for generating label in format: column.CaptionText + ":"
         dataPanel.Controls.Add(_label, 0, dataPanel.RowCount - 1);
 
+        Binding binding = null;
         if (column.Mode == FieldEditorMode.TextBox || column.Mode == FieldEditorMode.MultilineTextBox || column.Mode == FieldEditorMode.DateTimeTextBox)
         { // creating editor control for text
           var _textBox = new TextBox();
           column.GeneratedControl = _textBox;
           _textBox.Multiline = column.Mode == FieldEditorMode.MultilineTextBox;
-          _textBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, _textBox.Multiline ? 150 : 20);
+          _textBox.Size = new Size(column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal, _textBox.Multiline ? 125 : 20);
           _textBox.Anchor = AnchorStyles.Left;
           if (column.MaxLength.HasValue) _textBox.MaxLength = column.MaxLength.Value;
           _textBox.TabIndex = tabIndex++;
           if (toolTip != null) toolTip.SetToolTip(_textBox, column.ColumnName);
           _label.Click += delegate { _textBox.Focus(); };
-          var binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
           if (column.FormatValueMethod != null)
           {
             _textBox.Tag = column.FormatValueMethod;
@@ -115,7 +127,7 @@ namespace CBComponents
           _textBox.TabIndex = tabIndex++;
           if (toolTip != null) toolTip.SetToolTip(_textBox, column.ColumnName);
           _label.Click += delegate { _textBox.Focus(); };
-          var binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          binding = new Binding("Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
           if (column.FormatValueMethod != null)
           {
             _textBox.Tag = column.FormatValueMethod;
@@ -165,7 +177,7 @@ namespace CBComponents
           _label.Click += delegate { _comboBox.Focus(); };
           if (column.FormatValueMethod != null)
           {
-            var binding = new Binding("Text", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
+            binding = new Binding("Text", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
             _comboBox.Tag = column.FormatValueMethod;
             binding.FormattingEnabled = true;
             binding.Format += new ConvertEventHandler(BindingFormat);
@@ -174,7 +186,7 @@ namespace CBComponents
           }
           else
           {
-            var binding = new Binding("SelectedValue", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
+            binding = new Binding("SelectedValue", DataSource, column.ColumnName, true, DataSourceUpdateMode.Never);
             if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
             _comboBox.DataBindings.Add(binding);
           }
@@ -187,6 +199,9 @@ namespace CBComponents
           {
             var _pnl = new TableLayoutPanel();
             _pnl.AutoSize = true;
+            _pnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            _pnl.Margin = new Padding(0);
+            _pnl.Padding = new Padding(0);
             _pnl.RowCount = 1;
             _pnl.ColumnCount = 2;
             _pnl.ColumnStyles.Add(new ColumnStyle());
@@ -194,20 +209,22 @@ namespace CBComponents
             _pnl.Controls.Add(_comboBox, 0, 0);
             var _btnSelect = new Button();
             _btnSelect.Anchor = AnchorStyles.Left;
-            _btnSelect.Size = new Size(20, 20);
+            _btnSelect.MinimumSize = new Size(FormServices.Images.TableSelectImage.Width, FormServices.Images.TableSelectImage.Height);
+            _btnSelect.AutoSize = true;
+            _btnSelect.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _btnSelect.FlatStyle = FlatStyle.Flat;
             _btnSelect.FlatAppearance.BorderSize = 0;
-            _btnSelect.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+            _btnSelect.FlatAppearance.MouseOverBackColor = SystemColors.GradientActiveCaption;
             _btnSelect.FlatAppearance.MouseDownBackColor = SystemColors.ControlLight;
             _btnSelect.Image = FormServices.Images.TableSelectImage;
             _btnSelect.ImageAlign = ContentAlignment.MiddleCenter;
+            _btnSelect.TextAlign = ContentAlignment.MiddleCenter;
             _btnSelect.TabIndex = tabIndex++;
             _btnSelect.TabStop = false;
-            _btnSelect.Tag = Tuple.Create(column.DataSource, column.ValueMember, column.DisplayMember, column.ColumnName, column.GetListBoxItemsMethod);
-            if (toolTip != null) toolTip.SetToolTip(_btnSelect, string.Format("Select a value for {0}", column.ColumnName));
+            _btnSelect.Tag = Tuple.Create(binding, column.DataSource, column.ValueMember, column.DisplayMember, column.ColumnName, column.GetListBoxItemsMethod);
             _btnSelect.Click += new EventHandler(TableLayoutPanelExtenders.SelectFieldClick);
+            if (toolTip != null) toolTip.SetToolTip(_btnSelect, string.Format("Select a value for {0}", column.ColumnName));
             _pnl.Controls.Add(_btnSelect, 1, 0);
-            _pnl.Margin = new Padding(0, _pnl.Margin.Top, 0, _pnl.Margin.Bottom);
             _comboBox.Size = new Size((column.SizeWidth.HasValue ? column.SizeWidth.Value : (int)DataDescriptorSizeWidth.Normal) - _btnSelect.Width - _btnSelect.Margin.Left - _btnSelect.Margin.Right - _comboBox.Margin.Right, _comboBox.Height);
             dataPanel.Controls.Add(_pnl, 1, dataPanel.RowCount - 1);
           }
@@ -223,7 +240,7 @@ namespace CBComponents
           _comboBox.DropDownStyle = column.Mode == FieldEditorMode.ComboBox ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown;
           if (toolTip != null) toolTip.SetToolTip(_comboBox, column.ColumnName);
           _label.Click += delegate { _comboBox.Focus(); if (_comboBox.Enabled) _comboBox.DroppedDown = true; };
-          var binding = new Binding(column.Mode == FieldEditorMode.ComboBox ? "SelectedValue" : "Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          binding = new Binding(column.Mode == FieldEditorMode.ComboBox ? "SelectedValue" : "Text", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
           if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
           _comboBox.DataBindings.Add(binding);
           _comboBox.DataSource = column.DataSource;
@@ -259,7 +276,7 @@ namespace CBComponents
           _listBox.TabIndex = tabIndex++;
           if (toolTip != null) toolTip.SetToolTip(_listBox, column.ColumnName);
           _label.Click += delegate { _listBox.Focus(); };
-          var binding = new Binding("Value", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          binding = new Binding("Value", DataSource, column.ColumnName, true, column.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
           if (column.IsNull) binding.DataSourceNullValue = DBNull.Value;
           if (column.NullValue != null) binding.NullValue = column.NullValue;
           if (column.Style.HasValue) TableLayoutPanelExtenders.SetBindingStyle(binding, column.Style.Value);
@@ -294,17 +311,20 @@ namespace CBComponents
           var _btnClear = new Button();
           _btnClear.Anchor = AnchorStyles.Left;
           if (column.Mode == FieldEditorMode.MultilineTextBox) _btnClear.Anchor |= AnchorStyles.Top;
-          _btnClear.Size = new Size(20, 20);
+          _btnClear.MinimumSize = new Size(FormServices.Images.TableClearImage.Width, FormServices.Images.TableClearImage.Height);
+          _btnClear.AutoSize = true;
+          _btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
           _btnClear.FlatStyle = FlatStyle.Flat;
           _btnClear.FlatAppearance.BorderSize = 0;
-          _btnClear.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+          _btnClear.FlatAppearance.MouseOverBackColor = SystemColors.GradientActiveCaption;
           _btnClear.FlatAppearance.MouseDownBackColor = SystemColors.ControlLight;
           _btnClear.Image = FormServices.Images.TableClearImage;
           _btnClear.ImageAlign = ContentAlignment.MiddleCenter;
+          _btnClear.TextAlign = ContentAlignment.MiddleCenter;
           _btnClear.TabIndex = tabIndex++;
           _btnClear.TabStop = false;
+          _btnClear.Tag = binding;
           _btnClear.Click += new EventHandler(TableLayoutPanelExtenders.ClearFieldClick);
-          _btnClear.Tag = column.ColumnName;
           if (toolTip != null) toolTip.SetToolTip(_btnClear, string.Format("Clear value from {0}", column.ColumnName));
           dataPanel.Controls.Add(_btnClear, 2, dataPanel.RowCount - 1);
         }
@@ -342,15 +362,16 @@ namespace CBComponents
 
     private static void ClearFieldClick(object sender, EventArgs e)
     {
-      // TODO: should be realized - var cm = base.BindingContext[this.DataSource] as CurrencyManager;
-      CurrencyManager cm = null;
+      var _sender = (Control)sender;
+      var binding = _sender.Tag as Binding;
+      var cm = binding.BindingManagerBase;
       if (cm != null)
         try
         {
-          var col = cm.GetItemProperties().Find((string)((Control)sender).Tag, false);
+          var col = cm.GetItemProperties().Find(binding.BindingMemberInfo.BindingMember, false);
           if (col != null && cm.Count > 0) col.SetValue(cm.Current, DBNull.Value);
           cm.EndCurrentEdit();
-          // TODO: should be realized to select previous control - this.ProcessTabKey(false);
+          binding.Control.Focus();
         }
         catch (Exception ex)
         {
@@ -361,34 +382,34 @@ namespace CBComponents
 
     private static void SelectFieldClick(object sender, EventArgs e)
     {
-      // TODO: should be realized - var cm = base.BindingContext[this.DataSource] as CurrencyManager;
-      CurrencyManager cm = null;
+      var _sender = (Control)sender;
+      var _data = _sender.Tag as Tuple<Binding, object, string, string, string, GetListBoxItemsDelegate>;
+      var binding = _data.Item1;
+      var cm = binding.BindingManagerBase;
       if (cm != null)
       {
-        var _sender = (Control)sender;
-        var _data = _sender.Tag as Tuple<object, string, string, string, GetListBoxItemsDelegate>;
         if (_data != null)
           try
           {
-            var col = cm.GetItemProperties().Find(_data.Item4, false);
+            var col = cm.GetItemProperties().Find(_data.Item5, false);
             if (col != null)
             {
-              object items = _data.Item1;
+              object items = _data.Item2;
               bool agc = false;
-              if (_data.Item5 != null)
+              if (_data.Item6 != null)
               {
-                items = _data.Item5.Invoke();
+                items = _data.Item6.Invoke();
                 if (items == null)
                 {
-                  FormServices.ShowError("No data", true);
+                  FormServices.ShowError("No data exists", true);
                   return;
                 }
                 agc = true;
               }
-              var row = SelectItemForm.GetSelectedRow(items, _data.Item2, _data.Item3, col.GetValue(cm.Current), agc);
+              var row = SelectItemForm.GetSelectedRow(items, _data.Item3, _data.Item4, col.GetValue(cm.Current), agc);
               if (row != null)
               {
-                col.SetValue(cm.Current, row[_data.Item2]);
+                col.SetValue(cm.Current, row[_data.Item3]);
                 cm.EndCurrentEdit();
               }
             }

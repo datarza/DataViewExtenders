@@ -56,7 +56,7 @@ namespace Examples
       this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
 
       // preparing panels
-      this.departmentsEditorPanel.AddGroups(this.departmentsBindingSource,
+      this.departmentsPanel.GenerateGroups(this.toolTip, this.departmentsBindingSource, 
         new GroupDataDescriptor("Identifications",
           new FieldDataDescriptor("ID", tbl1.DepartmentIDColumn, IsReadOnly: true),
           new FieldDataDescriptor("Department", tbl1.DepartmentNameColumn)),
@@ -66,7 +66,7 @@ namespace Examples
         new GroupDataDescriptor("Additions",
           new FieldDataDescriptor("Remarks", tbl1.RemarksColumn)));
 
-      this.employeesEditorPanel.AddGroups(this.employeesBindingSource,
+      this.employeesPanel.GenerateGroups(this.toolTip, this.employeesBindingSource, 
         new GroupDataDescriptor("Identifications",
           new FieldDataDescriptor("ID", tbl2.EmployeeIDColumn, IsReadOnly: true),
           new FieldDataDescriptor("Employee", tbl2.EmployeeNameColumn),

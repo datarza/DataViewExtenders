@@ -160,9 +160,8 @@ namespace CBComponents
                   items = _data.Item4.Invoke();
                   if (items == null)
                   {
-                    //MessageBox.Show("No data exists");
-                    //return;
-                    throw new ArgumentNullException();
+                    FormServices.ShowError("No data exists", true);
+                    return;
                   }
                   agc = true;
                 }

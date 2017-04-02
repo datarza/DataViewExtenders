@@ -21,7 +21,7 @@ namespace CBComponents
   using CBComponents.Forms;
 
   [ToolboxBitmap(typeof(TableLayoutPanel))]
-  public partial class EditorTableLayoutPanel : System.Windows.Forms.TableLayoutPanel
+  public class HeaderTableLayoutPanel : System.Windows.Forms.TableLayoutPanel
   {
     /// <summary>
     /// Header text

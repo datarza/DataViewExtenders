@@ -27,7 +27,7 @@ namespace CBComponents
     /// <param name="dataPanel">FlowLayoutPanel</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Fields">Field data descriptors</param>
-    public static void GenerateFields(this FlowLayoutPanel dataPanel, object DataSource, params GroupDataDescriptor[] Groups)
+    public static void GenerateGroups(this FlowLayoutPanel dataPanel, object DataSource, params GroupDataDescriptor[] Groups)
     {
       FlowLayoutPanelExtenders.GenerateGroups(dataPanel, null, DataSource, Groups);
     }
@@ -46,21 +46,12 @@ namespace CBComponents
       if (DataSource == null || Groups == null || Groups.Length == 0) return;
       foreach (var group in Groups)
       {
-        var dataPanel = new EditorTableLayoutPanel();
+        var dataPanel = new HeaderTableLayoutPanel(); // TableLayoutPanel();
         group.GeneratedPanel = dataPanel;
-        dataPanel.SuspendLayout();
-        dataPanel.AutoSize = true;
-        dataPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        dataPanel.Margin = new Padding(3, 3, 9, 3);
         dataPanel.CaptionText = group.CaptionText;
-        dataPanel.CaptionLineWidth = 2;
-        dataPanel.CaptionStyle = EditorTableLayoutPanel.HighlightCaptionStyle.NavisionAxaptaStyle;
-        dataPanel.ColumnCount = 2;
-        dataPanel.ColumnStyles.Add(new ColumnStyle());
-        dataPanel.ColumnStyles.Add(new ColumnStyle());
+        dataPanel.CaptionStyle = group.CaptionStyle;
         dataPanel.GenerateFields(toolTip, DataSource, group.Fields);
         groupPanel.Controls.Add(dataPanel);
-        dataPanel.ResumeLayout();
       }
       groupPanel.ResumeLayout();
       groupPanel.PerformLayout();

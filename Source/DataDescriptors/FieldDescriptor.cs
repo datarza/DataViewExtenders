@@ -22,7 +22,7 @@ namespace CBComponents.DataDescriptors
   /// </summary>
   public class FieldDataDescriptor
   {
-    public string HeaderText { get; set; }
+    public string CaptionText { get; set; }
     public string ColumnName { get; set; }
     public FieldEditorMode Mode { get; set; }
     public EditorDataStyle? Style { get; set; }
@@ -38,7 +38,7 @@ namespace CBComponents.DataDescriptors
     public string DisplayMember { get; set; }
     public GetListBoxItemsDelegate GetListBoxItemsMethod { get; set; }
     public FormatValueDelegate FormatValueMethod { get; set; }
-    public FieldDataDescriptor(string HeaderText, DataColumn Column, FieldEditorMode Mode = FieldEditorMode.Auto,
+    public FieldDataDescriptor(string CaptionText, DataColumn Column, FieldEditorMode Mode = FieldEditorMode.Auto,
                        EditorDataStyle? Style = null, int? SizeWidth = null, object NullValue = null, bool IsReadOnly = false,
                        decimal? Minimum = null, decimal? Maximum = null,
                        object DataSource = null, string ValueMember = null, string DisplayMember = null,
@@ -63,7 +63,7 @@ namespace CBComponents.DataDescriptors
         else if (Column.MaxLength > 260) Mode = FieldEditorMode.MultilineTextBox;
         else Mode = FieldEditorMode.TextBox;
       }
-      this.HeaderText = HeaderText; // Column.Caption;
+      this.CaptionText = CaptionText; // Column.Caption;
       this.ColumnName = Column.ColumnName;
       this.Mode = Mode;
       this.Style = Style;
