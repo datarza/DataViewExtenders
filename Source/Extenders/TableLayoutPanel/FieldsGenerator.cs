@@ -424,14 +424,13 @@ namespace CBComponents
     private static void SetBindingStyle(Binding binding, EditorDataStyle Style)
     {
       switch (Style)
-      { // TODO: should be configured according local culture (pondus, kg) (foot, m3)
-        case EditorDataStyle.Quantity: binding.FormatString = "D"; break;
-        case EditorDataStyle.Price: binding.FormatString = "#,0.##' CAD.'"; break;
+      { 
+        case EditorDataStyle.Decimal: binding.FormatString = "N"; break;
+        case EditorDataStyle.Number: binding.FormatString = "N0"; break;
+        case EditorDataStyle.Money: binding.FormatString = "C"; break;
         case EditorDataStyle.Percent: binding.FormatString = "P"; break;
         case EditorDataStyle.DateTime: binding.FormatString = "f"; break;
         case EditorDataStyle.Date: binding.FormatString = "D"; break;
-        case EditorDataStyle.Weight: binding.FormatString = "#,0.##' kg'"; break;
-        case EditorDataStyle.Volume: binding.FormatString = "N3"; break;
       }
     }
 

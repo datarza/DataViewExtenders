@@ -276,13 +276,12 @@ namespace CBComponents
     {
       switch (Style)
       {
-        case EditorDataStyle.Quantity: column.SetNumberStyle(); break;
-        case EditorDataStyle.Price: column.SetMoneyStyle(); break;
+        case EditorDataStyle.Decimal: column.SetDecimalStyle(); break;
+        case EditorDataStyle.Number: column.SetNumberStyle(); break;
+        case EditorDataStyle.Money: column.SetMoneyStyle(); break;
         case EditorDataStyle.Percent: column.SetPercentStyle(); break;
         case EditorDataStyle.DateTime: column.SetDateTimeStyle(); break;
         case EditorDataStyle.Date: column.SetDateStyle(); break;
-        case EditorDataStyle.Weight: column.SetWeightStyle(); break;
-        case EditorDataStyle.Volume: column.SetVolumeStyle(); break;
       }
     }
 

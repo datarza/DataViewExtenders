@@ -8,7 +8,7 @@ namespace CBComponents.DataDescriptors
   /// </summary>
   public enum EditorDataStyle
   {
-    Quantity, Price, Percent, DateTime, Date, Weight, Volume
+    Decimal, Number, Money, Percent, DateTime, Date
   }
 
   /// <summary>
@@ -18,7 +18,7 @@ namespace CBComponents.DataDescriptors
   public delegate object GetListBoxItemsDelegate();
 
   /// <summary>
-  ///  Delegate of format data method 
+  /// Delegate of format data method 
   /// </summary>
   /// <param name="DataBoundItem"></param>
   /// <param name="DataPropertyName"></param>

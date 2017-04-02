@@ -15,7 +15,7 @@
         <xs:element name="Departments" msprop:Generator_TableClassName="DepartmentsDataTable" msprop:Generator_TableVarName="tableDepartments" msprop:Generator_RowChangedName="DepartmentsRowChanged" msprop:Generator_TablePropName="Departments" msprop:Generator_RowDeletingName="DepartmentsRowDeleting" msprop:Generator_RowChangingName="DepartmentsRowChanging" msprop:Generator_RowEvHandlerName="DepartmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentsRowDeleted" msprop:Generator_RowClassName="DepartmentsRow" msprop:Generator_UserTableName="Departments" msprop:Generator_RowEvArgName="DepartmentsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
+              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
               <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -44,7 +44,7 @@
         <xs:element name="Employees" msprop:Generator_TableClassName="EmployeesDataTable" msprop:Generator_TableVarName="tableEmployees" msprop:Generator_RowChangedName="EmployeesRowChanged" msprop:Generator_TablePropName="Employees" msprop:Generator_RowDeletingName="EmployeesRowDeleting" msprop:Generator_RowChangingName="EmployeesRowChanging" msprop:Generator_RowEvHandlerName="EmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeesRowDeleted" msprop:Generator_RowClassName="EmployeesRow" msprop:Generator_UserTableName="Employees" msprop:Generator_RowEvArgName="EmployeesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="EmployeeID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:string" />
+              <xs:element name="EmployeeID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:string" />
               <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -52,10 +52,11 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
-              <xs:element name="PhoneNumber" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DepartmentID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:string" />
+              <xs:element name="PhoneNumber" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber" type="xs:long" minOccurs="0" />
               <xs:element name="DateBirth" msdata:DateTimeMode="Unspecified" msprop:Generator_ColumnVarNameInTable="columnDateBirth" msprop:Generator_ColumnPropNameInRow="DateBirth" msprop:Generator_ColumnPropNameInTable="DateBirthColumn" msprop:Generator_UserColumnName="DateBirth" type="xs:dateTime" minOccurs="0" />
               <xs:element name="SalaryGroup" msprop:Generator_ColumnVarNameInTable="columnSalaryGroup" msprop:Generator_ColumnPropNameInRow="SalaryGroup" msprop:Generator_ColumnPropNameInTable="SalaryGroupColumn" msprop:Generator_UserColumnName="SalaryGroup" type="xs:unsignedByte" />
+              <xs:element name="Salary" msprop:Generator_ColumnVarNameInTable="columnSalary" msprop:Generator_ColumnPropNameInRow="Salary" msprop:Generator_ColumnPropNameInTable="SalaryColumn" msprop:Generator_UserColumnName="Salary" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -71,12 +71,13 @@ namespace Examples.Database
       row.EmployeeName = "Peter Walt";
       row.DepartmentsRow = ds.Departments[1];
       row.SalaryGroup = 0;
+      row.Salary = 1230.4m;
       ds.Employees.AddEmployeesRow(row);
       row = ds.Employees.NewEmployeesRow(); // Olesea Rozhkova
       row.EmployeeID = Guid.NewGuid();
       row.EmployeeName = "Olesea Rozhkova";
       row.DepartmentsRow = ds.Departments[2];
-      row.PhoneNumber = 12345678901;
+      row.PhoneNumber = 18005401234;
       row.DateBirth = new DateTime(1977, 03, 21);
       row.SalaryGroup = 1;
       ds.Employees.AddEmployeesRow(row);
@@ -84,15 +85,16 @@ namespace Examples.Database
       row.EmployeeID = Guid.NewGuid();
       row.EmployeeName = "Sima Ludlow";
       row.DepartmentsRow = ds.Departments[3];
-      row.PhoneNumber = 12345678901;
+      row.PhoneNumber = 16473455034;
       row.DateBirth = new DateTime(1973, 12, 1);
       row.SalaryGroup = 2;
+      row.Salary = 1530.54m;
       ds.Employees.AddEmployeesRow(row);
       row = ds.Employees.NewEmployeesRow(); // Kaur Rajvinder
       row.EmployeeID = Guid.NewGuid();
       row.EmployeeName = "Kaur Rajvinder";
       row.DepartmentsRow = ds.Departments[4];
-      row.PhoneNumber = 12345678901;
+      //row.PhoneNumber = 37322343456;
       row.DateBirth = new DateTime(1963, 11, 9);
       row.SalaryGroup = 2;
       ds.Employees.AddEmployeesRow(row);

@@ -34,6 +34,8 @@
       System.Windows.Forms.FlowLayoutPanel buttonsPanel;
       this.departmentsGridView = new System.Windows.Forms.DataGridView();
       this.employeesGridView = new System.Windows.Forms.DataGridView();
+      this.departmentsPanel = new System.Windows.Forms.FlowLayoutPanel();
+      this.employeesPanel = new System.Windows.Forms.FlowLayoutPanel();
       this.departmentsNavigator = new System.Windows.Forms.BindingNavigator(this.components);
       this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
       this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -64,8 +66,6 @@
       this.departmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.Database = new Examples.Database.daoDataSet();
       this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-      this.departmentsPanel = new System.Windows.Forms.FlowLayoutPanel();
-      this.employeesPanel = new System.Windows.Forms.FlowLayoutPanel();
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
       mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       buttonsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -85,8 +85,8 @@
       // mainLayoutPanel
       // 
       mainLayoutPanel.ColumnCount = 2;
-      mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+      mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
       mainLayoutPanel.Controls.Add(this.departmentsGridView, 0, 1);
       mainLayoutPanel.Controls.Add(this.employeesGridView, 1, 1);
       mainLayoutPanel.Controls.Add(this.departmentsPanel, 0, 2);
@@ -111,17 +111,35 @@
       this.departmentsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
       this.departmentsGridView.Location = new System.Drawing.Point(3, 28);
       this.departmentsGridView.Name = "departmentsGridView";
-      this.departmentsGridView.Size = new System.Drawing.Size(498, 242);
+      this.departmentsGridView.Size = new System.Drawing.Size(447, 242);
       this.departmentsGridView.TabIndex = 0;
       // 
       // employeesGridView
       // 
       this.employeesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.employeesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.employeesGridView.Location = new System.Drawing.Point(507, 28);
+      this.employeesGridView.Location = new System.Drawing.Point(456, 28);
       this.employeesGridView.Name = "employeesGridView";
-      this.employeesGridView.Size = new System.Drawing.Size(498, 242);
+      this.employeesGridView.Size = new System.Drawing.Size(549, 242);
       this.employeesGridView.TabIndex = 2;
+      // 
+      // departmentsPanel
+      // 
+      this.departmentsPanel.AutoScroll = true;
+      this.departmentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.departmentsPanel.Location = new System.Drawing.Point(3, 276);
+      this.departmentsPanel.Name = "departmentsPanel";
+      this.departmentsPanel.Size = new System.Drawing.Size(447, 242);
+      this.departmentsPanel.TabIndex = 1;
+      // 
+      // employeesPanel
+      // 
+      this.employeesPanel.AutoScroll = true;
+      this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.employeesPanel.Location = new System.Drawing.Point(456, 276);
+      this.employeesPanel.Name = "employeesPanel";
+      this.employeesPanel.Size = new System.Drawing.Size(549, 242);
+      this.employeesPanel.TabIndex = 3;
       // 
       // departmentsNavigator
       // 
@@ -147,7 +165,7 @@
       this.departmentsNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
       this.departmentsNavigator.Name = "departmentsNavigator";
       this.departmentsNavigator.PositionItem = this.bindingNavigatorPositionItem;
-      this.departmentsNavigator.Size = new System.Drawing.Size(504, 25);
+      this.departmentsNavigator.Size = new System.Drawing.Size(453, 25);
       this.departmentsNavigator.TabIndex = 10;
       // 
       // bindingNavigatorAddNewItem
@@ -252,14 +270,14 @@
             this.bindingNavigatorSeparator5,
             this.bindingNavigatorAddNewItem1,
             this.bindingNavigatorDeleteItem1});
-      this.employeesNavigator.Location = new System.Drawing.Point(504, 0);
+      this.employeesNavigator.Location = new System.Drawing.Point(453, 0);
       this.employeesNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem1;
       this.employeesNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem1;
       this.employeesNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem1;
       this.employeesNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
       this.employeesNavigator.Name = "employeesNavigator";
       this.employeesNavigator.PositionItem = this.bindingNavigatorPositionItem1;
-      this.employeesNavigator.Size = new System.Drawing.Size(504, 25);
+      this.employeesNavigator.Size = new System.Drawing.Size(555, 25);
       this.employeesNavigator.TabIndex = 11;
       // 
       // bindingNavigatorAddNewItem1
@@ -418,24 +436,6 @@
       // 
       this.employeesBindingSource.DataMember = "Employees";
       this.employeesBindingSource.DataSource = this.Database;
-      // 
-      // departmentsPanel
-      // 
-      this.departmentsPanel.AutoScroll = true;
-      this.departmentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.departmentsPanel.Location = new System.Drawing.Point(3, 276);
-      this.departmentsPanel.Name = "departmentsPanel";
-      this.departmentsPanel.Size = new System.Drawing.Size(498, 242);
-      this.departmentsPanel.TabIndex = 1;
-      // 
-      // employeesPanel
-      // 
-      this.employeesPanel.AutoScroll = true;
-      this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.employeesPanel.Location = new System.Drawing.Point(507, 276);
-      this.employeesPanel.Name = "employeesPanel";
-      this.employeesPanel.Size = new System.Drawing.Size(498, 242);
-      this.employeesPanel.TabIndex = 3;
       // 
       // MainForm
       // 

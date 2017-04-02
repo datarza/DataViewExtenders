@@ -656,6 +656,8 @@ namespace Examples.Database {
             
             private global::System.Data.DataColumn columnSalaryGroup;
             
+            private global::System.Data.DataColumn columnSalary;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EmployeesDataTable() {
@@ -739,6 +741,14 @@ namespace Examples.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SalaryColumn {
+                get {
+                    return this.columnSalary;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -774,7 +784,7 @@ namespace Examples.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EmployeesRow AddEmployeesRow(System.Guid EmployeeID, string EmployeeName, DepartmentsRow parentDepartmentsRowByDepartments_Employees, decimal PhoneNumber, System.DateTime DateBirth, byte SalaryGroup) {
+            public EmployeesRow AddEmployeesRow(System.Guid EmployeeID, string EmployeeName, DepartmentsRow parentDepartmentsRowByDepartments_Employees, long PhoneNumber, System.DateTime DateBirth, byte SalaryGroup, decimal Salary) {
                 EmployeesRow rowEmployeesRow = ((EmployeesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EmployeeID,
@@ -782,7 +792,8 @@ namespace Examples.Database {
                         null,
                         PhoneNumber,
                         DateBirth,
-                        SalaryGroup};
+                        SalaryGroup,
+                        Salary};
                 if ((parentDepartmentsRowByDepartments_Employees != null)) {
                     columnValuesArray[2] = parentDepartmentsRowByDepartments_Employees[0];
                 }
@@ -821,6 +832,7 @@ namespace Examples.Database {
                 this.columnPhoneNumber = base.Columns["PhoneNumber"];
                 this.columnDateBirth = base.Columns["DateBirth"];
                 this.columnSalaryGroup = base.Columns["SalaryGroup"];
+                this.columnSalary = base.Columns["Salary"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -832,12 +844,14 @@ namespace Examples.Database {
                 base.Columns.Add(this.columnEmployeeName);
                 this.columnDepartmentID = new global::System.Data.DataColumn("DepartmentID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartmentID);
-                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPhoneNumber);
                 this.columnDateBirth = new global::System.Data.DataColumn("DateBirth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateBirth);
                 this.columnSalaryGroup = new global::System.Data.DataColumn("SalaryGroup", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSalaryGroup);
+                this.columnSalary = new global::System.Data.DataColumn("Salary", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalary);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnEmployeeID}, true));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -1140,10 +1154,10 @@ namespace Examples.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal PhoneNumber {
+            public long PhoneNumber {
                 get {
                     try {
-                        return ((decimal)(this[this.tableEmployees.PhoneNumberColumn]));
+                        return ((long)(this[this.tableEmployees.PhoneNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PhoneNumber\' in table \'Employees\' is DBNull.", e);
@@ -1183,6 +1197,22 @@ namespace Examples.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Salary {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableEmployees.SalaryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Salary\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployees.SalaryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DepartmentsRow DepartmentsRow {
                 get {
                     return ((DepartmentsRow)(this.GetParentRow(this.Table.ParentRelations["Departments_Employees"])));
@@ -1214,6 +1244,18 @@ namespace Examples.Database {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDateBirthNull() {
                 this[this.tableEmployees.DateBirthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSalaryNull() {
+                return this.IsNull(this.tableEmployees.SalaryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSalaryNull() {
+                this[this.tableEmployees.SalaryColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -82,7 +82,7 @@ namespace CBComponents
     /// <returns>DataGridViewColumn</returns>
     public static DataGridViewColumn SetDecimalStyle(this DataGridViewColumn column, int Width = 80)
     {
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "D");
+      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "N");
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ namespace CBComponents
     public static DataGridViewColumn SetMoneyStyle(this DataGridViewColumn column, int Width = 80)
     {
       // TODO: should be configured according local culture
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "#,0.##' CAD.'");
+      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "C");
     }
 
     /// <summary>
@@ -140,30 +140,6 @@ namespace CBComponents
     {
       return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "F");
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="column">DataGridViewColumn</param>
-    /// <param name="Width"></param>
-    /// <returns>DataGridViewColumn</returns>
-    public static DataGridViewColumn SetWeightStyle(this DataGridViewColumn column, int Width = 70)
-    {
-      // TODO: should be configured according local culture (pondus, kg)
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "#,0.##' kg'");
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="column">DataGridViewColumn</param>
-    /// <param name="Width"></param>
-    /// <returns>DataGridViewColumn</returns>
-    public static DataGridViewColumn SetVolumeStyle(this DataGridViewColumn column, int Width = 70)
-    {
-      // TODO: should be configured according local culture (foot, m3)
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "N3");
-    }
-    
+        
   }
 }
