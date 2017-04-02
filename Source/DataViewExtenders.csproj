@@ -49,6 +49,7 @@
     <Compile Include="Extenders\FlowLayoutPanel\EditorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Extenders\TableLayoutPanel\AddFields.cs" />
     <Compile Include="Forms\BitMaskCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
