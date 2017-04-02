@@ -53,8 +53,7 @@ namespace CBComponents
         dataPanel.GenerateFields(toolTip, DataSource, group.Fields);
         groupPanel.Controls.Add(dataPanel);
       }
-      groupPanel.ResumeLayout();
-      groupPanel.PerformLayout();
+      groupPanel.ResumeLayout(false);
     }
   }
 }

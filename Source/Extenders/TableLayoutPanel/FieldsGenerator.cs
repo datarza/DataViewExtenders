@@ -329,9 +329,7 @@ namespace CBComponents
           dataPanel.Controls.Add(_btnClear, 2, dataPanel.RowCount - 1);
         }
       }
-
-      dataPanel.ResumeLayout();
-
+      dataPanel.ResumeLayout(false);
     }
 
     private static void BindingFormat(object sender, ConvertEventArgs e)

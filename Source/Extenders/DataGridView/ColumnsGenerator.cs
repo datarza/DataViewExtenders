@@ -29,6 +29,7 @@ namespace CBComponents
     /// <param name="Columns">Column data descriptors</param>
     public static void GenerateColumns(this DataGridView dataGrid, object DataSource, params ColumnDataDescriptor[] Columns)
     {
+      dataGrid.SuspendLayout();
       dataGrid.AutoGenerateColumns = false;
       dataGrid.Columns.Clear();
       foreach (var column in Columns)
@@ -219,6 +220,7 @@ namespace CBComponents
         }
       }
       dataGrid.DataSource = DataSource;
+      dataGrid.ResumeLayout(false);
     }
     
     #region Add Text and Check Columns
