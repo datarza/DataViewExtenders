@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace CBComponents.Forms
 {
   [ToolboxBitmap(typeof(CheckedListBox))]
-  internal sealed class BitMaskCheckedListBox : CheckedListBox
+  public sealed class BitMaskCheckedListBox : CheckedListBox
   {
     public BitMaskCheckedListBox()
     {
