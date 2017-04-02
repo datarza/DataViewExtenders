@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace CBComponents.Forms
+namespace CBComponents
 {
   public static partial class FormServices
   {

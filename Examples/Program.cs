@@ -16,7 +16,7 @@ namespace Examples
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       var mForm = new MainForm();
-      CBComponents.Forms.FormServices.MainWindow = mForm;
+      CBComponents.FormServices.MainWindow = mForm;
       Application.Run(mForm);
     }
   }
