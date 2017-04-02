@@ -47,12 +47,14 @@
     <Compile Include="Extenders\DataGridView\Drawing.cs" />
     <Compile Include="Extenders\DataGridView\ColumnsGenerator.cs" />
     <Compile Include="Extenders\FlowLayoutPanel\GroupsGenerator.cs" />
+    <Compile Include="Extenders\TableLayoutPanel\FieldsGenerator.SetBindingStyle.cs" />
+    <Compile Include="Extenders\TableLayoutPanel\FieldsGenerator.Events.cs" />
     <Compile Include="Extenders\TableLayoutPanel\FieldsGenerator.cs" />
     <Compile Include="Forms\BitMaskCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\FormServices.cs" />
-    <Compile Include="Extenders\TableLayoutPanel\HeaderTableLayoutPanel.cs">
+    <Compile Include="Forms\HeaderTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\PromptedTextBox.cs">

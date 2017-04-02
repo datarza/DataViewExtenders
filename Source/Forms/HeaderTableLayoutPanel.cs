@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 //
-// DataViewExtenders
+// HeaderTableLayoutPanel
 //
 // Extenders for WinForms controls, such as DataGridView, 
 // BindingSource, BindingNavigator and so on 
@@ -17,9 +17,6 @@ using System.Windows.Forms;
 
 namespace CBComponents
 {
-  using CBComponents.DataDescriptors;
-  using CBComponents.Forms;
-
   [ToolboxBitmap(typeof(TableLayoutPanel))]
   public class HeaderTableLayoutPanel : System.Windows.Forms.TableLayoutPanel
   {

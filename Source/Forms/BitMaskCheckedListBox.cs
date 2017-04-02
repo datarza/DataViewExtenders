@@ -1,12 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace CBComponents.Forms
+//
+// BitMaskCheckedListBox
+//
+// Extenders for WinForms controls, such as DataGridView, 
+// BindingSource, BindingNavigator and so on 
+//
+// Author: Radu Martin (CanadianBeaver)
+// Email: radu.martin@hotmail.com
+// GitHub: https://github.com/CanadianBeaver/DataViewExtenders
+// 
+
+namespace CBComponents
 {
   [ToolboxBitmap(typeof(CheckedListBox))]
-  internal sealed class BitMaskCheckedListBox : CheckedListBox
+  public class BitMaskCheckedListBox : CheckedListBox
   {
     public BitMaskCheckedListBox()
     {
