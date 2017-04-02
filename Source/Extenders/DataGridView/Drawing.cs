@@ -25,10 +25,10 @@ namespace CBComponents
     /// Adding a drawing in the RowHeaders for the changed or inserted rows
     /// based on yellow colors with gradient 
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
-    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView viewGrid)
+    /// <param name="dataGrid">DataGridView</param>
+    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView dataGrid)
     {
-      DataGridViewExtenders.AddDataRowStateDrawingInRowHeaders(viewGrid,
+      DataGridViewExtenders.AddDataRowStateDrawingInRowHeaders(dataGrid,
         Color.FromArgb(0x99, 0xFF, 0xCC, 0x33),
         Color.FromArgb(0x99, 0xFF, 0x99, 0x00), 
         true);
@@ -38,11 +38,11 @@ namespace CBComponents
     /// Adding a drawing in the RowHeaders for the changed or inserted rows
     /// based on prefered color with gradient 
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="preferedColor">Color for inserted and changed rows</param>
-    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView viewGrid, Color preferedColor)
+    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView dataGrid, Color preferedColor)
     {
-      DataGridViewExtenders.AddDataRowStateDrawingInRowHeaders(viewGrid,
+      DataGridViewExtenders.AddDataRowStateDrawingInRowHeaders(dataGrid,
         preferedColor,
         preferedColor,
         true);
@@ -51,18 +51,18 @@ namespace CBComponents
     /// <summary>
     /// Adding a drawing in the RowHeaders for the changed or inserted rows
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="chgColor">Color for changed rows or null for using the default yellow color</param>
     /// <param name="insColor">Color for inserted rows or null for using the default yellow-red color</param>
-    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView viewGrid, Color chgColor, Color insColor, bool IsGradient)
+    public static void AddDataRowStateDrawingInRowHeaders(this DataGridView dataGrid, Color chgColor, Color insColor, bool IsGradient)
     {
       // drawing the RowHeader
-      viewGrid.CellPainting += delegate (object sender, DataGridViewCellPaintingEventArgs e)
+      dataGrid.CellPainting += delegate (object sender, DataGridViewCellPaintingEventArgs e)
       {
-        if (viewGrid.RowHeadersVisible)
+        if (dataGrid.RowHeadersVisible)
           if (e.ColumnIndex == -1 && e.RowIndex >= 0)
           {
-            var dbItem = viewGrid.Rows[e.RowIndex].DataBoundItem as DataRowView;
+            var dbItem = dataGrid.Rows[e.RowIndex].DataBoundItem as DataRowView;
             if (dbItem != null)
             {
               var rowState = dbItem.Row.RowState;

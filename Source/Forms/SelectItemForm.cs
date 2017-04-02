@@ -154,7 +154,7 @@ namespace CBComponents.Forms
     #region Form creation
 
     private BindingSource bindingSource;
-    public readonly DataGridView viewGrid;
+    public readonly DataGridView dataGrid;
     private PromptedTextBox searchTextBox;
     private Label headerLabel;
     private Label footerLabel;
@@ -204,7 +204,7 @@ namespace CBComponents.Forms
       }
 
       // Setting up the controls
-      this.viewGrid = new DataGridView();
+      this.dataGrid = new DataGridView();
       if (this.bindingSource.SupportsFiltering) this.searchTextBox = new PromptedTextBox();
       this.headerLabel = new Label();
       this.footerLabel = new Label();
@@ -223,7 +223,7 @@ namespace CBComponents.Forms
       mainPanel.ColumnStyles.Add(new ColumnStyle());
       mainPanel.ColumnStyles.Add(new ColumnStyle());
       if (this.bindingSource.SupportsFiltering) mainPanel.Controls.Add(this.searchTextBox, 2, 0);
-      mainPanel.Controls.Add(this.viewGrid, 0, 1);
+      mainPanel.Controls.Add(this.dataGrid, 0, 1);
       mainPanel.Controls.Add(this.headerLabel, 0, 0);
       mainPanel.Controls.Add(this.footerLabel, 0, 2);
       mainPanel.Controls.Add(this.btnClose, 3, 2);
@@ -251,51 +251,51 @@ namespace CBComponents.Forms
         {
           string _txt = this.searchTextBox.Text.Trim();
           if (string.IsNullOrEmpty(_txt)) this.bindingSource.RemoveFilter();
-          else this.bindingSource.Filter = RowFilterBuilder.BuildColumnFilter(_txt, this.viewGrid).Trim();
-          foreach (DataGridViewRow row in this.viewGrid.SelectedRows) row.Selected = false;
-          if (this.viewGrid.Rows.Count > 0) this.viewGrid.Rows[0].Selected = true;
+          else this.bindingSource.Filter = RowFilterBuilder.BuildColumnFilter(_txt, this.dataGrid).Trim();
+          foreach (DataGridViewRow row in this.dataGrid.SelectedRows) row.Selected = false;
+          if (this.dataGrid.Rows.Count > 0) this.dataGrid.Rows[0].Selected = true;
         };
       }
       // 
-      // viewGrid
+      // dataGrid
       // 
-      mainPanel.SetColumnSpan(this.viewGrid, 4);
-      this.viewGrid.Dock = DockStyle.Fill;
-      this.viewGrid.TabIndex = 0;
-      this.viewGrid.PrepareStyleForShowingData();
-      this.viewGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-      this.viewGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-      if (Columns == null || Columns.Length == 0) this.viewGrid.AutoGenerateColumns = true;
+      mainPanel.SetColumnSpan(this.dataGrid, 4);
+      this.dataGrid.Dock = DockStyle.Fill;
+      this.dataGrid.TabIndex = 0;
+      this.dataGrid.PrepareStyleForShowingData();
+      this.dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+      this.dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+      if (Columns == null || Columns.Length == 0) this.dataGrid.AutoGenerateColumns = true;
       else
       {
-        this.viewGrid.AutoGenerateColumns = false;
+        this.dataGrid.AutoGenerateColumns = false;
         if (Columns[0] != null)
           foreach (var _column in Columns)
           {
             DataGridViewColumn _c;
-            if (_column.DataPropertyType == SqlDbType.Bit) _c = this.viewGrid.AddCheckColumn(_column.DataPropertyName, _column.HeaderText);
-            else if (_column.DataPropertyType == SqlDbType.Date) _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDateStyle();
-            else if (_column.DataPropertyType == SqlDbType.DateTime) _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDateTimeWithSecondsStyle();
-            else if (_column.DataPropertyType == SqlDbType.Int || _column.DataPropertyType == SqlDbType.TinyInt) _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetNumberStyle();
-            else if (_column.DataPropertyType == SqlDbType.Decimal || _column.DataPropertyType == SqlDbType.Float) _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDecimalStyle();
-            else if (_column.DataPropertyType == SqlDbType.Money) _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetMoneyStyle();
-            else _c = this.viewGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText);
+            if (_column.DataPropertyType == SqlDbType.Bit) _c = this.dataGrid.AddCheckColumn(_column.DataPropertyName, _column.HeaderText);
+            else if (_column.DataPropertyType == SqlDbType.Date) _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDateStyle();
+            else if (_column.DataPropertyType == SqlDbType.DateTime) _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDateTimeWithSecondsStyle();
+            else if (_column.DataPropertyType == SqlDbType.Int || _column.DataPropertyType == SqlDbType.TinyInt) _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetNumberStyle();
+            else if (_column.DataPropertyType == SqlDbType.Decimal || _column.DataPropertyType == SqlDbType.Float) _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetDecimalStyle();
+            else if (_column.DataPropertyType == SqlDbType.Money) _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText).SetMoneyStyle();
+            else _c = this.dataGrid.AddTextColumn(_column.DataPropertyName, _column.HeaderText);
             if (_column.ContentAlignment != DataGridViewContentAlignment.NotSet) _c.SetStyles(50, _column.ContentAlignment);
             if (_column.FillWeight.HasValue) _c.SetAutoSizeFillStyle(100, _column.FillWeight.Value);
           }
       }
       if (SelectedItem == null)
-        this.viewGrid.DataBindingComplete += delegate
+        this.dataGrid.DataBindingComplete += delegate
         {
-          foreach (DataGridViewRow row in this.viewGrid.SelectedRows)
+          foreach (DataGridViewRow row in this.dataGrid.SelectedRows)
             row.Selected = false;
         };
       else
       {
-        this.viewGrid.DoubleClick += delegate { this.AcceptButton.PerformClick(); };
-        this.viewGrid.KeyDown += delegate (object sender, KeyEventArgs e) { if (e.KeyData == Keys.Enter || e.KeyData == Keys.Return) { e.Handled = true; this.AcceptButton.PerformClick(); } };
+        this.dataGrid.DoubleClick += delegate { this.AcceptButton.PerformClick(); };
+        this.dataGrid.KeyDown += delegate (object sender, KeyEventArgs e) { if (e.KeyData == Keys.Enter || e.KeyData == Keys.Return) { e.Handled = true; this.AcceptButton.PerformClick(); } };
       }
-      this.viewGrid.DataSource = this.bindingSource;
+      this.dataGrid.DataSource = this.bindingSource;
       // 
       // headerLabel
       // 
@@ -369,7 +369,7 @@ namespace CBComponents.Forms
     protected override void OnLoad(EventArgs e)
     {
       // width of form without scroll
-      var nWidth = this.viewGrid.PreferredSize.Width + 2 * this.viewGrid.Left + 1;
+      var nWidth = this.dataGrid.PreferredSize.Width + 2 * this.dataGrid.Left + 1;
       var screenWidth = 2 * Screen.PrimaryScreen.WorkingArea.Width / 3; // 2/3 is maximun
       if (screenWidth < nWidth) nWidth = screenWidth;
       if (this.MinimumSize.Width > nWidth) nWidth = this.MinimumSize.Width; // if (480 > nWidth) nWidth = 480;
@@ -377,8 +377,8 @@ namespace CBComponents.Forms
       this.Width = nWidth;
       base.OnLoad(e);
       // Hiding the identification columns
-      if (this.viewGrid.AutoGenerateColumns && this.viewGrid.Columns.Count > 0 && this.viewGrid.Columns[0].DataPropertyName.EndsWith("ID"))
-        this.viewGrid.Columns[0].Visible = false;
+      if (this.dataGrid.AutoGenerateColumns && this.dataGrid.Columns.Count > 0 && this.dataGrid.Columns[0].DataPropertyName.EndsWith("ID"))
+        this.dataGrid.Columns[0].Visible = false;
     }
 
     protected override void OnShown(EventArgs e)

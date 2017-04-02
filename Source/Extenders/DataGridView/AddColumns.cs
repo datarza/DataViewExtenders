@@ -22,15 +22,15 @@ namespace CBComponents
   public static partial class DataGridViewExtenders
   {
     /// <summary>
-    /// Columns generator that works on column data descriptions (Column Data Descriptor)
+    /// Columns generator that works on column data descriptions (ColumnDataDescriptor)
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Columns">Column data descriptors</param>
-    public static void AddColumns(this DataGridView viewGrid, object DataSource, params ColumnDataDescriptor[] Columns)
+    public static void AddColumns(this DataGridView dataGrid, object DataSource, params ColumnDataDescriptor[] Columns)
     {
-      viewGrid.AutoGenerateColumns = false;
-      viewGrid.Columns.Clear();
+      dataGrid.AutoGenerateColumns = false;
+      dataGrid.Columns.Clear();
       foreach (var column in Columns)
       {
         if (column.Mode == ColumnEditorMode.TextBox)
@@ -53,16 +53,16 @@ namespace CBComponents
           if (column.NullValue != null) { if (newColumn.DefaultCellStyle != null) newColumn.DefaultCellStyle.NullValue = column.NullValue; else newColumn.DefaultCellStyle = new DataGridViewCellStyle() { NullValue = column.NullValue }; }
           newColumn.ReadOnly = column.IsReadOnly;
           if (column.Style.HasValue) DataGridViewExtenders.SetEditorDataStyle(newColumn, column.Style.Value);
-          viewGrid.Columns.Add(newColumn);
+          dataGrid.Columns.Add(newColumn);
           if (column.FormatValueMethod != null)
           {
             newColumn.Tag = column.FormatValueMethod;
-            viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+            dataGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
             {
               var _data = newColumn.Tag as FormatValueDelegate;
               if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
               {
-                var _value = _data.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                var _value = _data.Invoke(dataGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
                 if (_value != null)
                 {
                   e.Value = _value;
@@ -89,7 +89,7 @@ namespace CBComponents
           newColumn.ThreeState = column.IsNull;
           newColumn.DataPropertyName = column.ColumnName;
           newColumn.ReadOnly = column.IsReadOnly;
-          viewGrid.Columns.Add(newColumn);
+          dataGrid.Columns.Add(newColumn);
         }
         else if (column.Mode == ColumnEditorMode.ListBox)
         { 
@@ -121,24 +121,24 @@ namespace CBComponents
           newColumn.ReadOnly = true;
           if (column.Style.HasValue) DataGridViewExtenders.SetEditorDataStyle(newColumn, column.Style.Value);
           newColumn.Tag = Tuple.Create(column.DataSource, column.ValueMember, column.DisplayMember, column.GetListBoxItemsMethod, column.FormatValueMethod);
-          viewGrid.Columns.Add(newColumn);
-          viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+          dataGrid.Columns.Add(newColumn);
+          dataGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
           {
             var _data = newColumn.Tag as Tuple<object, string, string, GetListBoxItemsDelegate, FormatValueDelegate>;
             if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
             {
               if (_data.Item5 != null)
               {
-                var _value = _data.Item5.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                var _value = _data.Item5.Invoke(dataGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
                 if (_value != null)
                 {
                   e.Value = _value;
                   e.FormattingApplied = _value is string;
                 }
               }
-              else if (viewGrid.Rows[e.RowIndex].DataBoundItem is DataRowView && (_data.Item1 is DataView || _data.Item1 is DataTable))
+              else if (dataGrid.Rows[e.RowIndex].DataBoundItem is DataRowView && (_data.Item1 is DataView || _data.Item1 is DataTable))
               {
-                var dataBoundItem = (DataRowView)viewGrid.Rows[e.RowIndex].DataBoundItem;
+                var dataBoundItem = (DataRowView)dataGrid.Rows[e.RowIndex].DataBoundItem;
                 var _data1 = _data.Item1 is DataView ? ((DataView)_data.Item1).Table : (DataTable)_data.Item1;
                 var _row = _data1.Rows.Find(dataBoundItem[newColumn.DataPropertyName]);
                 e.Value = _row != null ? _row[_data.Item3].ToString() : string.Empty;
@@ -147,12 +147,12 @@ namespace CBComponents
             }
           };
           if (!column.IsReadOnly)
-            viewGrid.CellClick += delegate (object sender, DataGridViewCellEventArgs e)
+            dataGrid.CellClick += delegate (object sender, DataGridViewCellEventArgs e)
             {
               var _data = newColumn.Tag as Tuple<object, string, string, GetListBoxItemsDelegate, FormatValueDelegate>;
-              if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0 && viewGrid.Rows[e.RowIndex].DataBoundItem is DataRowView)
+              if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0 && dataGrid.Rows[e.RowIndex].DataBoundItem is DataRowView)
               {
-                var dataBoundItem = (DataRowView)viewGrid.Rows[e.RowIndex].DataBoundItem;
+                var dataBoundItem = (DataRowView)dataGrid.Rows[e.RowIndex].DataBoundItem;
                 object items = _data.Item1;
                 bool agc = false;
                 if (_data.Item4 != null)
@@ -199,16 +199,16 @@ namespace CBComponents
           if (!string.IsNullOrWhiteSpace(column.ValueMember)) newColumn.ValueMember = column.ValueMember;
           if (!string.IsNullOrWhiteSpace(column.DisplayMember)) newColumn.DisplayMember = column.DisplayMember;
           newColumn.ReadOnly = column.IsReadOnly;
-          viewGrid.Columns.Add(newColumn);
+          dataGrid.Columns.Add(newColumn);
           if (column.FormatValueMethod != null)
           {
             newColumn.Tag = column.FormatValueMethod;
-            viewGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
+            dataGrid.CellFormatting += delegate (object sender, DataGridViewCellFormattingEventArgs e)
             {
               var _data = newColumn.Tag as FormatValueDelegate;
               if (_data != null && e.ColumnIndex == newColumn.Index && e.RowIndex >= 0)
               {
-                var _value = _data.Invoke(viewGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
+                var _value = _data.Invoke(dataGrid.Rows[e.RowIndex].DataBoundItem, newColumn.DataPropertyName);
                 if (_value != null)
                 {
                   e.Value = _value;
@@ -219,7 +219,7 @@ namespace CBComponents
           }
         }
       }
-      viewGrid.DataSource = DataSource;
+      dataGrid.DataSource = DataSource;
     }
     
     #region Add Text and Check Columns
@@ -227,12 +227,12 @@ namespace CBComponents
     /// <summary>
     /// Creating new TextBox column and adding it to the DataGridView
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="DataPropertyName"></param>
     /// <param name="HeaderText"></param>
     /// <param name="ToolTipText"></param>
     /// <returns>DataGridViewTextBoxColumn</returns>
-    public static DataGridViewTextBoxColumn AddTextColumn(this DataGridView viewGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
+    public static DataGridViewTextBoxColumn AddTextColumn(this DataGridView dataGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
     {
       DataGridViewTextBoxColumn result = new DataGridViewTextBoxColumn();
       result.DataPropertyName = DataPropertyName;
@@ -240,19 +240,19 @@ namespace CBComponents
       if (!string.IsNullOrWhiteSpace(ToolTipText)) result.ToolTipText = ToolTipText;
       result.ReadOnly = true;
       result.SortMode = DataGridViewColumnSortMode.Automatic;
-      viewGrid.Columns.Add(result);
+      dataGrid.Columns.Add(result);
       return result;
     }
 
     /// <summary>
     /// Creating new CheckBox column and adding it to the DataGridView
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="DataPropertyName"></param>
     /// <param name="HeaderText"></param>
     /// <param name="ToolTipText"></param>
     /// <returns>DataGridViewCheckBoxColumn</returns>
-    public static DataGridViewCheckBoxColumn AddCheckColumn(this DataGridView viewGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
+    public static DataGridViewCheckBoxColumn AddCheckColumn(this DataGridView dataGrid, string DataPropertyName, string HeaderText = null, string ToolTipText = null)
     {
       DataGridViewCheckBoxColumn result = new DataGridViewCheckBoxColumn();
       result.DataPropertyName = DataPropertyName;
@@ -260,7 +260,7 @@ namespace CBComponents
       if (!string.IsNullOrWhiteSpace(ToolTipText)) result.ToolTipText = ToolTipText;
       result.ReadOnly = true;
       result.SortMode = DataGridViewColumnSortMode.Automatic;
-      viewGrid.Columns.Add(result);
+      dataGrid.Columns.Add(result);
       return result;
     }
 

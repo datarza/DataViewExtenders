@@ -41,10 +41,10 @@ namespace CBComponents
     private object DataSource;
 
     /// <summary>
-    /// Group generator that works on group and field data descriptions (Group Data Descriptor & Field Data Descriptor)
+    /// Group generator that works on group and field data descriptions (GroupDataDescriptor & FieldDataDescriptor)
     /// </summary>
     /// <param name="DataSource">Data Source to support data-binding</param>
-    /// <param name="Groups">Group data Descriptors and field data descriptors</param>
+    /// <param name="Groups">Group data descriptors and Field data descriptors</param>
     public void AddGroups(object DataSource, params GroupDataDescriptor[] Groups)
     {
       this.SuspendLayout();
@@ -63,6 +63,9 @@ namespace CBComponents
         htlPanel.ColumnCount = 2;
         htlPanel.ColumnStyles.Add(new ColumnStyle());
         htlPanel.ColumnStyles.Add(new ColumnStyle());
+        //htlPanel.AddFields(this._toolTip, DataSource, group.Fields);
+        //this._panel.Controls.Add(htlPanel);
+        //continue;
         foreach (var column in group.Fields)
         {
           htlPanel.RowCount += 1;
@@ -306,7 +309,7 @@ namespace CBComponents
           if (column.IsNull && !column.IsReadOnly && column.Mode != FieldEditorMode.CheckBox || column.Mode == FieldEditorMode.GuidEditor)
           { // button for clear value
             if (htlPanel.ColumnCount == 2)
-            { 
+            {
               htlPanel.ColumnCount = 3;
               htlPanel.ColumnStyles.Add(new ColumnStyle());
             }

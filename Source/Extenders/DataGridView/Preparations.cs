@@ -24,84 +24,84 @@ namespace CBComponents
     /// <summary>
     /// Preparing DataGridView for showing data
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="IsReadOnly"></param>
-    public static void PrepareStyleForShowingData(this DataGridView viewGrid, bool IsReadOnly = true)
+    public static void PrepareStyleForShowingData(this DataGridView dataGrid, bool IsReadOnly = true)
     {
-      viewGrid.AllowUserToAddRows = false;
-      viewGrid.AllowUserToDeleteRows = false;
-      viewGrid.AllowUserToResizeRows = false;
-      viewGrid.ReadOnly = IsReadOnly;
-      viewGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-      viewGrid.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-      viewGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-      viewGrid.EnableHeadersVisualStyles = true;
-      viewGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
-      viewGrid.ColumnHeadersVisible = true;
-      viewGrid.RowHeadersVisible = false;
-      viewGrid.RowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.Control, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
-      viewGrid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.ControlLightLight, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
-      viewGrid.BackgroundColor = SystemColors.AppWorkspace;
+      dataGrid.AllowUserToAddRows = false;
+      dataGrid.AllowUserToDeleteRows = false;
+      dataGrid.AllowUserToResizeRows = false;
+      dataGrid.ReadOnly = IsReadOnly;
+      dataGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+      dataGrid.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+      dataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+      dataGrid.EnableHeadersVisualStyles = true;
+      dataGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+      dataGrid.ColumnHeadersVisible = true;
+      dataGrid.RowHeadersVisible = false;
+      dataGrid.RowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.Control, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
+      dataGrid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.ControlLightLight, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
+      dataGrid.BackgroundColor = SystemColors.AppWorkspace;
 
-      viewGrid.MultiSelect = false;
-      viewGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-      viewGrid.StandardTab = true;
+      dataGrid.MultiSelect = false;
+      dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+      dataGrid.StandardTab = true;
 
-      typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, viewGrid, new object[] { true });
-      viewGrid.DataError += new DataGridViewDataErrorEventHandler(viewGrid_DataError);
-      if (viewGrid.DataSource is BindingSource) ((BindingSource)viewGrid.DataSource).DataError += new BindingManagerDataErrorEventHandler(bindingSource_DataError);
+      typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, dataGrid, new object[] { true });
+      dataGrid.DataError += new DataGridViewDataErrorEventHandler(dataGrid_DataError);
+      if (dataGrid.DataSource is BindingSource) ((BindingSource)dataGrid.DataSource).DataError += new BindingManagerDataErrorEventHandler(bindingSource_DataError);
     }
 
     /// <summary>
     /// Preparing DataGridView for editing data
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
-    public static void PrepareStyleForEditingData(this DataGridView viewGrid)
+    /// <param name="dataGrid">DataGridView</param>
+    public static void PrepareStyleForEditingData(this DataGridView dataGrid)
     {
-      viewGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-      viewGrid.AllowUserToResizeColumns = false;
-      viewGrid.AllowUserToResizeRows = false;
-      //viewGrid.AllowUserToAddRows = false;
-      viewGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-      viewGrid.BorderStyle = BorderStyle.None;
-      viewGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
-      viewGrid.ColumnHeadersVisible = true;
-      //viewGrid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-      //viewGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-      viewGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      viewGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
-      viewGrid.RowHeadersVisible = true;
-      viewGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      //viewGrid.RowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.Control, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
-      //viewGrid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.ControlLightLight, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
-      viewGrid.BackgroundColor = SystemColors.AppWorkspace;
+      dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+      dataGrid.AllowUserToResizeColumns = false;
+      dataGrid.AllowUserToResizeRows = false;
+      //dataGrid.AllowUserToAddRows = false;
+      dataGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+      dataGrid.BorderStyle = BorderStyle.None;
+      dataGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+      dataGrid.ColumnHeadersVisible = true;
+      //dataGrid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+      //dataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+      dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      dataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+      dataGrid.RowHeadersVisible = true;
+      dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      //dataGrid.RowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.Control, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
+      //dataGrid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle() { BackColor = SystemColors.ControlLightLight, ForeColor = SystemColors.ControlText, SelectionBackColor = SystemColors.Highlight, SelectionForeColor = SystemColors.HighlightText };
+      dataGrid.BackgroundColor = SystemColors.AppWorkspace;
 
-      viewGrid.MultiSelect = false;
-      viewGrid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
-      viewGrid.StandardTab = false;
+      dataGrid.MultiSelect = false;
+      dataGrid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
+      dataGrid.StandardTab = false;
 
-      typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, viewGrid, new object[] { true });
-      viewGrid.DataError += new DataGridViewDataErrorEventHandler(viewGrid_DataError);
-      if (viewGrid.DataSource is BindingSource) ((BindingSource)viewGrid.DataSource).DataError += new BindingManagerDataErrorEventHandler(bindingSource_DataError);
-      viewGrid.RowHeaderMouseDoubleClick += new DataGridViewCellMouseEventHandler(viewGrid_RowHeaderMouseDoubleClick);
+      typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, dataGrid, new object[] { true });
+      dataGrid.DataError += new DataGridViewDataErrorEventHandler(dataGrid_DataError);
+      if (dataGrid.DataSource is BindingSource) ((BindingSource)dataGrid.DataSource).DataError += new BindingManagerDataErrorEventHandler(bindingSource_DataError);
+      dataGrid.RowHeaderMouseDoubleClick += new DataGridViewCellMouseEventHandler(dataGrid_RowHeaderMouseDoubleClick);
 
     }
     
     /// <summary>
     /// Preparing DataGridView for report data 
     /// </summary>
-    /// <param name="viewGrid">DataGridView</param>
+    /// <param name="dataGrid">DataGridView</param>
     /// <param name="bindingSource"></param>
-    public static void PrepareStyleForShowingReportData(this DataGridView viewGrid, BindingSource bindingSource)
+    public static void PrepareStyleForShowingReportData(this DataGridView dataGrid, BindingSource bindingSource)
     {
-      viewGrid.AutoGenerateColumns = false;
-      viewGrid.DataSource = bindingSource;
-      DataGridViewExtenders.PrepareStyleForEditingData(viewGrid);
-      viewGrid.ReadOnly = true;
-      viewGrid.ColumnHeadersVisible = false; 
-      viewGrid.RowHeadersVisible = false;
-      viewGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-      viewGrid.StandardTab = true;
+      dataGrid.AutoGenerateColumns = false;
+      dataGrid.DataSource = bindingSource;
+      DataGridViewExtenders.PrepareStyleForEditingData(dataGrid);
+      dataGrid.ReadOnly = true;
+      dataGrid.ColumnHeadersVisible = false; 
+      dataGrid.RowHeadersVisible = false;
+      dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+      dataGrid.StandardTab = true;
     }
 
     private static void bindingSource_DataError(object sender, BindingManagerDataErrorEventArgs e)
@@ -109,19 +109,19 @@ namespace CBComponents
       // TODO: Log message - e.Exception;
     }
 
-    private static void viewGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
+    private static void dataGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
     {
       // TODO: Log message - e.Exception;
       e.ThrowException = false;
       e.Cancel = true;
     }
 
-    private static void viewGrid_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+    private static void dataGrid_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
     {
       if (sender is DataGridView)
       {
-        var viewGrid = (DataGridView)sender;
-        var dataBoundItem = viewGrid.Rows[e.RowIndex].DataBoundItem;
+        var dataGrid = (DataGridView)sender;
+        var dataBoundItem = dataGrid.Rows[e.RowIndex].DataBoundItem;
         if (dataBoundItem != null)
           SelectItemForm.ShowData(dataBoundItem, "Row inspector");
       }
