@@ -116,7 +116,7 @@ namespace CBComponents
     /// <returns>DataGridViewColumn</returns>
     public static DataGridViewColumn SetDateStyle(this DataGridViewColumn column, int Width = 110)
     {
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleCenter, "D");
+      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleCenter, "d");
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ namespace CBComponents
     /// <returns>DataGridViewColumn</returns>
     public static DataGridViewColumn SetDateTimeStyle(this DataGridViewColumn column, int Width = 160)
     {
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "f");
+      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "g");
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ namespace CBComponents
     /// <returns>DataGridViewColumn</returns>
     public static DataGridViewColumn SetDateTimeWithSecondsStyle(this DataGridViewColumn column, int Width = 160)
     {
-      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "F");
+      return column.SetStyles(Width, DataGridViewContentAlignment.MiddleRight, "G");
     }
         
   }

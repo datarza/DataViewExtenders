@@ -429,8 +429,8 @@ namespace CBComponents
         case EditorDataStyle.Number: binding.FormatString = "N0"; break;
         case EditorDataStyle.Money: binding.FormatString = "C"; break;
         case EditorDataStyle.Percent: binding.FormatString = "P"; break;
-        case EditorDataStyle.DateTime: binding.FormatString = "f"; break;
-        case EditorDataStyle.Date: binding.FormatString = "D"; break;
+        case EditorDataStyle.DateTime: binding.FormatString = "g"; break;
+        case EditorDataStyle.Date: binding.FormatString = "d"; break;
       }
     }
 
