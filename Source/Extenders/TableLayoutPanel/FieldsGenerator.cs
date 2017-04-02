@@ -46,8 +46,8 @@ namespace CBComponents
       if (DataSource == null || Fields == null || Fields.Length == 0) return;
       dataPanel.ColumnStyles.Clear();
       dataPanel.ColumnCount = 2;
-      dataPanel.ColumnStyles.Add(new ColumnStyle());
-      dataPanel.ColumnStyles.Add(new ColumnStyle());
+      dataPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+      dataPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
       dataPanel.RowStyles.Clear();
       dataPanel.RowCount = 0;
       dataPanel.AutoSize = true;
@@ -216,8 +216,9 @@ namespace CBComponents
             _pnl.Padding = new Padding(0);
             _pnl.RowCount = 1;
             _pnl.ColumnCount = 2;
-            _pnl.ColumnStyles.Add(new ColumnStyle());
-            _pnl.ColumnStyles.Add(new ColumnStyle());
+            _pnl.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            _pnl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            _pnl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             _pnl.Controls.Add(_comboBox, 0, 0);
             var _btnSelect = new Button();
             _btnSelect.Anchor = AnchorStyles.Left;
@@ -361,7 +362,7 @@ namespace CBComponents
           if (dataPanel.ColumnCount == 2)
           {
             dataPanel.ColumnCount = 3;
-            dataPanel.ColumnStyles.Add(new ColumnStyle());
+            dataPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
           }
           var _btnClear = new Button();
           _btnClear.Anchor = AnchorStyles.Left;
