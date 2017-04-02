@@ -25,9 +25,10 @@ namespace CBComponents.DataDescriptors
 
     public FieldDataDescriptor[] Fields { get; set; }
 
+    // TODO: HighlightCaptionStyle and CaptionLineWidth should be in separate static class
     public HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle { get; set; } = GroupDataDescriptor._defaultHighlightCaptionStyle;
-
     private const HeaderTableLayoutPanel.HighlightCaptionStyle _defaultHighlightCaptionStyle = HeaderTableLayoutPanel.HighlightCaptionStyle.NavisionAxaptaStyle;
+
     private const int _defaultSizeWidth = (int)DataDescriptorSizeWidth.Smaller / 2;
 
     public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, int SizeWidth, params FieldDataDescriptor[] Fields)
