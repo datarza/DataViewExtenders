@@ -11,7 +11,10 @@ namespace CBComponents.Forms
     public BitMaskCheckedListBox()
     {
       this.CheckOnClick = true;
-      this.ItemCheck += (sender, e) => { if (this.ValueChanged != null) this.ValueChanged(sender, EventArgs.Empty); };
+      this.ItemCheck += (sender, e) =>
+      {
+        this.ValueChanged?.Invoke(sender, EventArgs.Empty);
+      };
     }
 
     [BrowsableAttribute(false)]
