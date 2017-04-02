@@ -52,7 +52,7 @@ namespace Examples
         new ColumnDataDescriptor("Phone", tbl2.PhoneNumberColumn, Mode: ColumnEditorMode.TextBox, FormatValueMethod: new FormatValueDelegate(this.FormatPhoneValue)),
         new ColumnDataDescriptor("Date of birth", tbl2.DateBirthColumn, Style: EditorDataStyle.Date),
         new ColumnDataDescriptor("Group of Salary", tbl2.SalaryGroupColumn, DataSource: _salaryGroups, ValueMember: _salaryGroups.Columns[0].ColumnName, DisplayMember: _salaryGroups.Columns[1].ColumnName),
-        new ColumnDataDescriptor("Salary", tbl2.SalaryColumn, Style: EditorDataStyle.Number));
+        new ColumnDataDescriptor("Salary", tbl2.SalaryColumn, Style: EditorDataStyle.Money));
       this.employeesGridView.PrepareStyleForEditingData();
       this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
 
@@ -77,7 +77,7 @@ namespace Examples
           new FieldDataDescriptor("Date of birth", tbl2.DateBirthColumn, Style: EditorDataStyle.Date)),
         new GroupDataDescriptor("Salary", (int)DataDescriptorSizeWidth.Small,
           new FieldDataDescriptor("Group", tbl2.SalaryGroupColumn, Mode: FieldEditorMode.ListBox, DataSource: _salaryGroups, ValueMember: _salaryGroups.Columns[0].ColumnName, DisplayMember: _salaryGroups.Columns[1].ColumnName),
-          new FieldDataDescriptor("Salary", tbl2.SalaryColumn, Style: EditorDataStyle.Decimal)));
+          new FieldDataDescriptor("Salary", tbl2.SalaryColumn, Style: EditorDataStyle.Money)));
 
       // Binding data for navigators
       this.departmentsNavigator.BindingSource = this.departmentsBindingSource;

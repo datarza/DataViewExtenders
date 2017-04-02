@@ -30,7 +30,7 @@ namespace CBComponents
     {
       DataGridViewExtenders.AddDataRowStateDrawingInRowHeaders(dataGrid,
         Color.FromArgb(0x99, 0xFF, 0xCC, 0x33),
-        Color.FromArgb(0x99, 0xFF, 0x99, 0x00), 
+        Color.FromArgb(0x99, 0xFF, 0x66, 0x00), 
         true);
     }
 
