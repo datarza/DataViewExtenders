@@ -45,12 +45,12 @@
     <Compile Include="Extenders\DataGridView\Preparations.cs" />
     <Compile Include="Extenders\DataGridView\ColumnStyles.cs" />
     <Compile Include="Extenders\DataGridView\Drawing.cs" />
-    <Compile Include="Extenders\DataGridView\AddColumns.cs" />
-    <Compile Include="Extenders\FlowLayoutPanel\AddGroups.cs" />
+    <Compile Include="Extenders\DataGridView\ColumnsGenerator.cs" />
+    <Compile Include="Extenders\FlowLayoutPanel\GroupsGenerator.cs" />
     <Compile Include="Extenders\UserControls\EditorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Extenders\TableLayoutPanel\AddFields.cs" />
+    <Compile Include="Extenders\TableLayoutPanel\FieldsGenerator.cs" />
     <Compile Include="Forms\BitMaskCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
