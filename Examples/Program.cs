@@ -15,10 +15,7 @@ namespace Examples
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      //Application.CurrentCulture = new System.Globalization.CultureInfo("ru");
-      var mForm = new MainForm();
-      CBComponents.Settings.SetMainForm(mForm);
-      Application.Run(mForm);
+      Application.Run(new MainForm());
     }
   }
 }

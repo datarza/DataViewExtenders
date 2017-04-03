@@ -17,8 +17,13 @@ namespace Examples
   {
     public MainForm()
     {
+      CBComponents.Settings.SetMainForm(this);
       InitializeComponent();
-      this.InitializeGrid();
+      InitializeGridsAndPanels();
+
+      // binding data for navigators
+      this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
+      this.employeesNavigator.BindingSource = this.employeesBindingSource;
 
       // bottom buttons
       this.btnLoadData.Image = Properties.Resources.database_refresh;
@@ -30,7 +35,7 @@ namespace Examples
 
     }
 
-    private void InitializeGrid()
+    private void InitializeGridsAndPanels()
     {
       this.Database.LoadFromDatabase();
 
@@ -56,7 +61,7 @@ namespace Examples
       this.employeesGridView.PrepareStyleForEditingData();
       this.employeesGridView.AddDataRowStateDrawingInRowHeaders();
 
-      // preparing panels
+      // preparing Panels
       this.departmentsPanel.GenerateGroups(this.toolTip, this.departmentsBindingSource, 
         new GroupDataDescriptor("Identifications",
           new FieldDataDescriptor("ID", tbl1.DepartmentIDColumn, IsReadOnly: true),
@@ -79,17 +84,6 @@ namespace Examples
           new FieldDataDescriptor("Group", tbl2.SalaryGroupColumn, Mode: FieldEditorMode.ListBox, DataSource: _salaryGroups, ValueMember: _salaryGroups.Columns[0].ColumnName, DisplayMember: _salaryGroups.Columns[1].ColumnName),
           new FieldDataDescriptor("Salary", tbl2.SalaryColumn, Style: EditorDataStyle.Money)));
 
-      // Binding data for navigators
-      this.departmentsNavigator.BindingSource = this.departmentsBindingSource;
-      this.departmentsGridView.DataSource = this.departmentsBindingSource;
-      this.employeesNavigator.BindingSource = this.employeesBindingSource;
-      this.employeesGridView.DataSource = this.employeesBindingSource;
-
-    }
-
-    private void MainForm_Load(object sender, EventArgs e)
-    {
-
     }
 
     private object FormatPhoneValue(object DataBoundItem, string DataPropertyName)
@@ -105,6 +99,11 @@ namespace Examples
         else return null;
       }
       return null;
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+
     }
 
   }
