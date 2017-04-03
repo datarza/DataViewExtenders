@@ -63,9 +63,9 @@ namespace CBComponents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TableClear {
+        internal static System.Drawing.Bitmap ClearFieldImage {
             get {
-                object obj = ResourceManager.GetObject("TableClear", resourceCulture);
+                object obj = ResourceManager.GetObject("ClearFieldImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace CBComponents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TableSelect {
+        internal static System.Drawing.Bitmap SelectRowImage {
             get {
-                object obj = ResourceManager.GetObject("TableSelect", resourceCulture);
+                object obj = ResourceManager.GetObject("SelectRowImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -4,32 +4,12 @@ using System.Windows.Forms;
 
 namespace CBComponents
 {
-  public static partial class FormServices
+  internal static partial class FormServices
   {
     /// <summary>
     /// The main form of the application
     /// </summary>
-    public static IWin32Window MainWindow { get; set; }
-
-    /// <summary>
-    /// Image Links
-    /// </summary>
-    public static class Images
-    {
-      private static System.Drawing.Bitmap tableSelectImage = Properties.Resources.TableSelect;
-      public static System.Drawing.Bitmap TableSelectImage
-      {
-        get { return Images.tableSelectImage; }
-        set { if (value != null) Images.tableSelectImage = value; }
-      }
-
-      private static System.Drawing.Bitmap tableClearImage = Properties.Resources.TableClear;
-      public static System.Drawing.Bitmap TableClearImage
-      {
-        get { return Images.tableClearImage; }
-        set { if (value != null) Images.tableClearImage = value; }
-      }
-    }
+    internal static IWin32Window MainWindow = null;
 
     internal static DialogResult ShowFormDialog(Form form)
     {

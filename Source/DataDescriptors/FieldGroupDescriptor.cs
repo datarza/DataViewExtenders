@@ -25,16 +25,11 @@ namespace CBComponents.DataDescriptors
 
     public FieldDataDescriptor[] Fields { get; set; }
 
-    // TODO: HighlightCaptionStyle and CaptionLineWidth should be in separate static class
-    public HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle { get; set; } = GroupDataDescriptor._defaultHighlightCaptionStyle;
-    private const HeaderTableLayoutPanel.HighlightCaptionStyle _defaultHighlightCaptionStyle = HeaderTableLayoutPanel.HighlightCaptionStyle.NavisionAxaptaStyle;
-
     private const int _defaultSizeWidth = (int)DataDescriptorSizeWidth.Smaller / 2;
 
-    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, int SizeWidth, params FieldDataDescriptor[] Fields)
+    public GroupDataDescriptor(string CaptionText, int SizeWidth, params FieldDataDescriptor[] Fields)
     {
       this.CaptionText = CaptionText;
-      this.CaptionStyle = CaptionStyle;
       if (SizeWidth > _defaultSizeWidth)
         foreach (var field in Fields)
           if (!field.SizeWidth.HasValue)
@@ -42,30 +37,11 @@ namespace CBComponents.DataDescriptors
       this.Fields = Fields;
     }
 
-    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, DataDescriptorSizeWidth SizeWidth, params FieldDataDescriptor[] Fields)
-      : this(CaptionText, CaptionStyle, (int)SizeWidth, Fields)
-    {
-    }
+    public GroupDataDescriptor(string CaptionText, DataDescriptorSizeWidth SizeWidth, params FieldDataDescriptor[] Fields)
+      : this(CaptionText, (int)SizeWidth, Fields) { }
 
     public GroupDataDescriptor(string CaptionText, params FieldDataDescriptor[] Fields)
-      : this(CaptionText, _defaultHighlightCaptionStyle, _defaultSizeWidth, Fields)
-    {
-    }
-
-    public GroupDataDescriptor(string CaptionText, HeaderTableLayoutPanel.HighlightCaptionStyle CaptionStyle, params FieldDataDescriptor[] Fields)
-      : this(CaptionText, CaptionStyle, _defaultSizeWidth, Fields)
-    {
-    }
-
-    public GroupDataDescriptor(string CaptionText, int SizeWidth, params FieldDataDescriptor[] Fields)
-      : this(CaptionText, _defaultHighlightCaptionStyle, SizeWidth, Fields)
-    {
-    }
-
-    public GroupDataDescriptor(string CaptionText, DataDescriptorSizeWidth SizeWidth, params FieldDataDescriptor[] Fields)
-      : this(CaptionText, _defaultHighlightCaptionStyle, (int)SizeWidth, Fields)
-    {
-    }
+      : this(CaptionText, _defaultSizeWidth, Fields) { }
 
     /// <summary>
     /// Resulted Panel after generation 

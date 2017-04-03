@@ -231,7 +231,7 @@ namespace CBComponents
             _btnSelect.FlatAppearance.BorderSize = 0;
             _btnSelect.FlatAppearance.MouseOverBackColor = SystemColors.GradientActiveCaption;
             _btnSelect.FlatAppearance.MouseDownBackColor = SystemColors.ControlLight;
-            _btnSelect.Image = FormServices.Images.TableSelectImage;
+            _btnSelect.Image = Settings.Images.SelectRowImage;
             _btnSelect.ImageAlign = ContentAlignment.MiddleCenter;
             _btnSelect.TextAlign = ContentAlignment.MiddleCenter;
             _btnSelect.TabIndex = tabIndex++;
@@ -378,7 +378,7 @@ namespace CBComponents
           _btnClear.FlatAppearance.BorderSize = 0;
           _btnClear.FlatAppearance.MouseOverBackColor = SystemColors.GradientActiveCaption;
           _btnClear.FlatAppearance.MouseDownBackColor = SystemColors.ControlLight;
-          _btnClear.Image = FormServices.Images.TableClearImage;
+          _btnClear.Image = Settings.Images.ClearFieldImage;
           _btnClear.ImageAlign = ContentAlignment.MiddleCenter;
           _btnClear.TextAlign = ContentAlignment.MiddleCenter;
           _btnClear.TabIndex = tabIndex++;

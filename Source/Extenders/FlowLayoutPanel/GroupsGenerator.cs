@@ -49,7 +49,8 @@ namespace CBComponents
         var dataPanel = new HeaderTableLayoutPanel(); // TableLayoutPanel();
         group.GeneratedPanel = dataPanel;
         dataPanel.CaptionText = group.CaptionText;
-        dataPanel.CaptionStyle = group.CaptionStyle;
+        dataPanel.CaptionStyle = Settings.HeaderTableLayoutPanel.CaptionStyle;
+        dataPanel.CaptionLineWidth = Settings.HeaderTableLayoutPanel.CaptionLineWidth;
         dataPanel.GenerateFields(toolTip, DataSource, group.Fields);
         groupPanel.Controls.Add(dataPanel);
       }
