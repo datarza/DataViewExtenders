@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,7 +12,7 @@ namespace CBComponents.Forms
   /// <summary>
   /// This form is using for selecting row from Collections or DataTable
   /// </summary>
-  internal sealed class SelectItemForm : Form
+  public sealed class SelectItemForm : Form
   {
     public class ColumnDefinition
     {
