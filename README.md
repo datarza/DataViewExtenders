@@ -25,6 +25,14 @@ Developing, please come back later...
 2. Tuned and auto generating fields by DataType and preferences
 3. Auto determination of types with nullable
 
+#### SelectItemForm
+
+1. Prepared form for showing data and selecting row from tables and lists
+
+#### BitMaskCheckedListBox
+
+1. Control for showing and editing BitMasks
+
 ## Supported .NET Frameworks
 
 _DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
@@ -36,8 +44,8 @@ _DataViewExtenders_ uses special things that were introduced in .NET Framework 4
 
 - [Farm-Fresh Web Icons](http://www.fatcow.com/free-icons) have been used in examples.
 - [C# TextBox with Outlook 2007-style prompt](https://www.codeproject.com/Articles/15954/C-TextBox-with-Outlook-style-prompt) has been used in developing.
-- Idea from [Support filtering and searching on multiple columns with RowFilterBuilder](https://www.codeproject.com/Articles/14640/Support-filtering-and-searching-on-multiple-column) has been used in developing.
+- Idea and source code from [Support filtering and searching on multiple columns with RowFilterBuilder](https://www.codeproject.com/Articles/14640/Support-filtering-and-searching-on-multiple-column) have been used in developing.
 
 ## Contacts
 
-I would appreciate hearing your opinion on this. Please feel free to contact me by email: [radu.martin@hotmail.com](mailto://radu.martin@hotmail.com)
+I would appreciate hearing your opinion on this. If you have any questions, please feel free to contact me by email: [radu.martin@hotmail.com](mailto://radu.martin@hotmail.com)
