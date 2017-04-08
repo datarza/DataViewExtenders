@@ -23,12 +23,10 @@ namespace CBComponents
     public BitMaskCheckedListBox()
     {
       this.CheckOnClick = true;
-      this.ItemCheck += (sender, e) =>
-      {
-        this.ValueChanged?.Invoke(sender, EventArgs.Empty);
-      };
+      /*this.ItemCheck += (sender, e) => { this.ValueChanged?.Invoke(sender, EventArgs.Empty); };*/
+      this.SelectedValueChanged += (sender, e) => { this.ValueChanged?.Invoke(sender, EventArgs.Empty); };
     }
-
+    
     [BrowsableAttribute(false)]
     public event EventHandler ValueChanged;
 
@@ -38,9 +36,9 @@ namespace CBComponents
     {
       get
       {
-        int result = 0;
+        long result = 0;
         for (int i = 0; i < this.Items.Count; i++)
-          if (this.GetItemChecked(i)) result |= 1 << i;
+          if (this.GetItemChecked(i)) result |= (long)1 << i;
         return result;
       }
       set
@@ -48,7 +46,7 @@ namespace CBComponents
         this.BeginUpdate();
         for (int i = 0; i < this.Items.Count; i++)
         {
-          int j = 1 << i;
+          long j = (long)1 << i;
           bool nch = (value & j) == j;
           bool och = this.GetItemChecked(i);
           if (nch != och) this.SetItemChecked(i, nch);
