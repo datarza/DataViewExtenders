@@ -48,4 +48,4 @@ _DataViewExtenders_ uses special things that were introduced in .NET Framework 4
 
 ## Contacts
 
-I would appreciate hearing your opinion on this. Please feel free to contact me by email: [radu.martin@hotmail.com](mailto://radu.martin@hotmail.com)
+I would appreciate hearing your opinion on this. If you have any questions, please feel free to contact me by email: [radu.martin@hotmail.com](mailto://radu.martin@hotmail.com)
