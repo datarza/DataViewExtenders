@@ -33,6 +33,13 @@ namespace Examples
       this.btnExit.Image = Properties.Resources.door;
       this.btnExit.Click += delegate { this.Close(); };
 
+      // Examples menu
+      this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example1Form.TextName, null, (sender, e) => { var form = new Example1Form(); form.Show(this); }));
+      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example2Form.TextName, null, (sender, e) => { var form = new Example2Form(); form.Show(this); }));
+      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example3Form.TextName, null, (sender, e) => { var form = new Example3Form(); form.Show(this); }));
+      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example4Form.TextName, null, (sender, e) => { var form = new Example4Form(); form.Show(this); }));
+      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example5Form.TextName, null, (sender, e) => { var form = new Example5Form(); form.Show(this); }));
+
     }
 
     private void InitializeGridsAndPanels()
@@ -105,6 +112,6 @@ namespace Examples
     {
 
     }
-
+    
   }
 }

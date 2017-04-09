@@ -67,6 +67,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>daoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExamplesForms\Example1Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamplesForms\Example1Form.Designer.cs">
+      <DependentUpon>Example1Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ExamplesForms\Example1Form.resx">
+      <DependentUpon>Example1Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

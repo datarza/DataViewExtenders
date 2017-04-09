@@ -32,6 +32,7 @@
       System.Windows.Forms.TableLayoutPanel mainLayoutPanel;
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       System.Windows.Forms.FlowLayoutPanel buttonsPanel;
+      System.Windows.Forms.MenuStrip examplesMenuStrip;
       this.departmentsGridView = new System.Windows.Forms.DataGridView();
       this.employeesGridView = new System.Windows.Forms.DataGridView();
       this.departmentsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -60,6 +61,7 @@
       this.bindingNavigatorMoveNextItem1 = new System.Windows.Forms.ToolStripButton();
       this.bindingNavigatorMoveLastItem1 = new System.Windows.Forms.ToolStripButton();
       this.bindingNavigatorSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+      this.exMM = new System.Windows.Forms.ToolStripMenuItem();
       this.btnLoadData = new System.Windows.Forms.Button();
       this.btnSaveData = new System.Windows.Forms.Button();
       this.btnExit = new System.Windows.Forms.Button();
@@ -69,6 +71,7 @@
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
       mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       buttonsPanel = new System.Windows.Forms.FlowLayoutPanel();
+      examplesMenuStrip = new System.Windows.Forms.MenuStrip();
       mainLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeesGridView)).BeginInit();
@@ -77,6 +80,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.employeesNavigator)).BeginInit();
       this.employeesNavigator.SuspendLayout();
       buttonsPanel.SuspendLayout();
+      examplesMenuStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Database)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
@@ -102,6 +106,7 @@
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       mainLayoutPanel.Size = new System.Drawing.Size(1008, 562);
       mainLayoutPanel.TabIndex = 0;
       // 
@@ -129,6 +134,7 @@
       this.departmentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.departmentsPanel.Location = new System.Drawing.Point(3, 276);
       this.departmentsPanel.Name = "departmentsPanel";
+      this.departmentsPanel.Padding = new System.Windows.Forms.Padding(3);
       this.departmentsPanel.Size = new System.Drawing.Size(447, 242);
       this.departmentsPanel.TabIndex = 1;
       // 
@@ -138,6 +144,7 @@
       this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.employeesPanel.Location = new System.Drawing.Point(456, 276);
       this.employeesPanel.Name = "employeesPanel";
+      this.employeesPanel.Padding = new System.Windows.Forms.Padding(3);
       this.employeesPanel.Size = new System.Drawing.Size(549, 242);
       this.employeesPanel.TabIndex = 3;
       // 
@@ -371,20 +378,39 @@
       buttonsPanel.AutoSize = true;
       buttonsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       mainLayoutPanel.SetColumnSpan(buttonsPanel, 2);
+      buttonsPanel.Controls.Add(examplesMenuStrip);
       buttonsPanel.Controls.Add(this.btnLoadData);
       buttonsPanel.Controls.Add(this.btnSaveData);
       buttonsPanel.Controls.Add(this.btnExit);
-      buttonsPanel.Location = new System.Drawing.Point(762, 524);
+      buttonsPanel.Location = new System.Drawing.Point(530, 524);
       buttonsPanel.Name = "buttonsPanel";
-      buttonsPanel.Size = new System.Drawing.Size(243, 35);
+      buttonsPanel.Size = new System.Drawing.Size(475, 35);
       buttonsPanel.TabIndex = 6;
+      // 
+      // examplesMenuStrip
+      // 
+      examplesMenuStrip.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      examplesMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
+      examplesMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exMM});
+      examplesMenuStrip.Location = new System.Drawing.Point(0, 5);
+      examplesMenuStrip.Margin = new System.Windows.Forms.Padding(0, 0, 64, 0);
+      examplesMenuStrip.Name = "examplesMenuStrip";
+      examplesMenuStrip.Size = new System.Drawing.Size(168, 24);
+      examplesMenuStrip.TabIndex = 1;
+      // 
+      // exMM
+      // 
+      this.exMM.Name = "exMM";
+      this.exMM.Size = new System.Drawing.Size(68, 20);
+      this.exMM.Text = "Examples";
       // 
       // btnLoadData
       // 
       this.btnLoadData.AutoSize = true;
       this.btnLoadData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.btnLoadData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnLoadData.Location = new System.Drawing.Point(3, 3);
+      this.btnLoadData.Location = new System.Drawing.Point(235, 3);
       this.btnLoadData.Name = "btnLoadData";
       this.btnLoadData.Padding = new System.Windows.Forms.Padding(6, 3, 6, 3);
       this.btnLoadData.Size = new System.Drawing.Size(77, 29);
@@ -398,7 +424,7 @@
       this.btnSaveData.AutoSize = true;
       this.btnSaveData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.btnSaveData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnSaveData.Location = new System.Drawing.Point(86, 3);
+      this.btnSaveData.Location = new System.Drawing.Point(318, 3);
       this.btnSaveData.Name = "btnSaveData";
       this.btnSaveData.Padding = new System.Windows.Forms.Padding(6, 3, 6, 3);
       this.btnSaveData.Size = new System.Drawing.Size(78, 29);
@@ -412,7 +438,7 @@
       this.btnExit.AutoSize = true;
       this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnExit.Location = new System.Drawing.Point(185, 3);
+      this.btnExit.Location = new System.Drawing.Point(417, 3);
       this.btnExit.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
       this.btnExit.Name = "btnExit";
       this.btnExit.Padding = new System.Windows.Forms.Padding(6, 3, 6, 3);
@@ -443,6 +469,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1008, 562);
       this.Controls.Add(mainLayoutPanel);
+      this.MainMenuStrip = examplesMenuStrip;
       this.MinimumSize = new System.Drawing.Size(640, 480);
       this.Name = "MainForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -460,6 +487,8 @@
       this.employeesNavigator.PerformLayout();
       buttonsPanel.ResumeLayout(false);
       buttonsPanel.PerformLayout();
+      examplesMenuStrip.ResumeLayout(false);
+      examplesMenuStrip.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Database)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
@@ -504,6 +533,7 @@
     private System.Windows.Forms.FlowLayoutPanel departmentsPanel;
     private System.Windows.Forms.FlowLayoutPanel employeesPanel;
     private System.Windows.Forms.ToolTip toolTip;
+    private System.Windows.Forms.ToolStripMenuItem exMM;
   }
 }
 
