@@ -38,7 +38,7 @@ namespace CBComponents
       {
         long result = 0;
         for (int i = 0; i < this.Items.Count; i++)
-          if (this.GetItemChecked(i)) result |= (long)1 << i;
+          if (this.GetItemChecked(i)) result |= 1L << i;
         return result;
       }
       set
@@ -46,7 +46,7 @@ namespace CBComponents
         this.BeginUpdate();
         for (int i = 0; i < this.Items.Count; i++)
         {
-          long j = (long)1 << i;
+          long j = 1L << i;
           bool nch = (value & j) == j;
           bool och = this.GetItemChecked(i);
           if (nch != och) this.SetItemChecked(i, nch);
