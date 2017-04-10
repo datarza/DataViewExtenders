@@ -12,7 +12,7 @@ namespace CBComponents.DataDescriptors
     TextBox, MultilineTextBox,
     NumberTextBox,
     DateTimeTextBox,
-    BitMask,
+    BitMask, BitMask64,
     CheckBox, ComboBox, ComboTextBox, ListBox,
     GuidEditor
   }
@@ -62,6 +62,10 @@ namespace CBComponents.DataDescriptors
         else if (Column.DataType == typeof(Guid)) { Mode = FieldEditorMode.TextBox; this.IsReadOnly = true; }
         else if (Column.MaxLength > 260) Mode = FieldEditorMode.MultilineTextBox;
         else Mode = FieldEditorMode.TextBox;
+      }
+      if (Mode == FieldEditorMode.BitMask && (Column.DataType == typeof(long) || Column.DataType == typeof(ulong)))
+      {
+        Mode = FieldEditorMode.BitMask64;
       }
       this.CaptionText = CaptionText; // Column.Caption;
       this.ColumnName = Column.ColumnName;

@@ -66,7 +66,7 @@ namespace CBComponents
         leadLabel.Text = field.CaptionText; // TODO: add option for generating label in format: column.CaptionText + ":"
         leadLabel.TextAlign = ContentAlignment.MiddleRight;
         leadLabel.Padding = new Padding(0, 0, 0, 0);
-        if (field.Mode == FieldEditorMode.MultilineTextBox || field.Mode == FieldEditorMode.BitMask)
+        if (field.Mode == FieldEditorMode.MultilineTextBox || field.Mode == FieldEditorMode.BitMask || field.Mode == FieldEditorMode.BitMask64)
         {
           leadLabel.Anchor = AnchorStyles.Right | AnchorStyles.Top;
           leadLabel.Margin = new Padding(12, 6, 0, 6);
@@ -322,7 +322,7 @@ namespace CBComponents
           dataPanel.Controls.Add(_textBox, 1, dataPanel.RowCount - 1);
           #endregion
         }
-        else if (field.Mode == FieldEditorMode.BitMask)
+        else if (field.Mode == FieldEditorMode.BitMask || field.Mode == FieldEditorMode.BitMask64)
         {
           #region creating editor control for mask (bits)
           var _listBox = new BitMaskCheckedListBox();
@@ -332,7 +332,7 @@ namespace CBComponents
           _listBox.TabIndex = tabIndex++;
           if (toolTip != null) toolTip.SetToolTip(_listBox, field.ColumnName);
           leadLabel.Click += delegate { _listBox.Focus(); };
-          binding = new Binding("Value", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
+          binding = new Binding(field.Mode == FieldEditorMode.BitMask ? "Value" : "LongValue", DataSource, field.ColumnName, true, field.IsReadOnly ? DataSourceUpdateMode.Never : DataSourceUpdateMode.OnPropertyChanged);
           if (field.IsNull) binding.DataSourceNullValue = DBNull.Value;
           if (field.NullValue != null) binding.NullValue = field.NullValue;
           if (field.Style.HasValue) TableLayoutPanelExtenders.SetBindingStyle(binding, field.Style.Value);
