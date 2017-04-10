@@ -22,7 +22,11 @@ namespace CBComponents
     public BitMaskCheckedListBox()
     {
       this.CheckOnClick = true;
-      // this.ItemCheck += (sender, e) => { this.ValueChanged?.Invoke(sender, EventArgs.Empty); this.LongValueChanged?.Invoke(sender, EventArgs.Empty); };
+      /*this.ItemCheck += (sender, e) =>
+      {
+        this.ValueChanged?.Invoke(sender, EventArgs.Empty);
+        this.LongValueChanged?.Invoke(sender, EventArgs.Empty);
+      };*/
       this.SelectedValueChanged += (sender, e) =>
       {
         this.ValueChanged?.Invoke(sender, EventArgs.Empty);
