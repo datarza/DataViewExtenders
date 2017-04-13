@@ -73,12 +73,14 @@ namespace CBComponents.Forms
       }
     }
 
-    public static T GetSelectedRow<T>(DataTable DataSource, params SelectItemForm.ColumnDefinition[] Columns) where T : DataRow
+    public static T GetSelectedRow<T>(DataTable DataSource, params SelectItemForm.ColumnDefinition[] Columns) 
+      where T : DataRow
     {
       return SelectItemForm.GetSelectedRow<T>(DataSource, null, Columns);
     }
 
-    public static T GetSelectedRow<T>(DataTable DataSource, T SelectedRow, params SelectItemForm.ColumnDefinition[] Columns) where T : DataRow
+    public static T GetSelectedRow<T>(DataTable DataSource, T SelectedRow, params SelectItemForm.ColumnDefinition[] Columns) 
+      where T : DataRow
     {
       if (DataSource == null || DataSource.Rows.Count == 0) return null;
       if (DataSource.Rows.Count == 1) return DataSource.Rows[0] as T;
