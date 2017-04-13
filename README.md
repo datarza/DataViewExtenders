@@ -25,14 +25,6 @@ Developing, please come back later...
 2. Tuned and auto generating fields by DataType and preferences
 3. Auto determination of types with nullable
 
-#### SelectItemForm
-
-1. Prepared form for showing data and selecting row from tables and lists
-
-#### BitMaskCheckedListBox
-
-1. Control for showing and editing BitMasks
-
 ## Supported .NET Frameworks
 
 _DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
