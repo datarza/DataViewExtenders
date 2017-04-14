@@ -27,9 +27,9 @@ namespace CBComponents
     /// <param name="dataPanel">FlowLayoutPanel</param>
     /// <param name="DataSource">Data Source to support data-binding</param>
     /// <param name="Fields">Field data descriptors</param>
-    public static void GenerateGroups(this FlowLayoutPanel dataPanel, object DataSource, params GroupDataDescriptor[] Groups)
+    public static void GenerateGroups(this FlowLayoutPanel groupPanel, object DataSource, params GroupDataDescriptor[] Groups)
     {
-      FlowLayoutPanelExtenders.GenerateGroups(dataPanel, null, DataSource, Groups);
+      FlowLayoutPanelExtenders.GenerateGroups(groupPanel, null, DataSource, Groups);
     }
 
     /// <summary>
