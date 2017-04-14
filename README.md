@@ -4,7 +4,7 @@ These extenders can generate data-bound columns in the DataGridView, can make da
 
 ![Early preview](Media/img_01.png)
 
-## Features for DataGridView
+## Features for DataGridView and DataGridViewColumn
 
 - DataRowState visualization in the RowHeaders for the changed and inserted rows
 - Visualization styles for DataGridViewColumns in a number of different ways
@@ -13,7 +13,7 @@ These extenders can generate data-bound columns in the DataGridView, can make da
 - Special patern for lists  
 ...and much more
 
-Please, read [DataGridView Wiki](../../wiki/DataGridView) for detail information.
+Please, read [DataGridView Wiki](../../wiki/DataGridView) and [DataGridViewColumn Wiki](../../wiki/DataGridViewColumn) for detail information.
 
 ## Features for FlowLayoutPanel and TableLayoutPanel
 
