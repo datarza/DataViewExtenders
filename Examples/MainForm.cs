@@ -36,7 +36,7 @@ namespace Examples
 
       // Examples menu
       this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example1Form.TextName, null, (sender, e) => { var form = new Example1Form(); form.Show(this); }));
-      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (simple example)", null, (sender, e) =>
+      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (IEnumerable example)", null, (sender, e) =>
       {
         var items = new Dictionary<int, string>();
         items.Add(1, "First value");
@@ -49,7 +49,7 @@ namespace Examples
           form.ShowDialog();
         }
       }));
-      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (Datatable example)", null, (sender, e) =>
+      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (DataTable example)", null, (sender, e) =>
       {
         var items = new DataTable();
         items.Columns.AddRange(new DataColumn[] {
