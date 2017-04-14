@@ -1,6 +1,6 @@
 # DataViewExtenders
 
-These extenders can generate data-bound columns in the DataGridView, can make data-bound controls in the FlowLayoutPanel and can group generated controls on the TableLayoutPanel. Moreover, extenders implement additional functionality for DataGridView, FlowLayoutPanel, TableLayoutPanel and provide several WinForms control.
+These extenders can generate data-bound columns in the DataGridView, can make data-bound controls in the FlowLayoutPanel and can group generated controls on the TableLayoutPanel. Moreover, extenders implement additional functionality for DataGridView, DataGridViewColumn, FlowLayoutPanel, TableLayoutPanel and provide several WinForms control.
 
 ![Early preview](Media/img_01.png)
 
