@@ -6,18 +6,18 @@ These extenders can generate data-bound columns in the DataGridView and data-bou
 
 ## Features for DataGridView
 
-1. DataRowState visualization in the RowHeaders for the changed and inserted rows (DataGridView.AddDataRowStateDrawingInRowHeaders)
-2. Set visualization styles for DataGridViewColumns in a number of different ways (DataGridViewColumn.Set[MethodName]Style)
-3. Preparation the DataGridView for showing data (PrepareStyleForShowingData), editing data (PrepareStyleForEditingData) and reports (PrepareStyleForShowingReportData).
-4. Tuned and auto generating columns by DataType and preferences
+- DataRowState visualization in the RowHeaders for the changed and inserted rows (DataGridView.AddDataRowStateDrawingInRowHeaders)
+- Set visualization styles for DataGridViewColumns in a number of different ways (DataGridViewColumn.Set[MethodName]Style)
+- Preparation the DataGridView for showing data (PrepareStyleForShowingData), editing data (PrepareStyleForEditingData) and reports (PrepareStyleForShowingReportData).
+- Tuned and auto generating columns by DataType and preferences
+- and much more, please, read [Wiki](../../wiki/DataGridView) for detail information.
 
 ## Features for FlowLayoutPanel and TableLayoutPanel
 
-1. Panel with the grouping function
-2. Tuned and auto generating fields by DataType and preferences
-3. Auto determination of types with nullable
-
-Please, read [Wiki](../../wiki) for detail information.
+- Panel with the grouping function
+- Tuned and auto generating fields by DataType and preferences
+- Auto determination of types with nullable
+- - and much more, please, read [Wiki](../../wiki/FlowLayoutPanel) for detail information.
 
 ## Credits
 
