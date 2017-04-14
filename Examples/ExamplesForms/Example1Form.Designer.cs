@@ -34,8 +34,8 @@
       System.Windows.Forms.Label label2;
       System.Windows.Forms.Label label3;
       System.Windows.Forms.Label label4;
-      this.textBoxValue = new System.Windows.Forms.TextBox();
       this.bmclBox = new CBComponents.BitMaskCheckedListBox();
+      this.textBoxValue = new System.Windows.Forms.TextBox();
       this.textBoxLongValue = new System.Windows.Forms.TextBox();
       this.textBoxValues = new System.Windows.Forms.TextBox();
       mainPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -83,14 +83,14 @@
       tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
       tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
       tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      tableLayoutPanel.Size = new System.Drawing.Size(393, 318);
+      tableLayoutPanel.Size = new System.Drawing.Size(397, 318);
       tableLayoutPanel.TabIndex = 0;
       // 
       // label1
       // 
       label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       label1.AutoSize = true;
-      label1.Location = new System.Drawing.Point(38, 6);
+      label1.Location = new System.Drawing.Point(42, 6);
       label1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
       label1.Name = "label1";
       label1.Size = new System.Drawing.Size(26, 13);
@@ -98,67 +98,67 @@
       label1.Text = "List:";
       label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // textBoxValue
-      // 
-      this.textBoxValue.Location = new System.Drawing.Point(70, 163);
-      this.textBoxValue.Name = "textBoxValue";
-      this.textBoxValue.Size = new System.Drawing.Size(100, 20);
-      this.textBoxValue.TabIndex = 1;
-      // 
       // label2
       // 
       label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
       label2.AutoSize = true;
-      label2.Location = new System.Drawing.Point(27, 166);
+      label2.Location = new System.Drawing.Point(31, 166);
       label2.Name = "label2";
       label2.Size = new System.Drawing.Size(37, 13);
       label2.TabIndex = 2;
       label2.Text = "Value:";
       label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // bmclBox
-      // 
-      this.bmclBox.CheckOnClick = true;
-      this.bmclBox.Location = new System.Drawing.Point(70, 3);
-      this.bmclBox.LongValue = ((long)(0));
-      this.bmclBox.MultiColumn = true;
-      this.bmclBox.Name = "bmclBox";
-      this.bmclBox.Size = new System.Drawing.Size(320, 154);
-      this.bmclBox.TabIndex = 0;
-      // 
       // label3
       // 
       label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
       label3.AutoSize = true;
-      label3.Location = new System.Drawing.Point(3, 192);
+      label3.Location = new System.Drawing.Point(7, 192);
       label3.Name = "label3";
       label3.Size = new System.Drawing.Size(61, 13);
       label3.TabIndex = 3;
       label3.Text = "LongValue:";
       label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // textBoxLongValue
-      // 
-      this.textBoxLongValue.Location = new System.Drawing.Point(70, 189);
-      this.textBoxLongValue.Name = "textBoxLongValue";
-      this.textBoxLongValue.Size = new System.Drawing.Size(200, 20);
-      this.textBoxLongValue.TabIndex = 4;
-      // 
       // label4
       // 
       label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       label4.AutoSize = true;
-      label4.Location = new System.Drawing.Point(22, 218);
+      label4.Location = new System.Drawing.Point(3, 218);
       label4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
       label4.Name = "label4";
-      label4.Size = new System.Drawing.Size(42, 13);
+      label4.Size = new System.Drawing.Size(65, 13);
       label4.TabIndex = 5;
-      label4.Text = "Values:";
+      label4.Text = "GetValues():";
       label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      // 
+      // bmclBox
+      // 
+      this.bmclBox.CheckOnClick = true;
+      this.bmclBox.Location = new System.Drawing.Point(74, 3);
+      this.bmclBox.LongValue = ((long)(0));
+      this.bmclBox.MultiColumn = true;
+      this.bmclBox.Name = "bmclBox";
+      this.bmclBox.Size = new System.Drawing.Size(320, 154);
+      this.bmclBox.TabIndex = 0;
+      // 
+      // textBoxValue
+      // 
+      this.textBoxValue.Location = new System.Drawing.Point(74, 163);
+      this.textBoxValue.Name = "textBoxValue";
+      this.textBoxValue.Size = new System.Drawing.Size(100, 20);
+      this.textBoxValue.TabIndex = 1;
+      // 
+      // textBoxLongValue
+      // 
+      this.textBoxLongValue.Location = new System.Drawing.Point(74, 189);
+      this.textBoxLongValue.Name = "textBoxLongValue";
+      this.textBoxLongValue.Size = new System.Drawing.Size(200, 20);
+      this.textBoxLongValue.TabIndex = 4;
       // 
       // textBoxValues
       // 
-      this.textBoxValues.Location = new System.Drawing.Point(70, 215);
+      this.textBoxValues.Location = new System.Drawing.Point(74, 215);
       this.textBoxValues.Multiline = true;
       this.textBoxValues.Name = "textBoxValues";
       this.textBoxValues.ReadOnly = true;
