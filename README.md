@@ -2,24 +2,18 @@
 
 These extenders can generate columns on DataGridView and create controls in FlowLayoutPanel.
 
-## Current state
-
-Almost done, polishing, creating wiki, testing...
-
-## Preview
-
 ![Early preview](Media/img_01.png)
 
 ## Features
 
-#### DataGridView
+### DataGridView
 
 1. DataRowState visualization in the RowHeaders for the changed and inserted rows (DataGridView.AddDataRowStateDrawingInRowHeaders)
 2. Set visualization styles for DataGridViewColumns in a number of different ways (DataGridViewColumn.Set[MethodName]Style)
 3. Preparation the DataGridView for showing data (PrepareStyleForShowingData), editing data (PrepareStyleForEditingData) and reports (PrepareStyleForShowingReportData).
 4. Tuned and auto generating columns by DataType and preferences
 
-#### FlowLayoutPanel and TableLayoutPanel
+### FlowLayoutPanel and TableLayoutPanel
 
 1. Panel with the grouping function
 2. Tuned and auto generating fields by DataType and preferences
