@@ -1,6 +1,6 @@
 # DataViewExtenders
 
-Extenders for WinForms controls, such as DataGridView, FlowLayoutPanel, TableLayoutPanel and so on. These extenders give ability to generate columns on DataGridView and controls in FlowLayoutPanel.
+These extenders give ability to generate columns on DataGridView and controls in FlowLayoutPanel.
 
 ## Current state
 
