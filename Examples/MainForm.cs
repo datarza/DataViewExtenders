@@ -36,6 +36,7 @@ namespace Examples
 
       // Examples menu
       this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example1Form.TextName, null, (sender, e) => { var form = new Example1Form(); form.Show(this); }));
+      this.exMM.DropDownItems.Add("-");
       this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (IEnumerable example)", null, (sender, e) =>
       {
         var items = new Dictionary<int, string>();
@@ -71,6 +72,7 @@ namespace Examples
           form.ShowDialog();
         }
       }));
+      //this.exMM.DropDownItems.Add("-");
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example3Form.TextName, null, (sender, e) => { var form = new Example3Form(); form.Show(this); }));
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example4Form.TextName, null, (sender, e) => { var form = new Example4Form(); form.Show(this); }));
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example5Form.TextName, null, (sender, e) => { var form = new Example5Form(); form.Show(this); }));
