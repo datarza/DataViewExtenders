@@ -4,6 +4,8 @@ These extenders can generate data-bound columns in the DataGridView and data-bou
 
 ![Early preview](Media/img_01.png)
 
+Please, read [Wiki](../../wiki) for detail information.
+
 ## Features
 
 ### DataGridView
@@ -18,8 +20,6 @@ These extenders can generate data-bound columns in the DataGridView and data-bou
 1. Panel with the grouping function
 2. Tuned and auto generating fields by DataType and preferences
 3. Auto determination of types with nullable
-
-Please, read [Wiki](../../wiki) for detail information.
 
 ## Supported .NET Frameworks
 
