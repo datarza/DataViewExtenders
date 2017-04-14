@@ -94,7 +94,7 @@ namespace CBComponents.Forms
         else return null;
     }
 
-    public static DataRow GetSelectedRow(object DataSource, string ValueMember = null, string DisplayMember = null, object SelectedValue = null, bool AutoGenerateColumns = false)
+    internal static DataRow GetSelectedRow(object DataSource, string ValueMember = null, string DisplayMember = null, object SelectedValue = null, bool AutoGenerateColumns = false)
     {
       SelectItemForm.ColumnDefinition[] Columns = null;
       if (!AutoGenerateColumns && !string.IsNullOrWhiteSpace(ValueMember) && !string.IsNullOrWhiteSpace(DisplayMember))
