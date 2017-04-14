@@ -17,6 +17,7 @@ Please, read [DataGridView Wiki](../../wiki/DataGridView) for detail information
 ## Features for FlowLayoutPanel and TableLayoutPanel
 
 - Panel with the grouping function
+- TableLayoutPanel provides highlighted header
 - Tuned and auto generating fields by DataType and preferences
 - Auto determination of types with nullable  
 ...and much more
