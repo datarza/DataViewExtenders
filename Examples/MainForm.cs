@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CBComponents;
 using CBComponents.DataDescriptors;
 using Examples.Database;
+using CBComponents.Forms;
 
 namespace Examples
 {
@@ -35,7 +36,41 @@ namespace Examples
 
       // Examples menu
       this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example1Form.TextName, null, (sender, e) => { var form = new Example1Form(); form.Show(this); }));
-      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example2Form.TextName, null, (sender, e) => { var form = new Example2Form(); form.Show(this); }));
+      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (simple example)", null, (sender, e) =>
+      {
+        var items = new Dictionary<int, string>();
+        items.Add(1, "First value");
+        items.Add(2, "Second value");
+        items.Add(3, "More values...");
+        using (var form = SelectItemForm.CreateFormWithoutColumns(items, "My values", "These values are mine"))
+        {
+          form.dataGrid.AddTextColumn("key", "Key").SetNumberStyle();
+          form.dataGrid.AddTextColumn("value", "Value").SetAutoSizeFillStyle(50);
+          form.ShowDialog();
+        }
+      }));
+      this.exMM.DropDownItems.Add(new ToolStripMenuItem("SelectItemForm (Datatable example)", null, (sender, e) =>
+      {
+        var items = new DataTable();
+        items.Columns.AddRange(new DataColumn[] {
+          new DataColumn("ID", typeof(byte)),
+          new DataColumn("Group", typeof(string)),
+          new DataColumn("Remarks", typeof(string))});
+        items.Columns[0].Unique = true;
+        items.Columns[2].AllowDBNull = true;
+        items.Rows.Add(0, "Default");
+        items.Rows.Add(1, "Regular", "Regular group");
+        items.Rows.Add(2, "RG+Bonus", "Regular group with bonuses");
+        items.Rows.Add(3, "RET");
+        items.Rows.Add(4, "BIN");
+        using (var form = SelectItemForm.CreateFormWithoutColumns(items, "Groups"))
+        {
+          form.dataGrid.AddTextColumn(items.Columns[0].ColumnName, "ID").SetNumberStyle();
+          form.dataGrid.AddTextColumn(items.Columns[1].ColumnName, "Group");
+          form.dataGrid.AddTextColumn(items.Columns[2].ColumnName, "Remarks").SetAutoSizeFillStyle(50);
+          form.ShowDialog();
+        }
+      }));
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example3Form.TextName, null, (sender, e) => { var form = new Example3Form(); form.Show(this); }));
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example4Form.TextName, null, (sender, e) => { var form = new Example4Form(); form.Show(this); }));
       //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example5Form.TextName, null, (sender, e) => { var form = new Example5Form(); form.Show(this); }));
