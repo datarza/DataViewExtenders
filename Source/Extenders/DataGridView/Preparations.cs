@@ -111,7 +111,7 @@ namespace CBComponents
 
     private static void dataGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
     {
-      // TODO: Log message - e.Exception;
+      FormServices.ShowError(e.Exception);
       e.ThrowException = false;
       e.Cancel = true;
     }
