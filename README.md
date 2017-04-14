@@ -1,6 +1,6 @@
 # DataViewExtenders
 
-These extenders can generate columns on DataGridView and create controls in FlowLayoutPanel.
+These extenders can generate data-bound columns in the DataGridView and data-bound controls in the FlowLayoutPanel.
 
 ![Early preview](Media/img_01.png)
 
