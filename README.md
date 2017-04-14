@@ -19,7 +19,7 @@ Please, read [DataGridView Wiki](../../wiki/DataGridView) for detail information
 - Panel with the grouping function
 - TableLayoutPanel provides highlighted header
 - Tuned and auto generating fields by DataType and preferences
-- Auto determination types with nullable  
+- Special patern for nullable types  
 ...and much more
 
 Please, read [FlowLayoutPanel Wiki](../../wiki/FlowLayoutPanel) and [TableLayoutPanel Wiki](../../wiki/TableLayoutPanel) for detail information.
