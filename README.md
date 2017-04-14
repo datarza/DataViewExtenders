@@ -19,13 +19,6 @@ These extenders can generate data-bound columns in the DataGridView and data-bou
 
 Please, read [Wiki](../../wiki) for detail information.
 
-## Supported .NET Frameworks
-
-_DataViewExtenders_ uses special things that were introduced in .NET Framework 4.0: 
-- Extension Methods (introduced in .NET Framework 3.5)
-- String.IsNullOrWhiteSpace method
-- Tuple Class
-
 ## Credits
 
 - [Farm-Fresh Web Icons](http://www.fatcow.com/free-icons) have been used in examples.
