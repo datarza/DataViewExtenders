@@ -6,7 +6,7 @@ Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNav
 
 Almost done, polishing, creating wiki, testing...
 
-### Early preview
+## Preview
 
 ![Early preview](Media/img_01.png)
 
@@ -24,6 +24,8 @@ Almost done, polishing, creating wiki, testing...
 1. Panel with the grouping function
 2. Tuned and auto generating fields by DataType and preferences
 3. Auto determination of types with nullable
+
+Please, read [Wiki](../../wiki) for detail information.
 
 ## Supported .NET Frameworks
 
