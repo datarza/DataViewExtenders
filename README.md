@@ -4,7 +4,7 @@ Extenders for WinForms controls, such as DataGridView, BindingSource, BindingNav
 
 ## Current state
 
-Developing, please come back later...
+Almost done, polishing, creating wiki, testing...
 
 ### Early preview
 
@@ -19,7 +19,7 @@ Developing, please come back later...
 3. Preparation the DataGridView for showing data (PrepareStyleForShowingData), editing data (PrepareStyleForEditingData) and reports (PrepareStyleForShowingReportData).
 4. Tuned and auto generating columns by DataType and preferences
 
-#### EditorPanel
+#### FlowLayoutPanel and TableLayoutPanel
 
 1. Panel with the grouping function
 2. Tuned and auto generating fields by DataType and preferences
