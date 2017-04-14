@@ -129,9 +129,9 @@ namespace CBComponents.Forms
     /// <param name="Text"></param>
     /// <param name="Columns"></param>
     /// <returns></returns>
-    public static DialogResult ShowData(object DataSource, string Text, params SelectItemForm.ColumnDefinition[] Columns)
+    public static void ShowData(object DataSource, string Text, params SelectItemForm.ColumnDefinition[] Columns)
     {
-      return SelectItemForm.ShowData(DataSource, Text, null, Columns);
+      SelectItemForm.ShowData(DataSource, Text, null, Columns);
     }
 
     /// <summary>
@@ -142,13 +142,13 @@ namespace CBComponents.Forms
     /// <param name="HeaderText"></param>
     /// <param name="Columns"></param>
     /// <returns></returns>
-    public static DialogResult ShowData(object DataSource, string Text, string HeaderText, params SelectItemForm.ColumnDefinition[] Columns)
+    public static void ShowData(object DataSource, string Text, string HeaderText, params SelectItemForm.ColumnDefinition[] Columns)
     {
       using (var form = new SelectItemForm(DataSource, null, Columns))
       {
         if (!string.IsNullOrWhiteSpace(Text)) form.Text = Text;
         if (!string.IsNullOrWhiteSpace(HeaderText)) form.SetHeaderText(HeaderText);
-        return FormServices.ShowFormDialog(form);
+        FormServices.ShowFormDialog(form);
       }
     }
 
