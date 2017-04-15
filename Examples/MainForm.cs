@@ -73,10 +73,7 @@ namespace Examples
         }
       }));
       //this.exMM.DropDownItems.Add("-");
-      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example3Form.TextName, null, (sender, e) => { var form = new Example3Form(); form.Show(this); }));
-      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example4Form.TextName, null, (sender, e) => { var form = new Example4Form(); form.Show(this); }));
-      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example5Form.TextName, null, (sender, e) => { var form = new Example5Form(); form.Show(this); }));
-
+      //this.exMM.DropDownItems.Add(new ToolStripMenuItem(Example2Form.TextName, null, (sender, e) => { var form = new Example3Form(); form.Show(this); }));
     }
 
     private void InitializeGridsAndPanels()
