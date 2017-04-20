@@ -34,3 +34,7 @@ Please, read [FlowLayoutPanel Wiki](../../wiki/FlowLayoutPanel) and [TableLayout
 ## Contacts
 
 I would appreciate hearing your opinion on this. If you have any questions, please feel free to contact me by email: [radu.martin@hotmail.com](mailto://radu.martin@hotmail.com)
+
+##### Please, support the author
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8TQP5AEFC2VNL)
